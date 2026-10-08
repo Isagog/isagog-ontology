@@ -1,0 +1,2460 @@
+{
+ "ontologies": [
+  {
+   "id": "top",
+   "version": "4.7",
+   "label": {
+    "en": "Isagog Top Level Ontology",
+    "it": "Ontologia Isagog"
+   }
+  },
+  {
+   "id": "agents",
+   "version": "1.0",
+   "label": {
+    "en": "Isagog Agents Ontology",
+    "it": "Ontologia degli agenti Isagog"
+   }
+  },
+  {
+   "id": "frame",
+   "version": "1.1",
+   "label": {
+    "en": "Isagog Frame Ontology",
+    "it": "Ontologia dei Frame Isagog"
+   }
+  }
+ ],
+ "classes": [
+  {
+   "id": "top:Agent",
+   "layer": "top",
+   "label": {
+    "it": "Agente",
+    "en": "Agent"
+   },
+   "definition": {
+    "en": "A tangible or intangible continuant that brings about events, such as a person, automaton, or organization; whatever initiates an occurrent is an agent.",
+    "it": "Continuante, tangibile o intangibile, che fa accadere eventi, come una persona, un automa o un’organizzazione; ciò che inizia un occorrente è un agente."
+   },
+   "parents": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:Animate",
+   "layer": "top",
+   "label": {
+    "it": "Animato",
+    "en": "Animate"
+   },
+   "definition": {
+    "en": "A living organism characterized by voluntary movement and sensory perception, typically an animal.",
+    "it": "Organismo vivente caratterizzato da movimento volontario e percezione sensoriale, tipicamente un animale."
+   },
+   "parents": [
+    "top:Sort"
+   ]
+  },
+  {
+   "id": "top:Artifact",
+   "layer": "top",
+   "label": {
+    "it": "Artefatto",
+    "en": "Artifact"
+   },
+   "definition": {
+    "en": "An object intentionally created or modified by humans for a purpose or function.",
+    "it": "Oggetto intenzionalmente creato o modificato dagli esseri umani per uno scopo o una funzione."
+   },
+   "parents": [
+    "top:Sort"
+   ]
+  },
+  {
+   "id": "top:Automaton",
+   "layer": "top",
+   "label": {
+    "it": "Automa",
+    "en": "Automaton"
+   },
+   "definition": {
+    "en": "An artifact acting as an agent that performs logical, and possibly physical, operations using algorithms and computational resources.",
+    "it": "Artefatto agente che esegue operazioni logiche, ed eventualmente fisiche, mediante algoritmi e risorse computazionali."
+   },
+   "parents": [
+    "top:Agent",
+    "top:Artifact"
+   ]
+  },
+  {
+   "id": "top:Collection",
+   "layer": "top",
+   "label": {
+    "it": "Collezione",
+    "en": "Collection"
+   },
+   "definition": {
+    "en": "An intangible grouping of at least one continuant, without requiring functional organization of its elements.",
+    "it": "Raggruppamento intangibile di almeno un continuante, senza richiedere un’organizzazione funzionale degli elementi."
+   },
+   "parents": [
+    "top:Intangible"
+   ]
+  },
+  {
+   "id": "top:Concept",
+   "layer": "top",
+   "label": {
+    "it": "Concetto",
+    "en": "Concept"
+   },
+   "definition": {
+    "en": "A socially identified conceptual object used for interpretation or classification; it does not existentially depend on the individual entities to which it applies.",
+    "it": "Oggetto concettuale socialmente identificato, usato per interpretare o classificare; non dipende esistenzialmente dalle singole entità cui si applica."
+   },
+   "parents": [
+    "top:Intangible"
+   ]
+  },
+  {
+   "id": "top:Continuant",
+   "layer": "top",
+   "label": {
+    "it": "Continuante",
+    "en": "Continuant"
+   },
+   "definition": {
+    "en": "An entity considered as a whole that maintains its identity over time through change.",
+    "it": "Entità considerata come un tutto che mantiene la propria identità nel tempo attraverso il cambiamento."
+   },
+   "parents": []
+  },
+  {
+   "id": "top:Event",
+   "layer": "top",
+   "label": {
+    "it": "Evento",
+    "en": "Event"
+   },
+   "definition": {
+    "en": "An occurrent described through heterogeneous parts or phases; it may extend over time or be an instantaneous transition.",
+    "it": "Occorrente descritto attraverso parti o fasi eterogenee; può essere esteso nel tempo o una transizione puntuale."
+   },
+   "parents": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:Information",
+   "layer": "top",
+   "label": {
+    "it": "Informazione",
+    "en": "Information"
+   },
+   "definition": {
+    "en": "An intangible object carrying information that may be about entities through about. It does not require a separate Sign.",
+    "it": "Oggetto intangibile che porta informazione e può riguardare entità mediante about. Non richiede un Sign separato."
+   },
+   "parents": [
+    "top:Intangible"
+   ]
+  },
+  {
+   "id": "top:Intangible",
+   "layer": "top",
+   "label": {
+    "it": "Intangibile",
+    "en": "Intangible"
+   },
+   "definition": {
+    "en": "A continuant considered under a nonmaterial aspect, identifiable without requiring spatiotemporal attributes. It may still have a duration and change.",
+    "it": "Continuante considerato sotto un aspetto non materiale, identificabile senza richiedere attributi spazio-temporali. Può comunque avere durata e cambiare."
+   },
+   "parents": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:Location",
+   "layer": "top",
+   "label": {
+    "it": "Luogo",
+    "en": "Location"
+   },
+   "definition": {
+    "en": "A region of space identified as a location.",
+    "it": "Regione di spazio identificata come luogo."
+   },
+   "parents": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:NaturalThing",
+   "layer": "top",
+   "label": {
+    "it": "Oggetto naturale",
+    "en": "Natural object"
+   },
+   "definition": {
+    "en": "A natural plant or mineral object considered as a distinct unit.",
+    "it": "Oggetto naturale vegetale o minerale, considerato come unità distinta."
+   },
+   "parents": [
+    "top:Sort"
+   ]
+  },
+  {
+   "id": "top:Occurrent",
+   "layer": "top",
+   "label": {
+    "it": "Occorrente",
+    "en": "Occurrent"
+   },
+   "definition": {
+    "en": "An entity considered in its happening or unfolding in time, extended or instantaneous; it has a location and at least one continuant participant.",
+    "it": "Entità considerata nel suo accadere o dispiegarsi nel tempo, con durata o puntuale; ha una localizzazione e almeno un partecipante continuante."
+   },
+   "parents": []
+  },
+  {
+   "id": "top:Organization",
+   "layer": "top",
+   "label": {
+    "it": "Organizzazione",
+    "en": "Organization"
+   },
+   "definition": {
+    "en": "A social group acting as an agent, with at least one person, pursuing shared goals through rules and processes.",
+    "it": "Gruppo sociale agente, con almeno una persona, che opera verso obiettivi comuni secondo regole e processi."
+   },
+   "parents": [
+    "top:Agent",
+    "top:Collection",
+    "top:Intangible"
+   ]
+  },
+  {
+   "id": "top:Person",
+   "layer": "top",
+   "label": {
+    "it": "Persona",
+    "en": "Person"
+   },
+   "definition": {
+    "en": "A human being considered as a living organism and a rational, intentional agent.",
+    "it": "Essere umano considerato come organismo vivente e agente razionale intenzionale."
+   },
+   "parents": [
+    "top:Agent",
+    "top:Animate"
+   ]
+  },
+  {
+   "id": "top:Process",
+   "layer": "top",
+   "label": {
+    "it": "Processo",
+    "en": "Process"
+   },
+   "definition": {
+    "en": "A dynamic occurrent homogeneous at the chosen granularity, without an intrinsic culmination in the adopted description, such as running or raining.",
+    "it": "Occorrente dinamico omogeneo alla granularità scelta, senza un culmine intrinseco nella descrizione adottata, come correre o piovere."
+   },
+   "parents": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:Quality",
+   "layer": "top",
+   "label": {
+    "it": "Qualità",
+    "en": "Quality"
+   },
+   "definition": {
+    "en": "An individual characteristic of a specific bearer that retains its identity when its value changes.",
+    "it": "Caratteristica individuale di uno specifico portatore che mantiene la propria identità quando il suo valore cambia."
+   },
+   "parents": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:Relationship",
+   "layer": "top",
+   "label": {
+    "it": "Relazione",
+    "en": "Relationship"
+   },
+   "definition": {
+    "en": "A relationship represented as an intangible entity, linked to its relata through argument; the model requires at least one argument.",
+    "it": "Relazione rappresentata come entità intangibile, collegata ai propri relati tramite argument; il modello richiede almeno un argomento."
+   },
+   "parents": [
+    "top:Intangible"
+   ]
+  },
+  {
+   "id": "top:Sign",
+   "layer": "top",
+   "label": {
+    "it": "Segno",
+    "en": "Sign"
+   },
+   "definition": {
+    "en": "An intangible entity with a representational function within an interpretation. It requires a source and a signifier; referent and interpretant are optional.",
+    "it": "Entità intangibile con funzione rappresentativa in un’interpretazione. Richiede una sorgente e un significante; referente e interpretante sono opzionali."
+   },
+   "parents": [
+    "top:Intangible"
+   ]
+  },
+  {
+   "id": "top:Situation",
+   "layer": "top",
+   "label": {
+    "it": "Situazione",
+    "en": "Situation"
+   },
+   "definition": {
+    "en": "A temporally extended condition, stable in the contextually relevant respects, such as a need or a personal state. persistence may indicate its expected persistence.",
+    "it": "Condizione temporalmente estesa, stabile rispetto agli aspetti rilevanti nel contesto, come un bisogno o uno stato personale. persistence ne può indicare la persistenza attesa."
+   },
+   "parents": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:Sort",
+   "layer": "top",
+   "label": {
+    "it": "Sortale",
+    "en": "Sortal"
+   },
+   "definition": {
+    "en": "A tangible continuant considered as a distinct unit, with determinate boundaries and a unity criterion supporting identification over time.",
+    "it": "Continuante tangibile considerato come unità distinta, con confini determinati e un criterio di unità che ne sostiene l’identificazione nel tempo."
+   },
+   "parents": [
+    "top:Tangible"
+   ]
+  },
+  {
+   "id": "top:Substance",
+   "layer": "top",
+   "label": {
+    "it": "Sostanza",
+    "en": "Substance"
+   },
+   "definition": {
+    "en": "A tangible continuant considered as a mass or quantity, without intrinsic boundaries or a sortal unity criterion.",
+    "it": "Continuante tangibile considerato come massa o quantità, senza confini intrinseci o un criterio di unità sortale."
+   },
+   "parents": [
+    "top:Tangible"
+   ]
+  },
+  {
+   "id": "top:Tangible",
+   "layer": "top",
+   "label": {
+    "it": "Tangibile",
+    "en": "Tangible"
+   },
+   "definition": {
+    "en": "A continuant considered under a material aspect, with spatial properties.",
+    "it": "Continuante considerato sotto un aspetto materiale, con proprietà spaziali."
+   },
+   "parents": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "agents:Aspect",
+   "layer": "agents",
+   "label": {
+    "it": "Aspetto",
+    "en": "Aspect"
+   },
+   "definition": {
+    "en": "A Quality of a conversation participant remembered by an agent as relevant context; its kind is given by a subclass or by an aspect_kind literal.",
+    "it": "Qualità di un partecipante alla conversazione che un agente ricorda come contesto rilevante; il tipo è dato da una sottoclasse o da un literal aspect_kind."
+   },
+   "parents": [
+    "top:Quality"
+   ]
+  },
+  {
+   "id": "agents:Conversation",
+   "layer": "agents",
+   "label": {
+    "it": "Conversazione",
+    "en": "Conversation"
+   },
+   "definition": {
+    "en": "A communicative event comprising at least one SpeechAct as a phase and providing a shared context for interpretation.",
+    "it": "Evento comunicativo che comprende almeno un SpeechAct come fase e fornisce un contesto condiviso per l’interpretazione."
+   },
+   "parents": [
+    "top:Event"
+   ]
+  },
+  {
+   "id": "agents:SpeechAct",
+   "layer": "agents",
+   "label": {
+    "it": "Atto Linguistico",
+    "en": "Speech Act"
+   },
+   "definition": {
+    "en": "A communicative act by an agent, represented as Event and Information in the same entity. It concerns at least one entity through about, without requiring an intermediate Sign.",
+    "it": "Atto comunicativo di un agente, rappresentato come Event e Information nella stessa entità. Riguarda almeno un’entità tramite about, senza richiedere un Sign intermedio."
+   },
+   "parents": [
+    "top:Event",
+    "top:Information"
+   ]
+  },
+  {
+   "id": "frame:Frame",
+   "layer": "frame",
+   "label": {
+    "it": "Frame",
+    "en": "Frame"
+   },
+   "definition": {
+    "en": "A frame, considered as a catalogue object. By OWL 2 punning, every frame IRI denotes both an owl:Class subsumed by top:Occurrent (schema level, used for classifying instances) and an individual of :Frame (catalogue level, used for asserting definitions, lexical units, provenance and corpus attestations). The punning is what makes the resource auditable without metaclasses: evidence is asserted about the individual, inference runs over the class.",
+    "it": "Un frame considerato come oggetto di catalogo. Per punning OWL 2, ogni IRI di frame denota sia una classe di occorrenti sia un individuo su cui asserire definizioni, unità lessicali e attestazioni."
+   },
+   "parents": [
+    "top:Concept"
+   ]
+  },
+  {
+   "id": "frame:LexicalUnit",
+   "layer": "frame",
+   "label": {
+    "it": "Unità lessicale",
+    "en": "Lexical unit"
+   },
+   "definition": {
+    "en": "A lemma and part of speech pair that evokes a frame. Subclass of top:Information, which already covers word types and tokens."
+   },
+   "parents": [
+    "top:Information"
+   ]
+  },
+  {
+   "id": "frame:Reciprocal",
+   "layer": "frame",
+   "label": {
+    "it": "Reciproco",
+    "en": "Reciprocal"
+   },
+   "definition": {
+    "en": "Defined class: any occurrent with at least two coparticipants. Membership is inferred rather than asserted, so reciprocity becomes a testable consequence of the frame axioms instead of a label an editor remembers to apply.",
+    "it": "Classe definita: qualsiasi occorrente con almeno due copartecipanti. L'appartenenza è inferita anziché asserita."
+   },
+   "parents": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "frame:Role",
+   "layer": "frame",
+   "label": {
+    "it": "Ruolo",
+    "en": "Role"
+   },
+   "definition": {
+    "en": "A frame-specific role, considered as a catalogue object, linked by :binds to the object property that realises it. Unlike FrameNet frame elements, every role must specialise one of the global roles on axis 2 or axis 3, which is what removes the homonymy problem: MOVER of fleeing and MOVER of descending both specialise :theme and are therefore comparable.",
+    "it": "Un ruolo specifico di frame. Diversamente dai frame element di FrameNet, ogni ruolo deve specializzare un ruolo globale, il che elimina il problema dell'omonimia."
+   },
+   "parents": [
+    "top:Concept"
+   ]
+  }
+ ],
+ "properties": [
+  {
+   "id": "top:about",
+   "layer": "top",
+   "label": {
+    "it": "riguarda",
+    "en": "about"
+   },
+   "definition": {
+    "it": "Collega un oggetto informativo a ciò che riguarda. Può essere asserita direttamente senza un Sign intermedio, oppure inferita dal percorso yields–referent.",
+    "en": "Links an information object to what it is about. It may be asserted directly without an intermediate Sign, or inferred from the yields–referent path."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "top:Information"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:adjacent_to",
+   "layer": "top",
+   "label": {
+    "it": "adiacente a",
+    "en": "adjacent to"
+   },
+   "definition": {
+    "it": "Collega due luoghi spazialmente adiacenti; la relazione è simmetrica.",
+    "en": "Links two spatially adjacent locations; the relation is symmetric."
+   },
+   "kind": "object",
+   "parents": [
+    "top:connectedness"
+   ],
+   "domain": [
+    "top:Location"
+   ],
+   "range": [
+    "top:Location"
+   ]
+  },
+  {
+   "id": "top:argument",
+   "layer": "top",
+   "label": {
+    "it": "argomento",
+    "en": "argument"
+   },
+   "definition": {
+    "it": "Collega una relazione rappresentata come entità a uno dei suoi argomenti o relati.",
+    "en": "Links a relationship represented as an entity to one of its arguments or relata."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [
+    "top:Relationship"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:argument_of",
+   "layer": "top",
+   "label": {
+    "it": "argomento di",
+    "en": "argument of"
+   },
+   "definition": {
+    "it": "Collega un’entità a una relazione di cui è argomento o relato.",
+    "en": "Links an entity to a relationship of which it is an argument or relatum."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:causation",
+   "layer": "top",
+   "label": {
+    "it": "causazione",
+    "en": "causation"
+   },
+   "definition": {
+    "en": "A family of causal relations between occurrents, including causes and caused_by.",
+    "it": "Famiglia di relazioni causali tra occorrenti, comprendente causes e caused_by."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:caused_by",
+   "layer": "top",
+   "label": {
+    "it": "causato da",
+    "en": "caused by"
+   },
+   "definition": {
+    "it": "Collega un occorrente a un altro occorrente che lo causa.",
+    "en": "Links an occurrent to another occurrent that causes it."
+   },
+   "kind": "object",
+   "parents": [
+    "top:causation"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:causes",
+   "layer": "top",
+   "label": {
+    "it": "causa",
+    "en": "causes"
+   },
+   "definition": {
+    "it": "Collega un occorrente a un altro occorrente che esso causa.",
+    "en": "Links an occurrent to another occurrent that it causes."
+   },
+   "kind": "object",
+   "parents": [
+    "top:causation"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:collocation",
+   "layer": "top",
+   "label": {
+    "it": "collocazione",
+    "en": "collocation"
+   },
+   "definition": {
+    "en": "A family of spatial location relations, including located_in and is_location_of.",
+    "it": "Famiglia di relazioni di ubicazione spaziale, comprendente located_in e is_location_of."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:composition",
+   "layer": "top",
+   "label": {
+    "it": "composizione",
+    "en": "composition"
+   },
+   "definition": {
+    "en": "A family of composition relations, including parts, elements, phases, and relationship arguments.",
+    "it": "Famiglia di relazioni di composizione, comprendente parti, elementi, fasi e argomenti di relazioni."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:connectedness",
+   "layer": "top",
+   "label": {
+    "it": "connessione",
+    "en": "connectedness"
+   },
+   "definition": {
+    "en": "A spatial or temporal connection, including adjacency and precedence, without requiring proximity.",
+    "it": "Connessione spaziale o temporale, comprendente adiacenza e precedenza, senza richiedere prossimità."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:described_in",
+   "layer": "top",
+   "label": {
+    "it": "descritto in",
+    "en": "described in"
+   },
+   "definition": {
+    "it": "Collega un’entità a un oggetto informativo che la riguarda; è l’inversa di about.",
+    "en": "Links an entity to an information object about it; it is the inverse of about."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:element_of",
+   "layer": "top",
+   "label": {
+    "it": "elemento di",
+    "en": "element of"
+   },
+   "definition": {
+    "it": "Collega un continuante a una collezione di cui è elemento, senza richiedere un ruolo funzionale.",
+    "en": "Links a continuant to a collection of which it is an element, without requiring a functional role."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [
+    "top:Continuant"
+   ],
+   "range": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:entailed_by",
+   "layer": "top",
+   "label": {
+    "it": "implicato da",
+    "en": "entailed by"
+   },
+   "definition": {
+    "it": "Collega un concetto a un concetto che lo implica.",
+    "en": "Links a concept to a concept that entails it."
+   },
+   "kind": "object",
+   "parents": [
+    "top:entailment"
+   ],
+   "domain": [
+    "top:Concept"
+   ],
+   "range": [
+    "top:Concept"
+   ]
+  },
+  {
+   "id": "top:entailment",
+   "layer": "top",
+   "label": {
+    "it": "implicazione",
+    "en": "entailment"
+   },
+   "definition": {
+    "en": "A family of logical or factual implication relations, including entails and entailed_by.",
+    "it": "Famiglia di relazioni di implicazione logica o fattuale, comprendente entails e entailed_by."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:entails",
+   "layer": "top",
+   "label": {
+    "it": "implica",
+    "en": "entails"
+   },
+   "definition": {
+    "it": "Collega un concetto a un concetto che esso implica.",
+    "en": "Links a concept to a concept that it entails."
+   },
+   "kind": "object",
+   "parents": [
+    "top:entailment"
+   ],
+   "domain": [
+    "top:Concept"
+   ],
+   "range": [
+    "top:Concept"
+   ]
+  },
+  {
+   "id": "top:follows",
+   "layer": "top",
+   "label": {
+    "it": "successivo a",
+    "en": "follows"
+   },
+   "definition": {
+    "it": "Collega un occorrente a uno che lo precede temporalmente. È transitiva e ammette la coincidenza tra fine del precedente e inizio del successivo.",
+    "en": "Links an occurrent to one that temporally precedes it. It is transitive and allows the earlier end to coincide with the later beginning."
+   },
+   "kind": "object",
+   "parents": [
+    "top:connectedness"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:has_element",
+   "layer": "top",
+   "label": {
+    "it": "ha elemento",
+    "en": "has element"
+   },
+   "definition": {
+    "it": "Collega una collezione a un continuante che ne è elemento, senza richiedere un ruolo funzionale.",
+    "en": "Links a collection to a continuant that is one of its elements, without requiring a functional role."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [
+    "top:Collection"
+   ],
+   "range": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:has_inherent",
+   "layer": "top",
+   "label": {
+    "it": "ha inerente",
+    "en": "has inherent"
+   },
+   "definition": {
+    "it": "Collega un’entità a un aspetto intangibile che dipende esistenzialmente da essa.",
+    "en": "Links an entity to an intangible aspect that existentially depends on it."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [],
+   "range": [
+    "top:Intangible"
+   ]
+  },
+  {
+   "id": "top:has_member",
+   "layer": "top",
+   "label": {
+    "it": "ha membro",
+    "en": "has member"
+   },
+   "definition": {
+    "it": "Collega un’organizzazione a una persona che ne è membro.",
+    "en": "Links an organization to a person who is one of its members."
+   },
+   "kind": "object",
+   "parents": [
+    "top:has_element"
+   ],
+   "domain": [
+    "top:Collection"
+   ],
+   "range": [
+    "top:Person"
+   ]
+  },
+  {
+   "id": "top:has_part",
+   "layer": "top",
+   "label": {
+    "it": "ha parte",
+    "en": "has part"
+   },
+   "definition": {
+    "it": "Collega un continuante a una parte che rientra nella sua organizzazione funzionale; può avere più parti.",
+    "en": "Links a continuant to a part within its functional organization; it may have multiple parts."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [
+    "top:Continuant"
+   ],
+   "range": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:has_participant",
+   "layer": "top",
+   "label": {
+    "it": "ha partecipante",
+    "en": "has participant"
+   },
+   "definition": {
+    "it": "Collega un occorrente a un continuante che vi partecipa, anche senza svolgere un ruolo attivo.",
+    "en": "Links an occurrent to a participating continuant, including participants without an active role."
+   },
+   "kind": "object",
+   "parents": [
+    "top:participation"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "top:has_phase",
+   "layer": "top",
+   "label": {
+    "it": "ha fase",
+    "en": "has phase"
+   },
+   "definition": {
+    "it": "Collega un occorrente a un altro occorrente che ne costituisce una fase temporale.",
+    "en": "Links an occurrent to another occurrent that constitutes one of its temporal phases."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:inherence",
+   "layer": "top",
+   "label": {
+    "it": "inerenza",
+    "en": "inherence"
+   },
+   "definition": {
+    "en": "A family of qualification, description, transmission, and interpretation relations. Existential dependence is specifically expressed by inheres_in.",
+    "it": "Famiglia di relazioni di qualificazione, descrizione, trasmissione e interpretazione. La dipendenza esistenziale è espressa specificamente da inheres_in."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:inheres_in",
+   "layer": "top",
+   "label": {
+    "it": "inerisce in",
+    "en": "inheres in"
+   },
+   "definition": {
+    "it": "Collega un aspetto intangibile all’entità da cui dipende esistenzialmente.",
+    "en": "Links an intangible aspect to the entity on which it existentially depends."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "top:Intangible"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:initiates",
+   "layer": "top",
+   "label": {
+    "it": "inizia",
+    "en": "initiates"
+   },
+   "definition": {
+    "it": "Collega un agente a un evento che esso fa accadere.",
+    "en": "Links an agent to an event that it brings about."
+   },
+   "kind": "object",
+   "parents": [
+    "top:participate_in"
+   ],
+   "domain": [
+    "top:Agent"
+   ],
+   "range": [
+    "top:Event"
+   ]
+  },
+  {
+   "id": "top:initiator",
+   "layer": "top",
+   "label": {
+    "it": "iniziatore",
+    "en": "initiator"
+   },
+   "definition": {
+    "it": "Collega un evento a un agente che lo fa accadere.",
+    "en": "Links an event to an agent that brings it about."
+   },
+   "kind": "object",
+   "parents": [
+    "top:has_participant"
+   ],
+   "domain": [
+    "top:Event"
+   ],
+   "range": [
+    "top:Agent"
+   ]
+  },
+  {
+   "id": "top:interpretant",
+   "layer": "top",
+   "label": {
+    "it": "interpretante",
+    "en": "interpretant"
+   },
+   "definition": {
+    "it": "Collega un segno a un Concept che ne rappresenta un’interpretazione; concept permette invece un identificatore testuale.",
+    "en": "Links a sign to a Concept representing an interpretation of it; concept instead allows a textual identifier."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [
+    "top:Sign"
+   ],
+   "range": [
+    "top:Concept"
+   ]
+  },
+  {
+   "id": "top:interpreter",
+   "layer": "top",
+   "label": {
+    "it": "interprete",
+    "en": "interpreter"
+   },
+   "definition": {
+    "it": "Collega un segno a un agente che lo interpreta. Il collegamento non attribuisce all’agente uno specifico interpretant.",
+    "en": "Links a sign to an agent interpreting it. The link does not assign a specific interpretant to that agent."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "top:Sign"
+   ],
+   "range": [
+    "top:Agent"
+   ]
+  },
+  {
+   "id": "top:is_location_of",
+   "layer": "top",
+   "label": {
+    "it": "è ubicazione di",
+    "en": "is location of"
+   },
+   "definition": {
+    "it": "Collega un luogo a un’entità o a un occorrente che vi è localizzato.",
+    "en": "Links a location to an entity or an occurrent located there."
+   },
+   "kind": "object",
+   "parents": [
+    "top:collocation"
+   ],
+   "domain": [
+    "top:Location"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:located_in",
+   "layer": "top",
+   "label": {
+    "it": "ubicato in",
+    "en": "located in"
+   },
+   "definition": {
+    "it": "Collega un’entità o un occorrente al luogo in cui è localizzato.",
+    "en": "Links an entity or an occurrent to its location."
+   },
+   "kind": "object",
+   "parents": [
+    "top:collocation"
+   ],
+   "domain": [],
+   "range": [
+    "top:Location"
+   ]
+  },
+  {
+   "id": "top:member_of",
+   "layer": "top",
+   "label": {
+    "it": "membro",
+    "en": "member"
+   },
+   "definition": {
+    "it": "Collega una persona a un’organizzazione di cui è membro.",
+    "en": "Links a person to an organization of which they are a member."
+   },
+   "kind": "object",
+   "parents": [
+    "top:element_of"
+   ],
+   "domain": [
+    "top:Person"
+   ],
+   "range": [
+    "top:Organization"
+   ]
+  },
+  {
+   "id": "top:part_of",
+   "layer": "top",
+   "label": {
+    "it": "parte di",
+    "en": "part of"
+   },
+   "definition": {
+    "it": "Collega una parte al continuante nella cui organizzazione funzionale rientra.",
+    "en": "Links a part to the continuant whose functional organization it belongs to."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:participate_in",
+   "layer": "top",
+   "label": {
+    "it": "partecipa in",
+    "en": "participates in"
+   },
+   "definition": {
+    "it": "Collega un continuante a un occorrente cui partecipa, anche senza svolgere un ruolo attivo.",
+    "en": "Links a continuant to an occurrent in which it participates, including participation without an active role."
+   },
+   "kind": "object",
+   "parents": [
+    "top:participation"
+   ],
+   "domain": [
+    "top:Continuant"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:participation",
+   "layer": "top",
+   "label": {
+    "it": "partecipazione",
+    "en": "participation"
+   },
+   "definition": {
+    "en": "A family of relations between occurrents and the continuants participating in them.",
+    "it": "Famiglia di relazioni tra occorrenti e continuanti che vi partecipano."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:phase_of",
+   "layer": "top",
+   "label": {
+    "it": "fase di",
+    "en": "phase of"
+   },
+   "definition": {
+    "it": "Collega una fase temporale all’occorrente di cui fa parte.",
+    "en": "Links a temporal phase to the occurrent of which it is a part."
+   },
+   "kind": "object",
+   "parents": [
+    "top:composition"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:precedes",
+   "layer": "top",
+   "label": {
+    "it": "precede",
+    "en": "precedes"
+   },
+   "definition": {
+    "it": "Collega un occorrente a uno temporalmente successivo. È transitiva e ammette che la fine del primo coincida con l’inizio del secondo.",
+    "en": "Links an occurrent to a temporally later one. It is transitive and allows the first to end when the second begins."
+   },
+   "kind": "object",
+   "parents": [
+    "top:connectedness"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:presupposes",
+   "layer": "top",
+   "label": {
+    "it": "presuppone",
+    "en": "presupposes"
+   },
+   "definition": {
+    "it": "Collega un occorrente a una situazione che deve sussistere perché esso abbia luogo.",
+    "en": "Links an occurrent to a situation that must hold for it to take place."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Situation"
+   ]
+  },
+  {
+   "id": "top:qualified_by",
+   "layer": "top",
+   "label": {
+    "it": "qualificato da",
+    "en": "qualified by"
+   },
+   "definition": {
+    "it": "Collega un’entità a una qualità che la caratterizza e dipende da essa.",
+    "en": "Links an entity to a quality that characterizes and depends on it."
+   },
+   "kind": "object",
+   "parents": [
+    "top:has_inherent"
+   ],
+   "domain": [],
+   "range": [
+    "top:Quality"
+   ]
+  },
+  {
+   "id": "top:qualifies",
+   "layer": "top",
+   "label": {
+    "it": "qualifica",
+    "en": "qualifies"
+   },
+   "definition": {
+    "it": "Collega una qualità all’entità che essa caratterizza e da cui dipende.",
+    "en": "Links a quality to the entity that it characterizes and depends on."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inheres_in"
+   ],
+   "domain": [
+    "top:Quality"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:receives",
+   "layer": "top",
+   "label": {
+    "it": "riceve",
+    "en": "receives"
+   },
+   "definition": {
+    "it": "Collega un agente a un evento di cui è destinatario, come una comunicazione o un pagamento.",
+    "en": "Links an agent to an event of which it is the recipient, such as a communication or a payment."
+   },
+   "kind": "object",
+   "parents": [
+    "top:participate_in"
+   ],
+   "domain": [
+    "top:Agent"
+   ],
+   "range": [
+    "top:Event"
+   ]
+  },
+  {
+   "id": "top:recipient",
+   "layer": "top",
+   "label": {
+    "it": "destinatario",
+    "en": "recipient"
+   },
+   "definition": {
+    "it": "Collega un evento a un agente destinatario.",
+    "en": "Links an event to a recipient agent."
+   },
+   "kind": "object",
+   "parents": [
+    "top:has_participant"
+   ],
+   "domain": [
+    "top:Event"
+   ],
+   "range": [
+    "top:Agent"
+   ]
+  },
+  {
+   "id": "top:referent",
+   "layer": "top",
+   "label": {
+    "it": "referente",
+    "en": "referent"
+   },
+   "definition": {
+    "it": "Collega un segno all’entità cui si riferisce, che può anche essere un concetto o una situazione.",
+    "en": "Links a sign to the entity it refers to, which may also be a concept or a situation."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "top:Sign"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:referred_by",
+   "layer": "top",
+   "label": {
+    "it": "riferito da",
+    "en": "referred by"
+   },
+   "definition": {
+    "it": "Collega un’entità a un segno che si riferisce a essa.",
+    "en": "Links an entity to a sign referring to it."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [],
+   "range": [
+    "top:Sign"
+   ]
+  },
+  {
+   "id": "top:relatedness",
+   "layer": "top",
+   "label": {
+    "it": "relazione",
+    "en": "relatedness"
+   },
+   "definition": {
+    "en": "A generic relation between entities, at the root of the model’s relation hierarchy.",
+    "it": "Relazione generica tra entità, radice della gerarchia delle relazioni del modello."
+   },
+   "kind": "object",
+   "parents": [],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:result_of",
+   "layer": "top",
+   "label": {
+    "it": "risultato di",
+    "en": "result of"
+   },
+   "definition": {
+    "it": "Collega una situazione a un occorrente che la instaura; è l’inversa di results_in.",
+    "en": "Links a situation to an occurrent that establishes it; it is the inverse of results_in."
+   },
+   "kind": "object",
+   "parents": [],
+   "domain": [
+    "top:Situation"
+   ],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "top:results_in",
+   "layer": "top",
+   "label": {
+    "it": "risulta in",
+    "en": "results in"
+   },
+   "definition": {
+    "it": "Collega un occorrente alla situazione che instaura. La coincidenza prevista tra la sua fine e l’inizio della situazione non è assiomatizzata.",
+    "en": "Links an occurrent to the situation it establishes. The intended coincidence of its end with the situation’s beginning is not axiomatized."
+   },
+   "kind": "object",
+   "parents": [
+    "top:precedes"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Situation"
+   ]
+  },
+  {
+   "id": "top:source",
+   "layer": "top",
+   "label": {
+    "it": "sorgente",
+    "en": "source"
+   },
+   "definition": {
+    "it": "Collega un segno all’oggetto informativo che lo produce; è l’inversa di yields.",
+    "en": "Links a sign to the information object producing it; it is the inverse of yields."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "top:Sign"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:yields",
+   "layer": "top",
+   "label": {
+    "it": "produce",
+    "en": "yields"
+   },
+   "definition": {
+    "it": "Collega un oggetto informativo a un segno che produce, quando serve rappresentare separatamente il segno.",
+    "en": "Links an information object to a sign it produces, when the sign needs to be represented separately."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "top:Information"
+   ],
+   "range": [
+    "top:Sign"
+   ]
+  },
+  {
+   "id": "top:anthroponym",
+   "layer": "top",
+   "label": {
+    "it": "antroponimo",
+    "en": "anthroponym"
+   },
+   "definition": {
+    "en": "A personal name, retained for compatibility. Deprecated property: use name in new data.",
+    "it": "Nome personale, mantenuto per compatibilità. Proprietà deprecata: usare name nei nuovi dati."
+   },
+   "kind": "data",
+   "parents": [
+    "top:name"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:begin",
+   "layer": "top",
+   "label": {
+    "it": "inizio",
+    "en": "begin"
+   },
+   "definition": {
+    "it": "Data e ora iniziali dell’occorrente rappresentato. Il valore è opzionale: ometterlo non significa che l’occorrente sia privo di inizio.",
+    "en": "The beginning date and time of the represented occurrent. The value is optional: omission does not mean the occurrent has no beginning."
+   },
+   "kind": "data",
+   "parents": [
+    "top:coordinate"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:concept",
+   "layer": "top",
+   "label": {
+    "it": "concetto",
+    "en": "concept"
+   },
+   "definition": {
+    "en": "A textual identifier of a concept or predicate interpreting a sign; interpretant instead allows a Concept entity.",
+    "it": "Identificatore testuale di un concetto o predicato che interpreta un segno; interpretant permette invece un’entità Concept."
+   },
+   "kind": "data",
+   "parents": [
+    "top:identifier"
+   ],
+   "domain": [
+    "top:Sign"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:confidence",
+   "layer": "top",
+   "label": {
+    "it": "Confidenza",
+    "en": "Confidence"
+   },
+   "definition": {
+    "en": "A degree of confidence expressed as a decimal; the recommended range is [0, 1], enforced only on Quality (at most one value).",
+    "it": "Grado di confidenza espresso come numero decimale; l’intervallo raccomandato è [0, 1], imposto solo su Quality (al più un valore)."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:coordinate",
+   "layer": "top",
+   "label": {
+    "it": "coordinata",
+    "en": "coordinate"
+   },
+   "definition": {
+    "en": "A coordinate value, specialized by the model’s spatial and temporal properties.",
+    "it": "Valore di coordinata, specializzato dalle proprietà spaziali e temporali del modello."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:dimension",
+   "layer": "top",
+   "label": {
+    "it": "dimensione",
+    "en": "dimension"
+   },
+   "definition": {
+    "en": "A value expressing a dimension of a sortal entity.",
+    "it": "Valore che esprime una dimensione di un’entità sortale."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [
+    "top:Sort"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:end",
+   "layer": "top",
+   "label": {
+    "it": "fine",
+    "en": "end"
+   },
+   "definition": {
+    "it": "Data e ora finali dell’occorrente rappresentato. Il valore è opzionale: ometterlo non significa che l’occorrente continui indefinitamente.",
+    "en": "The ending date and time of the represented occurrent. The value is optional: omission does not mean the occurrent continues indefinitely."
+   },
+   "kind": "data",
+   "parents": [
+    "top:coordinate"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:geo_coordinate",
+   "layer": "top",
+   "label": {
+    "it": "coordinata geografica",
+    "en": "geo coordinate"
+   },
+   "definition": {
+    "en": "A geographic coordinate representing longitude and latitude.",
+    "it": "Coordinata geografica che rappresenta longitudine e latitudine."
+   },
+   "kind": "data",
+   "parents": [
+    "top:coordinate"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:identifier",
+   "layer": "top",
+   "label": {
+    "it": "identificatore",
+    "en": "identifier"
+   },
+   "definition": {
+    "en": "A string used to identify an entity, with no uniqueness guaranteed by the axioms.",
+    "it": "Stringa usata per identificare un’entità, senza garanzia di unicità negli assiomi."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:name",
+   "layer": "top",
+   "label": {
+    "it": "nome",
+    "en": "name"
+   },
+   "definition": {
+    "en": "A textual name of an entity, not necessarily unique.",
+    "it": "Nome testuale di un’entità, non necessariamente univoco."
+   },
+   "kind": "data",
+   "parents": [
+    "top:identifier"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:persistence",
+   "layer": "top",
+   "label": {
+    "it": "persistenza",
+    "en": "persistence"
+   },
+   "definition": {
+    "it": "Persistenza attesa e rivedibile di una Situation, non durata certa né conservazione dei dati. Valori consigliati: ephemeral, session, long_term, permanent (senza termine previsto); conversational è alias applicativo di long_term.",
+    "en": "The expected, revisable persistence of a Situation, not a definite duration or data retention. Recommended values: ephemeral, session, long_term, permanent (no expected end); conversational is an application alias of long_term."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [
+    "top:Situation"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:signifier",
+   "layer": "top",
+   "label": {
+    "it": "significante",
+    "en": "signifier"
+   },
+   "definition": {
+    "it": "Forma di un segno espressa come valore letterale, per esempio testo, URI o dati binari codificati.",
+    "en": "The form of a sign expressed as a literal value, such as text, a URI, or encoded binary data."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [
+    "top:Sign"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:text",
+   "layer": "top",
+   "label": {
+    "it": "contenuto",
+    "en": "content"
+   },
+   "definition": {
+    "it": "Contenuto testuale associato a un’entità.",
+    "en": "Textual content associated with an entity."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:time_coordinate",
+   "layer": "top",
+   "label": {
+    "it": "coordinata temporale",
+    "en": "time coordinate"
+   },
+   "definition": {
+    "en": "A textual representation of a time point or interval. Use begin and end for comparable boundaries.",
+    "it": "Rappresentazione testuale di un punto o intervallo temporale. Per confini confrontabili usare begin ed end."
+   },
+   "kind": "data",
+   "parents": [
+    "top:coordinate"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "top:time_span",
+   "layer": "top",
+   "label": {
+    "it": "durata",
+    "en": "time span"
+   },
+   "definition": {
+    "en": "A value expressing the duration of an occurrent.",
+    "it": "Valore che esprime la durata di un occorrente."
+   },
+   "kind": "data",
+   "parents": [
+    "top:coordinate"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": []
+  },
+  {
+   "id": "top:value",
+   "layer": "top",
+   "label": {
+    "it": "value",
+    "en": "value"
+   },
+   "definition": {
+    "it": "Associa a una qualità individuale il valore letterale attualmente asserito nella base di conoscenza, ad esempio «rosso» per il colore di un’automobile.",
+    "en": "Relates an individual quality to the literal value currently asserted for it in the knowledge base, such as “red” for a car’s colour."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [
+    "top:Quality"
+   ],
+   "range": []
+  },
+  {
+   "id": "agents:conveyed_by",
+   "layer": "agents",
+   "label": {
+    "it": "trasmesso da",
+    "en": "conveyed by"
+   },
+   "definition": {
+    "it": "Collega un contenuto informativo all’atto linguistico che lo trasmette; il contenuto può essere condiviso tra più atti.",
+    "en": "Links information content to the speech act conveying it; the content may be shared by several acts."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "top:Information"
+   ],
+   "range": [
+    "agents:SpeechAct"
+   ]
+  },
+  {
+   "id": "agents:conveys",
+   "layer": "agents",
+   "label": {
+    "it": "trasmette",
+    "en": "conveys"
+   },
+   "definition": {
+    "it": "Collega un atto linguistico a un contenuto informativo rappresentato separatamente. Il collegamento è opzionale: l’atto è già Information.",
+    "en": "Links a speech act to separately represented information content. The link is optional: the act is already Information."
+   },
+   "kind": "object",
+   "parents": [
+    "top:inherence"
+   ],
+   "domain": [
+    "agents:SpeechAct"
+   ],
+   "range": [
+    "top:Information"
+   ]
+  },
+  {
+   "id": "agents:originates",
+   "layer": "agents",
+   "label": {
+    "it": "origina",
+    "en": "originates"
+   },
+   "definition": {
+    "it": "Collega un agente a un atto linguistico che compie.",
+    "en": "Links an agent to a speech act that it performs."
+   },
+   "kind": "object",
+   "parents": [
+    "top:initiates"
+   ],
+   "domain": [
+    "top:Agent"
+   ],
+   "range": [
+    "agents:SpeechAct"
+   ]
+  },
+  {
+   "id": "agents:originator",
+   "layer": "agents",
+   "label": {
+    "it": "originatore",
+    "en": "originator"
+   },
+   "definition": {
+    "it": "Collega un atto linguistico all’agente che lo compie; ogni atto ha esattamente un originatore.",
+    "en": "Links a speech act to the agent performing it; each act has exactly one originator."
+   },
+   "kind": "object",
+   "parents": [
+    "top:initiator"
+   ],
+   "domain": [
+    "agents:SpeechAct"
+   ],
+   "range": [
+    "top:Agent"
+   ]
+  },
+  {
+   "id": "agents:responds_to",
+   "layer": "agents",
+   "label": {
+    "it": "risponde a",
+    "en": "responds to"
+   },
+   "definition": {
+    "it": "Collega un atto linguistico a un atto precedente cui risponde direttamente.",
+    "en": "Links a speech act to an earlier act to which it directly responds."
+   },
+   "kind": "object",
+   "parents": [
+    "top:follows"
+   ],
+   "domain": [
+    "agents:SpeechAct"
+   ],
+   "range": [
+    "agents:SpeechAct"
+   ]
+  },
+  {
+   "id": "agents:aspect_kind",
+   "layer": "agents",
+   "label": {
+    "it": "tipo di aspetto",
+    "en": "aspect kind"
+   },
+   "definition": {
+    "en": "Links an aspect to a literal specifying its kind, as an alternative to an application subclass of Aspect.",
+    "it": "Collega un aspetto a un literal che ne specifica il tipo, in alternativa a una sottoclasse applicativa di Aspect."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [
+    "agents:Aspect"
+   ],
+   "range": []
+  },
+  {
+   "id": "agents:illocution",
+   "layer": "agents",
+   "label": {
+    "it": "illocuzione",
+    "en": "illocution"
+   },
+   "definition": {
+    "en": "The type of communicative action performed by the act, such as informing, asking, or confirming; each SpeechAct has exactly one value.",
+    "it": "Tipo di azione comunicativa compiuta dall’atto, come informare, chiedere o confermare; ogni SpeechAct ha esattamente un valore."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [
+    "agents:SpeechAct"
+   ],
+   "range": []
+  },
+  {
+   "id": "agents:salience",
+   "layer": "agents",
+   "label": {
+    "it": "salienza",
+    "en": "salience"
+   },
+   "definition": {
+    "it": "Rilevanza contestuale di un SpeechAct, espressa come numero decimale; l’intervallo raccomandato è [0, 1], crescente con la rilevanza.",
+    "en": "The contextual relevance of a SpeechAct, expressed as a decimal; the recommended range is [0, 1], increasing with relevance."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [
+    "agents:SpeechAct"
+   ],
+   "range": []
+  },
+  {
+   "id": "frame:attested_by",
+   "layer": "frame",
+   "label": {
+    "it": "attestato da",
+    "en": "attested by"
+   },
+   "definition": {
+    "en": "Links a frame, role or lexical unit to a corpus occurrence supporting it. This is the load bearing property of the whole design: without it the resource is a taxonomy of plausible labels, with it every element is falsifiable. A frame with no attestations is a hypothesis, not an entry, and should carry :status \"proposed\".",
+    "it": "Collega un frame, un ruolo o un'unità lessicale a un'occorrenza di corpus che lo sostiene. Senza questa proprietà la risorsa è una tassonomia di etichette plausibili."
+   },
+   "kind": "object",
+   "parents": [],
+   "domain": [],
+   "range": [
+    "top:Information"
+   ]
+  },
+  {
+   "id": "frame:beneficiary",
+   "layer": "frame",
+   "label": {
+    "it": "beneficiario",
+    "en": "beneficiary"
+   },
+   "definition": {
+    "en": "Agent on whose behalf or to whose advantage the occurrent takes place, without necessarily receiving anything. Distinct from top:recipient, which has domain top:Event and therefore usable directly for non-communicative transfers: whoever the transfer reaches is the recipient, whoever profits from it is the beneficiary, and the two frequently diverge."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [
+    "top:Agent"
+   ],
+   "profile": "?,+,-,-,-,+,-"
+  },
+  {
+   "id": "frame:circumstance",
+   "layer": "frame",
+   "label": {
+    "it": "circostanza",
+    "en": "circumstance"
+   },
+   "definition": {
+    "en": "Grouping property for circumstantial roles, organised on the four Aristotelian causes. The four causes are used because they close exactly over the circumstantial space (efficient, material, formal, final) without the open-ended accumulation of FrameNet peripheral frame elements or PropBank ArgM modifiers. Note that with resulting states placed on axis 1, the formal cause reduces to manner alone: the result is no longer a circumstantial but a pointer to an occurrent.",
+    "it": "Proprietà di raggruppamento per i ruoli circostanziali, organizzati sulle quattro cause aristoteliche. Con i risultanti sull'asse 1, la causa formale si riduce al solo modo."
+   },
+   "kind": "object",
+   "parents": [
+    "top:relatedness"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": []
+  },
+  {
+   "id": "frame:coparticipant",
+   "layer": "frame",
+   "label": {
+    "it": "copartecipante",
+    "en": "coparticipant"
+   },
+   "definition": {
+    "en": "Single role covering the mutually indistinguishable participants of a reciprocal occurrent: the parties to a conversation, a negotiation, a marriage, a collision. Deliberately not split into indexed roles. Under the parsimony rule two such participants never conflict on any determinate dimension, so no frame-specific role is licensed. Where entailments genuinely cannot tell two participants apart, the symmetry is a fact about the world, not a gap in the model, and an index would be a positional device masquerading as a role. This is what dissolves the FrameNet interlocutor_1 / interlocutor_2 and party_1 / party_2 families, whose mutual confusion sits near the top of every published frame parsing error table. The profile is almost entirely undetermined by design: reciprocity is structural, not entailment-borne. Two colliding cars are coparticipants exactly as two negotiating parties are. Reciprocity is expressed at frame level by a minimum qualified cardinality of two on this role, never by the role itself. Caveat for data: since no unique name assumption holds, asserting two coparticipants does not satisfy a cardinality of two unless they are declared owl:differentFrom, typically via owl:AllDifferent.",
+    "it": "Ruolo unico per i partecipanti mutuamente indistinguibili di un occorrente reciproco: le parti di una conversazione, di una negoziazione, di un matrimonio, di uno scontro. Deliberatamente non scisso in ruoli indicizzati. Sotto la regola di parsimonia due partecipanti simili non conflittano su alcuna dimensione determinata, quindi nessun ruolo specifico è licenziato. Dove gli entailment non riescono davvero a distinguere due partecipanti, la simmetria è un fatto sul mondo, non una lacuna del modello. Il profilo è quasi tutto indeterminato per progetto: la reciprocità è strutturale, non veicolata dagli entailment. La si esprime a livello di frame con una cardinalità qualificata minima di due su questo ruolo."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "?,?,?,?,?,+,-"
+  },
+  {
+   "id": "frame:core_role",
+   "layer": "frame",
+   "label": {
+    "it": "ruolo nucleare",
+    "en": "core role"
+   },
+   "definition": {
+    "en": "Grouping property for participant roles. Every role below is defined by a bundle of entailments (volition, sentience, causation, movement, change of state, independent existence, incrementality), not by a prose gloss. This is what makes role assignment auditable: an annotator answers seven yes-no questions about an occurrence and the label falls out by rule, so errors localise to a single dimension and borderline vectors are data rather than mistakes.",
+    "it": "Proprietà di raggruppamento per i ruoli partecipanti. Ogni ruolo è definito da un fascio di entailment binari, non da una glossa in prosa."
+   },
+   "kind": "object",
+   "parents": [
+    "top:has_participant"
+   ],
+   "domain": [
+    "top:Occurrent"
+   ],
+   "range": [
+    "top:Continuant"
+   ]
+  },
+  {
+   "id": "frame:destination",
+   "layer": "frame",
+   "label": {
+    "it": "meta",
+    "en": "destination"
+   },
+   "definition": {
+    "en": "End point of a transfer or motion. See :origin for the localist rationale."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "?,?,?,-,-,+,-"
+  },
+  {
+   "id": "frame:efficient",
+   "layer": "frame",
+   "label": {
+    "it": "causa efficiente",
+    "en": "efficient cause"
+   },
+   "definition": {
+    "en": "Efficient cause: what brings the occurrent about. Realised by top:causes for occurrent-to-occurrent causation and by top:initiator for agentive participation. Deliberately not extended to motives, which are intentional and not causal."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:circumstance"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "frame:evokes",
+   "layer": "frame",
+   "label": {
+    "it": "evoca",
+    "en": "evokes"
+   },
+   "definition": {
+    "en": "Relates a lexical unit to the frame it evokes. Polysemy is expected: one lexical unit may evoke several frames."
+   },
+   "kind": "object",
+   "parents": [],
+   "domain": [
+    "frame:LexicalUnit"
+   ],
+   "range": [
+    "frame:Frame"
+   ]
+  },
+  {
+   "id": "frame:experiencer",
+   "layer": "frame",
+   "label": {
+    "it": "esperiente",
+    "en": "experiencer"
+   },
+   "definition": {
+    "en": "Sentient participant undergoing a mental or perceptual state. Entailments: sentience yes, volition no, causation no. The volition entailment is what separates it from top:initiator."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [
+    "top:Agent"
+   ],
+   "profile": "-,+,-,-,-,+,-"
+  },
+  {
+   "id": "frame:final",
+   "layer": "frame",
+   "label": {
+    "it": "causa finale",
+    "en": "final cause"
+   },
+   "definition": {
+    "en": "Final cause: that for the sake of which the occurrent takes place. Requires an agent with intentional structure, so it is inapplicable to non-agentive occurrents, and this inapplicability is informative rather than a gap."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:circumstance"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "frame:has_role",
+   "layer": "frame",
+   "label": {
+    "it": "ha ruolo",
+    "en": "has role"
+   },
+   "definition": {
+    "en": "Relates a frame to one of its roles at catalogue level."
+   },
+   "kind": "object",
+   "parents": [],
+   "domain": [
+    "frame:Frame"
+   ],
+   "range": [
+    "frame:Role"
+   ]
+  },
+  {
+   "id": "frame:instrument",
+   "layer": "frame",
+   "label": {
+    "it": "strumento",
+    "en": "instrument"
+   },
+   "definition": {
+    "en": "Entity used by an agent to bring the occurrent about. Strictly an entity: the eventive counterpart is :means. Operational test: if it admits an agent of its own, it is a means, not an instrument."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [
+    "top:Tangible"
+   ],
+   "profile": "-,-,-,?,-,+,-"
+  },
+  {
+   "id": "frame:manner",
+   "layer": "frame",
+   "label": {
+    "it": "modo",
+    "en": "manner"
+   },
+   "definition": {
+    "en": "Formal cause, reduced to manner: how the occurrent unfolds, qualifying it without adding eventive structure. Operational test against :means: a manner admits no agent of its own."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:circumstance"
+   ],
+   "domain": [],
+   "range": [
+    "top:Quality"
+   ]
+  },
+  {
+   "id": "frame:material",
+   "layer": "frame",
+   "label": {
+    "it": "causa materiale",
+    "en": "material cause"
+   },
+   "definition": {
+    "en": "Material cause: that out of which, or by means of which, the occurrent comes about."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:circumstance"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "frame:means",
+   "layer": "frame",
+   "label": {
+    "it": "mezzo",
+    "en": "means"
+   },
+   "definition": {
+    "en": "Subordinate occurrent by which the main occurrent is achieved: entering by breaking the window. Eventive, therefore carrying its own participants and roles, which is precisely why it must not be conflated with :instrument."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:material"
+   ],
+   "domain": [],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "frame:motive",
+   "layer": "frame",
+   "label": {
+    "it": "motivo",
+    "en": "motive"
+   },
+   "definition": {
+    "en": "The state of affairs or belief in the light of which an agent acts. Crucially NOT a subproperty of :efficient or of top:causation: a motive justifies, it does not physically produce. Collapsing the two is the error behind FrameNet's EXPLANATION versus CAUSE confusion, which surfaces as one of the top ten annotation errors in EventNet-ITA. Keeping them apart prevents inferring physical causal chains from reasons.",
+    "it": "Lo stato di cose o la credenza alla luce dei quali un agente agisce. Non è sottoproprietà di :efficient: un motivo giustifica, non produce fisicamente."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:final"
+   ],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "frame:origin",
+   "layer": "frame",
+   "label": {
+    "it": "origine",
+    "en": "origin"
+   },
+   "definition": {
+    "en": "Starting point of a transfer or motion, whether spatial, possessional or abstract. The localist triad origin/destination/route is kept abstract rather than restricted to top:Location, so that possession and communication transfers reuse it."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "?,?,?,-,-,+,-"
+  },
+  {
+   "id": "frame:patient",
+   "layer": "frame",
+   "label": {
+    "it": "paziente",
+    "en": "patient"
+   },
+   "definition": {
+    "en": "Undergoer that changes state. Entailments: change of state yes, independent existence yes, volition no."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:undergoer"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "-,?,-,?,+,+,?"
+  },
+  {
+   "id": "frame:product",
+   "layer": "frame",
+   "label": {
+    "it": "prodotto",
+    "en": "product"
+   },
+   "definition": {
+    "en": "Participant that comes into existence through the occurrent. Distinguished from :patient by failing the independent existence entailment."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "-,?,-,-,+,-,?"
+  },
+  {
+   "id": "frame:profiles",
+   "layer": "frame",
+   "label": {
+    "it": "profila",
+    "en": "profiles"
+   },
+   "definition": {
+    "en": "Relates a lexical unit to the subset of the frame's roles it foregrounds. This is where perspectivisation lives: sell and buy evoke the same frame and profile different roles. Keeping profiling on the lexical unit rather than on the frame is what lets the ontology stay univocal while still accounting for the perspective phenomena that FrameNet handles with Perspective_on.",
+    "it": "Collega un'unità lessicale al sottoinsieme di ruoli che mette in primo piano. E' qui che vive la prospettivizzazione: l'ontologia resta univoca."
+   },
+   "kind": "object",
+   "parents": [],
+   "domain": [
+    "frame:LexicalUnit"
+   ],
+   "range": [
+    "frame:Role"
+   ]
+  },
+  {
+   "id": "frame:purpose",
+   "layer": "frame",
+   "label": {
+    "it": "scopo",
+    "en": "purpose"
+   },
+   "definition": {
+    "en": "The intended outcome of an agentive occurrent. Deliberately distinct from :results_in: the divergence between intended purpose and achieved result is information, not noise, and the model must be able to represent that the occurrent took place while the purpose failed. This is why purpose ranges over occurrents but is not a subproperty of any temporal relation: the purpose may never occur.",
+    "it": "L'esito inteso di un occorrente agentivo. Deliberatamente distinto da :results_in: la divergenza tra scopo e risultato è informazione, non rumore."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:final"
+   ],
+   "domain": [],
+   "range": [
+    "top:Occurrent"
+   ]
+  },
+  {
+   "id": "frame:route",
+   "layer": "frame",
+   "label": {
+    "it": "percorso",
+    "en": "route"
+   },
+   "definition": {
+    "en": "Intermediate trajectory of a transfer or motion."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "-,-,-,-,-,+,+"
+  },
+  {
+   "id": "frame:specialises",
+   "layer": "frame",
+   "label": {
+    "it": "specializza",
+    "en": "specialises"
+   },
+   "definition": {
+    "en": "Catalogue-level counterpart of subsumption between frames, reusing top:entails between concepts. Must be kept aligned with rdfs:subClassOf at schema level; divergence between the two is a consistency check."
+   },
+   "kind": "object",
+   "parents": [
+    "top:entails"
+   ],
+   "domain": [
+    "frame:Frame"
+   ],
+   "range": [
+    "frame:Frame"
+   ]
+  },
+  {
+   "id": "frame:stimulus",
+   "layer": "frame",
+   "label": {
+    "it": "stimolo",
+    "en": "stimulus"
+   },
+   "definition": {
+    "en": "Participant that occasions the experiencer's state, without the causal entailments of an initiator."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "-,?,?,-,-,?,-"
+  },
+  {
+   "id": "frame:substrate",
+   "layer": "frame",
+   "label": {
+    "it": "materia",
+    "en": "substrate"
+   },
+   "definition": {
+    "en": "Matter out of which the product is made. The participant-side counterpart of the material cause."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [
+    "top:Substance"
+   ],
+   "profile": "-,-,-,?,+,+,+"
+  },
+  {
+   "id": "frame:theme",
+   "layer": "frame",
+   "label": {
+    "it": "tema",
+    "en": "theme"
+   },
+   "definition": {
+    "en": "Undergoer that is displaced or located without changing state. Entailments: movement or location yes, change of state no."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:undergoer"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "-,?,-,+,-,+,?"
+  },
+  {
+   "id": "frame:undergoer",
+   "layer": "frame",
+   "label": {
+    "it": "subente",
+    "en": "undergoer"
+   },
+   "definition": {
+    "en": "Macro-role for the participant affected or displaced by the occurrent. Left as a genuine macro-role: the patient/theme split is often undecidable in text and forcing it produces exactly the kind of arbitrary annotation the entailment approach is meant to avoid."
+   },
+   "kind": "object",
+   "parents": [
+    "frame:core_role"
+   ],
+   "domain": [],
+   "range": [],
+   "profile": "?,?,-,?,?,?,?"
+  },
+  {
+   "id": "frame:attestations",
+   "layer": "frame",
+   "label": {
+    "it": "attestazioni",
+    "en": "attestations"
+   },
+   "definition": {
+    "en": "Count of corpus occurrences supporting the element. Suggested promotion threshold from proposed to attested: at least twenty occurrences over at least three distinct syntactic realisations."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [],
+   "range": []
+  },
+  {
+   "id": "frame:definition",
+   "layer": "frame",
+   "label": {
+    "it": "definizione",
+    "en": "definition"
+   },
+   "definition": {
+    "en": "A natural-language definition of a catalogue individual (frame or role). Multi-valued, the same pattern rdfs:label already uses, to allow parallel definitions in different languages.",
+    "it": "Una definizione in linguaggio naturale di un individuo di catalogo (frame o ruolo). A valore multiplo, lo stesso schema già usato da rdfs:label, per ammettere definizioni parallele in lingue diverse."
+   },
+   "kind": "data",
+   "parents": [],
+   "domain": [],
+   "range": []
+  }
+ ]
+}
