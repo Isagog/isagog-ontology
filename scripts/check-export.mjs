@@ -5,7 +5,7 @@ import { join } from "node:path";
 // exist in both locales; a missing one would 404 on GitHub Pages.
 const OUT = "out";
 const LOCALES = ["it", "en"];
-const ROUTES = ["", "explorer"];
+const ROUTES = ["", "perspectives", "layers", "reasoning", "explorer"];
 
 const problems = [];
 for (const locale of LOCALES) {
@@ -22,6 +22,17 @@ for (const locale of LOCALES) {
   const file = join(OUT, locale, "explorer", "index.html");
   if (existsSync(file) && !readFileSync(file, "utf-8").includes(DEFAULT_TERM_LABEL[locale])) {
     problems.push(`${file}: default term "${DEFAULT_TERM_LABEL[locale]}" not prerendered`);
+  }
+}
+
+// Layer anchors: the IRI stubs on isagog.com and the main site's links
+// land on /layers/#top, #agents and #frame.
+for (const locale of LOCALES) {
+  const file = join(OUT, locale, "layers", "index.html");
+  if (!existsSync(file)) continue;
+  const html = readFileSync(file, "utf-8");
+  for (const anchor of ["top", "agents", "frame"]) {
+    if (!html.includes(`id="${anchor}"`)) problems.push(`${file}: no id="${anchor}"`);
   }
 }
 
