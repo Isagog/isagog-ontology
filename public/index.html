@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Isagog</title>
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Client-side locale redirect: static export has no middleware. -->
+    <script>
+      (function () {
+        var supported = ["it", "en"];
+        var fallback = "it";
+        var lang = (navigator.language || fallback).slice(0, 2).toLowerCase();
+        var locale = supported.indexOf(lang) !== -1 ? lang : fallback;
+        window.location.replace("./" + locale + "/");
+      })();
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=./it/" />
+    </noscript>
+  </head>
+  <body>
+    <p>Redirecting to <a href="./it/">Isagog</a>…</p>
+  </body>
+</html>

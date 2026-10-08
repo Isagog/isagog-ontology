@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-page: var(--color-page);
+  --color-paper: var(--color-paper);
+  --color-forest: var(--color-forest);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-sage: var(--color-sage);
+  --color-em-dark: var(--color-em-dark);
+  --color-olive: var(--color-olive);
+  --color-terracotta: var(--color-terracotta);
+  --color-cream: var(--color-cream);
+  --color-cream-soft: var(--color-cream-soft);
+  --color-mist: var(--color-mist);
+  --color-visione: var(--color-visione);
+  --color-tecnologia: var(--color-tecnologia);
+  --color-persone: var(--color-persone);
+  --color-card-border: var(--color-card-border);
+  --color-divider: var(--color-divider);
+  --color-num: var(--color-num);
+  --color-result: var(--color-result);
+  --color-prose-muted: var(--color-prose-muted);
+  --color-muted-ink: var(--color-muted-ink);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 3px);
+}
+
+:root {
+  --radius: 5px;
+
+  /* brand palette — bozzacompleta.html:3–33.
+     num, sage and terracotta are darkened from the draft by 5–9% lightness
+     (hue and saturation unchanged) so they clear WCAG AA 4.5:1 at the small
+     sizes they are actually used at. The draft's values measure 3.2–3.7:1
+     against bg-tecnologia, the darkest light ground. */
+  --color-page: #f7f8f2;
+  --color-paper: #fafbf7;
+  --color-forest: #173c31;
+  --color-forest-deep: #1a4939;
+  --color-sage: #5c7147;
+  --color-em-dark: #c0d78c;
+  --color-olive: #668f3e;
+  --color-terracotta: #b84623;
+  --color-cream: #f1f5e7;
+  --color-cream-soft: #d1ddca;
+  --color-mist: #ccd8c8;
+
+  /* section grounds — the page's light/dark rhythm */
+  --color-visione: #183d30;
+  --color-tecnologia: #e8eedf;
+  --color-persone: #f0f3e9;
+
+  /* supporting */
+  --color-card-border: #d7dfd0;
+  --color-divider: #adbd9e;
+  --color-num: #646e5a;
+  --color-result: #506943;
+  --color-prose-muted: #5d6c55;
+  --color-muted-ink: #536157;
+
+  --background: var(--color-page);
+  --foreground: var(--color-forest);
+  --border: #d8dfd3;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* The draft sets every heading in the display serif. */
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+}
+
+@layer utilities {
+  /* Section anchors must clear the sticky header when deep-linked. */
+  .scroll-anchor {
+    scroll-margin-top: 96px;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
