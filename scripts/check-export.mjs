@@ -36,6 +36,25 @@ for (const locale of LOCALES) {
   }
 }
 
+// GitHub Pages reads the custom domain from out/CNAME.
+const cname = join(OUT, "CNAME");
+if (!existsSync(cname) || readFileSync(cname, "utf-8").trim() !== "ontology.isagog.com") {
+  problems.push(`${cname}: must contain ontology.isagog.com`);
+}
+for (const file of ["sitemap.xml", "robots.txt"]) {
+  if (!existsSync(join(OUT, file))) problems.push(`missing ${join(OUT, file)}`);
+}
+const sitemapFile = join(OUT, "sitemap.xml");
+if (existsSync(sitemapFile)) {
+  const sitemapXml = readFileSync(sitemapFile, "utf-8");
+  for (const locale of LOCALES) {
+    for (const route of ROUTES) {
+      const url = `https://ontology.isagog.com/${locale}/${route ? `${route}/` : ""}`;
+      if (!sitemapXml.includes(`<loc>${url}</loc>`)) problems.push(`sitemap.xml: no ${url}`);
+    }
+  }
+}
+
 if (problems.length > 0) {
   console.error(`check-export: ${problems.length} problem(s):`);
   for (const problem of problems) console.error(`  - ${problem}`);
