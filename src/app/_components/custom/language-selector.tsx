@@ -7,11 +7,13 @@ import {
   DropdownMenuTrigger,
 } from "@/app/_components/ui/dropdown-menu";
 import { localeHref, stripLocale, type Locale } from "@/lib/locale-href";
+import { useLocationHash } from "@/lib/use-location-hash";
 import { cn } from "@/lib/utils";
 import { useCurrentLocale } from "@/packages/locales/client";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { ComponentProps } from "react";
 
 const ItalianFlag = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 16" className={className} aria-hidden="true" focusable="false">
@@ -30,6 +32,19 @@ const BritishFlag = ({ className }: { className?: string }) => (
     <path d="M12,0 V16 M0,8 H24" stroke="#c8102e" strokeWidth="3.2" />
   </svg>
 );
+
+/**
+ * A language link that carries the current URL fragment (e.g. an explorer
+ * deep link) across the switch. Rendered only inside the open menu, so the
+ * fragment is read when the menu opens.
+ */
+const LinkKeepingHash = ({
+  href,
+  ...props
+}: Omit<ComponentProps<typeof Link>, "href"> & { href: string }) => {
+  const hash = useLocationHash();
+  return <Link href={`${href}${hash}`} {...props} />;
+};
 
 type Language = {
   locale: Locale;
@@ -66,7 +81,7 @@ export const LanguageSelector = ({ className }: { className?: string }) => {
       <DropdownMenuContent align="end" className="min-w-36 bg-page border-card-border">
         {languages.map(({ locale: itemLocale, label, Flag }) => (
           <DropdownMenuItem key={itemLocale} asChild>
-            <Link
+            <LinkKeepingHash
               href={localeHref(itemLocale, pathname)}
               className={cn(
                 "flex items-center gap-2 text-[15px] text-forest cursor-pointer",
@@ -75,7 +90,7 @@ export const LanguageSelector = ({ className }: { className?: string }) => {
             >
               <Flag className="h-4 w-6 rounded-[2px] shadow-sm" />
               {label}
-            </Link>
+            </LinkKeepingHash>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
