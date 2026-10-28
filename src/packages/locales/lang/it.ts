@@ -104,7 +104,9 @@ export default {
         p3: "Si può estrarre in modo supervisionato da ciò che l'organizzazione già possiede: i testi, come documenti, procedure e archivi, e gli schemi, come basi di dati e modelli dei dati. Gli agenti propongono concetti e relazioni; gli esperti del dominio li discutono, li correggono e li approvano.",
         cta: "Come lavoriamo con i vostri esperti",
       },
-      license: "Le ontologie sono scritte in OWL 2 e rilasciate con licenza CC BY 4.0.",
+      license: "Le ontologie correnti sono rilasciate con licenza CC BY-NC 4.0 per il riuso non commerciale.",
+      licenseTerms: "Termini di licenza",
+      commercialLicense: "Licenze commerciali",
     },
     ragionamento: {
       eyebrow: "RAGIONARE CON LE ONTOLOGIE",

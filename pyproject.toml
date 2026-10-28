@@ -1,12 +1,12 @@
 [project]
 name = "isagog-ontologies"
-version = "2.0.1"
+version = "3.0.0"
 description = "Public Isagog OWL ontologies and an offline resource catalog"
 requires-python = ">=3.11"
 authors = [{ name = "Isagog S.r.l.", email = "info@isagog.com" }]
 readme = "README.md"
-license = "MIT AND CC-BY-4.0"
-license-files = ["LICENSE", "LICENSES/*"]
+license = "MIT AND CC-BY-4.0 AND CC-BY-NC-4.0"
+license-files = ["LICENSE", "LICENSING.md", "LICENSES/*"]
 dependencies = []
 
 [project.urls]
@@ -25,7 +25,7 @@ ontologies = "isagog_ontologies/data"
 "catalog.json" = "isagog_ontologies/catalog.json"
 
 [tool.hatch.build.targets.sdist]
-include = ["python", "ontologies", "catalog.json", "LICENSE", "LICENSES", "README.md", "pyproject.toml"]
+include = ["python", "ontologies", "catalog.json", "LICENSE", "LICENSING.md", "LICENSES", "README.md", "pyproject.toml"]
 
 [dependency-groups]
 dev = ["pytest>=8", "rdflib>=7.5", "ruff>=0.15"]

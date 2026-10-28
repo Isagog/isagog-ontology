@@ -104,7 +104,9 @@ export default {
         p3: "It can be extracted, under supervision, from what the organization already has: its texts, such as documents, procedures and archives, and its schemas, such as databases and data models. Agents propose concepts and relations; domain experts discuss, correct and approve them.",
         cta: "How we work with your experts",
       },
-      license: "The ontologies are written in OWL 2 and released under the CC BY 4.0 license.",
+      license: "The current ontologies are released under CC BY-NC 4.0 for noncommercial reuse.",
+      licenseTerms: "License terms",
+      commercialLicense: "Commercial licensing",
     },
     ragionamento: {
       eyebrow: "REASONING WITH ONTOLOGIES",

@@ -2,36 +2,39 @@
  "ontologies": [
   {
    "id": "core",
-   "version": "6.0",
+   "version": "7.0",
    "label": {
     "en": "Isagog Core Ontology",
     "it": "Ontologia Core Isagog"
    },
    "iri": "https://ontology.isagog.com/core",
-   "versionIRI": "https://ontology.isagog.com/core/6.0.ttl",
-   "download": "/core.ttl"
+   "versionIRI": "https://ontology.isagog.com/core/7.0.ttl",
+   "download": "/core.ttl",
+   "license": "https://creativecommons.org/licenses/by-nc/4.0/"
   },
   {
    "id": "agents",
-   "version": "3.0",
+   "version": "4.0",
    "label": {
     "en": "Isagog Agents Ontology",
     "it": "Ontologia degli agenti Isagog"
    },
    "iri": "https://ontology.isagog.com/agents",
-   "versionIRI": "https://ontology.isagog.com/agents/3.0.ttl",
-   "download": "/agents.ttl"
+   "versionIRI": "https://ontology.isagog.com/agents/4.0.ttl",
+   "download": "/agents.ttl",
+   "license": "https://creativecommons.org/licenses/by-nc/4.0/"
   },
   {
    "id": "frames",
-   "version": "3.0",
+   "version": "4.0",
    "label": {
     "en": "Isagog Frames Ontology",
     "it": "Ontologia dei Frame Isagog"
    },
    "iri": "https://ontology.isagog.com/frames",
-   "versionIRI": "https://ontology.isagog.com/frames/3.0.ttl",
-   "download": "/frames.ttl"
+   "versionIRI": "https://ontology.isagog.com/frames/4.0.ttl",
+   "download": "/frames.ttl",
+   "license": "https://creativecommons.org/licenses/by-nc/4.0/"
   }
  ],
  "classes": [

@@ -25,12 +25,16 @@ def check() -> None:
             with urlopen(Request(iri, headers={"Accept": "text/turtle"}), timeout=15) as response:
                 assert response.status == 200, iri
                 assert response.headers.get_content_type() == "text/turtle", iri
-                assert hashlib.sha256(response.read()).hexdigest() == entry["sha256"], iri
-                print(f"{iri}: HTTP 200, text/turtle, checksum OK", flush=True)
+                data = response.read()
+                assert hashlib.sha256(data).hexdigest() == entry["sha256"], iri
+                assert entry["license_url"].encode() in data, iri
+                print(f"{iri}: HTTP 200, text/turtle, checksum and license OK", flush=True)
         with urlopen(entry["ontology_iri"], timeout=15) as response:
             assert response.status == 200, entry["ontology_iri"]
             assert response.headers.get_content_type() == "text/html"
-            assert entry["document_url"] in response.read().decode()
+            page = response.read().decode()
+            assert entry["document_url"] in page
+            assert entry["license_url"] in page
             print(f"{entry['ontology_iri']}: HTML documentation OK", flush=True)
 
 

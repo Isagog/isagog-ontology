@@ -1,22 +1,23 @@
 Isagog ontology definitions
 Copyright (c) 2026 Isagog S.r.l. Original author: Guido Vetere.
 
-The Turtle files under ontologies/ and their generated RDF exports are
-licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+Historical ontology releases that declare CC BY 4.0, and copies previously
+released under those terms, retain the Creative Commons Attribution 4.0
+International license. Consult the license declaration supplied with each
+release. The current releases are covered separately by CC BY-NC 4.0; see
+../LICENSING.md and CC-BY-NC-4.0.txt.
 
-License and legal code:
+License:
 https://creativecommons.org/licenses/by/4.0/
+
+Full legal terms:
 https://creativecommons.org/licenses/by/4.0/legalcode
 
 Attribution: "Isagog ontologies, Guido Vetere / Isagog S.r.l."
 Source: https://github.com/Isagog/isagog-ontology
 
-The core 5.0, agents 2.0 and frame 2.0 releases rename the foundational
-namespace from https://isagog.com/ontology/top# to
-https://isagog.com/ontology/core# and update ontology identities/imports.
-The original top 4.7, agents 1.0 and frame 1.1 Turtle files are retained
-unchanged in ontologies/legacy/. See catalog.json for provenance/checksums.
+Where the license applies, give appropriate credit, provide a link to the
+license, and indicate changes, as required by its terms. The license permits
+commercial reuse. This notice does not add conditions to the CC BY 4.0 terms.
 
-Core 6.0, agents 3.0 and frames 3.0 use static document IRIs on
-https://ontology.isagog.com/ and term IRIs of the form <ontology>#Term, with separate .ttl document URLs.
-The prior six ontology releases are retained byte for byte.
+The software code is licensed separately under the repository's MIT License.
