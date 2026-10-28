@@ -54,7 +54,8 @@ def test_unversioned_iris_select_current_release_and_archive_stays_explicit():
 )
 def test_rename_preserves_all_axioms(old_module, old_version, new_module, new_version):
     old = Graph().parse(ROOT / f"ontologies/legacy/{old_module}/{old_version}.ttl")
-    new = Graph().parse(ROOT / f"ontologies/{new_module}/{new_version}.ttl")
+    resource = ontology_resource(f"https://isagog.com/ontology/{new_module}/{new_version}")
+    new = Graph().parse(data=resource.read_bytes(), format="turtle")
     transformed = Graph()
     metadata = {OWL.versionIRI, OWL.versionInfo, RDFS.label, RDFS.comment}
 
@@ -133,7 +134,8 @@ def test_static_namespace_migration_preserves_axioms(module):
         return term
 
     old_module, version = previous[module]
-    old = Graph().parse(ROOT / f"ontologies/{old_module}/{version}.ttl")
+    resource = ontology_resource(f"https://isagog.com/ontology/{old_module}/{version}")
+    old = Graph().parse(data=resource.read_bytes(), format="turtle")
     entry = current_ontology(module)
     new = Graph().parse(ROOT / entry["file"])
     metadata = {OWL.versionIRI, OWL.versionInfo, RDFS.label, RDFS.comment}
@@ -152,3 +154,13 @@ def test_static_namespace_migration_preserves_axioms(module):
         for triple in new
         for term in triple
     )
+
+
+def test_archiving_frame_keeps_its_published_download_and_packaged_content():
+    published_checksum = "f08d12f1b55b1d281e8b37127a4317f029a46177142d3ad5b554daff0b2d88e2"
+    exported = run_path(str(ROOT / "scripts/export-ontologies.py"))["outputs"]()
+    assert sha256(exported[ROOT / "public/ontology/frame/2.0.ttl"]).hexdigest() == (
+        published_checksum
+    )
+    resource = ontology_resource("https://isagog.com/ontology/frame/2.0")
+    assert sha256(resource.read_bytes()).hexdigest() == published_checksum

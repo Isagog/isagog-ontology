@@ -12,6 +12,13 @@ ROOT = Path(__file__).resolve().parents[1]
 def check() -> None:
     catalog = json.loads((ROOT / "catalog.json").read_text())
     for entry in catalog["ontologies"]:
+        if "archive_path" in entry:
+            iri = "https://ontology.isagog.com" + entry["archive_path"]
+            with urlopen(iri, timeout=15) as response:
+                assert response.status == 200, iri
+                assert response.headers.get_content_type() == "text/turtle", iri
+                assert hashlib.sha256(response.read()).hexdigest() == entry["sha256"], iri
+                print(f"{iri}: archived download unchanged", flush=True)
         if entry["status"] != "current":
             continue
         for iri in (entry["document_url"], entry["version_iri"]):

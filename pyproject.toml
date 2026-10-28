@@ -1,6 +1,6 @@
 [project]
 name = "isagog-ontologies"
-version = "2.0.0"
+version = "2.0.1"
 description = "Public Isagog OWL ontologies and an offline resource catalog"
 requires-python = ">=3.11"
 authors = [{ name = "Isagog S.r.l.", email = "info@isagog.com" }]

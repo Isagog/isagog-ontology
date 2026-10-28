@@ -43,7 +43,8 @@ def outputs() -> dict[Path, bytes]:
     for entry in catalog["ontologies"]:
         relative = entry["file"].removeprefix("ontologies/")
         content = (ROOT / entry["file"]).read_bytes()
-        result[ROOT / "public/ontology" / relative] = content
+        archive_path = entry.get("archive_path", f"/ontology/{relative}")
+        result[ROOT / "public" / archive_path.lstrip("/")] = content
         version_url = urlsplit(entry["version_iri"])
         if version_url.netloc == "ontology.isagog.com":
             result[ROOT / "public" / version_url.path.lstrip("/")] = content

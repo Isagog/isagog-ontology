@@ -22,7 +22,7 @@ change is required.
 `ontologies/` contains the authoritative Turtle files. `catalog.json` records
 ontology/version IRIs, Turtle document URLs, term namespaces, exact imports,
 checksums and provenance.
-The bundle version is **2.0.0**, independent of the ontology versions.
+The bundle version is **2.0.1**, independent of the ontology versions.
 
 Version IRIs identify immutable, directly downloadable Turtle files:
 
@@ -38,7 +38,11 @@ a different file.
 Published version files are immutable: changes require new versions and an
 updated `current` catalog entry. All earlier Turtle releases remain unchanged,
 including top 4.7, agents 1.0, frame 1.1, core 5.0, agents 2.0 and frame 2.0.
-They remain downloadable under `/ontology/` at their previously published paths.
+The historical singular `frame` sources live under `ontologies/legacy/frame/`;
+the active plural `frames` source lives under `ontologies/frames/`.
+Archived downloads remain available under `/ontology/` at their previously
+published paths. A catalog entry may set `archive_path` explicitly so moving
+a source file never requires changing its public download URL.
 The old `isagog.com/ontology/...` identifiers are historical; no runtime mapping
 ontology is introduced. The archived IsagogOntologies repository is not an
 upstream dependency.
@@ -99,7 +103,7 @@ GitHub Pages. After deployment, `scripts/check-published-ontologies.py` checks
 all active Turtle document/version URLs for HTTP 200, `text/turtle` and exact
 release checksums, plus the extensionless HTML documentation URLs. It can also be run manually with plain Python.
 
-Tag `ontologies-v2.0.0` on the verified source commit to publish a GitHub release
+Tag `ontologies-v2.0.1` on the verified source commit to publish a GitHub release
 with the wheel and sdist. The tag must match pyproject/catalog bundle versions.
 Private consumers pin exact public Git commits for reproducibility.
 
