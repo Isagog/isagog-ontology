@@ -11,7 +11,8 @@ const ROUTES = ["", "perspectives", "layers", "reasoning", "explorer"];
 const problems = [];
 const catalog = JSON.parse(readFileSync("catalog.json", "utf-8"));
 for (const entry of catalog.ontologies) {
-  const paths = [join(OUT, "ontology", entry.file.replace(/^ontologies\//, ""))];
+  const archivePath = entry.archive_path ?? `/ontology/${entry.file.replace(/^ontologies\//, "")}`;
+  const paths = [join(OUT, archivePath)];
   if (new URL(entry.version_iri).hostname === "ontology.isagog.com") {
     paths.push(join(OUT, new URL(entry.version_iri).pathname));
     if (catalog.current[entry.id] === entry.version_iri) {
@@ -23,11 +24,11 @@ for (const entry of catalog.ontologies) {
     }
   }
   for (const file of paths) {
-  if (!existsSync(file)) {
-    problems.push(`missing ontology download ${file}`);
-  } else if (createHash("sha256").update(readFileSync(file)).digest("hex") !== entry.sha256) {
-    problems.push(`${file}: checksum differs from the authoritative catalog`);
-  }
+    if (!existsSync(file)) {
+      problems.push(`missing ontology download ${file}`);
+    } else if (createHash("sha256").update(readFileSync(file)).digest("hex") !== entry.sha256) {
+      problems.push(`${file}: checksum differs from the authoritative catalog`);
+    }
   }
 }
 for (const locale of LOCALES) {

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "bundle_version": "2.0.0",
+  "bundle_version": "2.0.1",
   "license": "CC-BY-4.0",
   "current": {
     "core": "https://ontology.isagog.com/core/6.0.ttl",
@@ -97,7 +97,7 @@
       "ontology_iri": "https://isagog.com/ontology/frame",
       "version_iri": "https://isagog.com/ontology/frame/2.0",
       "namespace": "https://isagog.com/ontology/frame#",
-      "file": "ontologies/frame/2.0.ttl",
+      "file": "ontologies/legacy/frame/2.0.ttl",
       "imports": [
         "https://isagog.com/ontology/core/5.0"
       ],
@@ -105,7 +105,8 @@
       "status": "legacy",
       "source": {
         "derived_from": "https://isagog.com/ontology/frame/1.1"
-      }
+      },
+      "archive_path": "/ontology/frame/2.0.ttl"
     },
     {
       "id": "core",
