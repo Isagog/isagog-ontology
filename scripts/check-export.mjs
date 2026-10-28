@@ -11,11 +11,23 @@ const ROUTES = ["", "perspectives", "layers", "reasoning", "explorer"];
 const problems = [];
 const catalog = JSON.parse(readFileSync("catalog.json", "utf-8"));
 for (const entry of catalog.ontologies) {
-  const file = join(OUT, "ontology", entry.file.replace(/^ontologies\//, ""));
+  const paths = [join(OUT, "ontology", entry.file.replace(/^ontologies\//, ""))];
+  if (new URL(entry.version_iri).hostname === "ontology.isagog.com") {
+    paths.push(join(OUT, new URL(entry.version_iri).pathname));
+    if (catalog.current[entry.id] === entry.version_iri) {
+      paths.push(join(OUT, new URL(entry.document_url).pathname));
+      const doc = join(OUT, new URL(entry.ontology_iri).pathname, "index.html");
+      if (!existsSync(doc) || !readFileSync(doc, "utf-8").includes(entry.document_url)) {
+        problems.push(`missing namespace documentation ${doc}`);
+      }
+    }
+  }
+  for (const file of paths) {
   if (!existsSync(file)) {
     problems.push(`missing ontology download ${file}`);
   } else if (createHash("sha256").update(readFileSync(file)).digest("hex") !== entry.sha256) {
     problems.push(`${file}: checksum differs from the authoritative catalog`);
+  }
   }
 }
 for (const locale of LOCALES) {
@@ -36,12 +48,12 @@ for (const locale of LOCALES) {
 }
 
 // Layer anchors: the IRI stubs on isagog.com and the main site's links
-// land on /layers/#core, #agents and #frame.
+// land on /layers/#core, #agents and #frames.
 for (const locale of LOCALES) {
   const file = join(OUT, locale, "layers", "index.html");
   if (!existsSync(file)) continue;
   const html = readFileSync(file, "utf-8");
-  for (const anchor of ["core", "agents", "frame"]) {
+  for (const anchor of ["core", "agents", "frames"]) {
     if (!html.includes(`id="${anchor}"`)) problems.push(`${file}: no id="${anchor}"`);
   }
 }

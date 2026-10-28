@@ -21,7 +21,7 @@ def load_catalog() -> dict:
 
 
 def current_ontology(module: str) -> dict:
-    """Return the current release of core, agents or frame; unknown modules raise KeyError."""
+    """Return the current release of core, agents or frames; unknown modules raise KeyError."""
     catalog = load_catalog()
     version_iri = catalog["current"][module]
     return next(entry for entry in catalog["ontologies"] if entry["version_iri"] == version_iri)
@@ -30,7 +30,8 @@ def current_ontology(module: str) -> dict:
 def ontology_registry(module: str) -> dict[str, str]:
     """Current ontology IRI and version IRI mapped to the same resource path."""
     entry = current_ontology(module)
-    return {entry[key]: entry["file"] for key in ("ontology_iri", "version_iri")}
+    keys = ("ontology_iri", "version_iri", "document_url")
+    return {entry[key]: entry["file"] for key in keys if key in entry}
 
 
 def ontology_resource(iri: str) -> Traversable | None:
@@ -47,7 +48,7 @@ def ontology_resource(iri: str) -> Traversable | None:
             (
                 entry
                 for entry in catalog["ontologies"]
-                if entry["ontology_iri"] == iri
+                if iri in (entry["ontology_iri"], entry.get("document_url"))
                 and entry["version_iri"] == catalog["current"].get(entry["id"])
             ),
             None,

@@ -11,7 +11,7 @@ import {
 
 describe("ontology explorer data", () => {
   it("covers the three ontologies", () => {
-    expect(Object.keys(ontologyVersions).sort()).toEqual(["agents", "core", "frame"]);
+    expect(Object.keys(ontologyVersions).sort()).toEqual(["agents", "core", "frames"]);
   });
 
   it("labels every term in both languages", () => {
@@ -31,8 +31,8 @@ describe("ontology explorer data", () => {
   });
 
   it("hooks frame roles into the top-level participation relations", () => {
-    expect(childrenOf("core:has_participant", "en")).toContain("frame:core_role");
-    expect(subtreeHasLayer("core:relatedness", "frame")).toBe(true);
+    expect(childrenOf("core:has_participant", "en")).toContain("frames:core_role");
+    expect(subtreeHasLayer("core:relatedness", "frames")).toBe(true);
   });
 
   it("finds properties by domain and terms by label in either language", () => {

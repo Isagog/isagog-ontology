@@ -53,11 +53,10 @@ jobs:
         run: |
           uv sync --locked
           uv run pytest
-          uv run ruff check python scripts/ontologies-to-json.py scripts/export-ontologies.py tests
+          uv run ruff check python scripts tests
           uv run python scripts/ontologies-to-json.py --check
           uv run python scripts/export-ontologies.py
           uv run python scripts/export-ontologies.py --check
-          pnpm test:edge
           uv build
 
       - name: Test
@@ -96,3 +95,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+      - name: Verify live canonical Turtle URLs
+        run: python3 scripts/check-published-ontologies.py

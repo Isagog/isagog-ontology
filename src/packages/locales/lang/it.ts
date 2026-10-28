@@ -25,7 +25,7 @@ export default {
       },
       layers: {
         title: "Tre livelli, più il vostro",
-        body: "Core, agenti e frame: che cosa descrive ciascuno, e come vi si costruisce sopra l'ontologia di un'organizzazione.",
+        body: "Core, agenti e frames: che cosa descrive ciascuno, e come vi si costruisce sopra l'ontologia di un'organizzazione.",
       },
       reasoning: {
         title: "Un vocabolario, due lettori",
@@ -180,7 +180,7 @@ export default {
     layers: {
       title: "Livelli — Ontologie Isagog",
       description:
-        "Core, agenti e frame: i tre livelli delle ontologie Isagog e l'ontologia dell'organizzazione costruita sopra di essi.",
+        "Core, agenti e frames: i tre livelli delle ontologie Isagog e l'ontologia dell'organizzazione costruita sopra di essi.",
     },
     reasoning: {
       title: "Ragionamento — Ontologie Isagog",

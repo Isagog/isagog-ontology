@@ -1,0 +1,213 @@
+@prefix : <https://ontology.isagog.com/agents#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix core: <https://ontology.isagog.com/core#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <https://ontology.isagog.com/agents#> .
+
+<https://ontology.isagog.com/agents> rdf:type owl:Ontology ;
+                                      owl:versionIRI <https://ontology.isagog.com/agents/3.0.ttl> ;
+                                      owl:imports <https://ontology.isagog.com/core/6.0.ttl> ;
+                                      <http://purl.org/dc/elements/1.1/creator> "Guido Vetere, Isagog Srl, Italy" ;
+                                      <http://purl.org/dc/elements/1.1/license> <http://creativecommons.org/licenses/by/4.0/> ;
+                                      rdfs:comment """A layer on top of the Isagog top-level ontology for conversational agents. It contributes speech acts, as communicative acts performed by agents, and conversations, as communicative events whose phases are speech acts, together with the properties characterising them: originator, illocution, salience, responds_to and conveys. It also contributes aspects, the qualities of conversation participants that an agent remembers, typed either by an application subclass or by the soft aspect_kind specification.
+These terms belong to the agent runtime rather than to the top level: they describe how agents communicate, not the broadest categories of what there is. Generic participation relations used by speech acts, such as recipient, about and has_phase, remain in the top level."""@en ,
+                                                   """Livello costruito sull'ontologia top-level Isagog per gli agenti conversazionali. Contribuisce gli atti linguistici, intesi come atti comunicativi compiuti da agenti, e le conversazioni, intese come eventi comunicativi le cui fasi sono atti linguistici, insieme alle proprietà che li caratterizzano: originator, illocution, salience, responds_to e conveys. Contribuisce inoltre gli aspetti, cioè le qualità dei partecipanti alla conversazione che un agente ricorda, tipizzati da una sottoclasse applicativa o dalla specificazione soft aspect_kind.
+Questi termini appartengono al runtime degli agenti più che al livello core: descrivono come comunicano gli agenti, non le categorie più generali di ciò che esiste. Le relazioni generiche di partecipazione usate dagli atti linguistici, come recipient, about e has_phase, restano nel livello top."""@it ;
+                                      rdfs:label "Isagog Agents Ontology"@en ,
+                                                 "Ontologia degli agenti Isagog"@it ;
+                                      owl:versionInfo "3.0 28/10/2026 – Canonical static Turtle IRIs on ontology.isagog.com; term namespaces and imports updated; axioms preserved. Previous releases: 2.0 28/10/2026 – Imports core 5.0 and uses the core namespace; axioms unchanged. Previous releases: 1.0 05/10/2026 – SpeechAct, Conversation and the speech-act properties moved here from isagog-top 4.5; Aspect (a Quality) and aspect_kind added for the agents' semantic memory" ;
+                                      core:definition "A layer on the Isagog top level defining speech acts, conversations and their properties for conversational agents."@en ,
+                                                     "Livello sul top level Isagog che definisce atti linguistici, conversazioni e relative proprietà per gli agenti conversazionali."@it .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://ontology.isagog.com/agents#conveyed_by
+:conveyed_by rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf core:inherence ;
+             owl:inverseOf :conveys ;
+             rdfs:domain core:Information ;
+             rdfs:range :SpeechAct ;
+             rdfs:comment "Collega un oggetto informativo all'atto linguistico che lo trasmette. Non implica dipendenza esistenziale del contenuto dall'atto: lo stesso contenuto può essere condiviso da più atti e sopravvivere a essi."@it ,
+                          "Links an information object to the speech act conveying it. It does not imply existential dependence of the content on the act: the same content may be shared by several acts and outlive them."@en ;
+             rdfs:label "conveyed by"@en ,
+                        "trasmesso da"@it ;
+             core:definition "Collega un contenuto informativo all’atto linguistico che lo trasmette; il contenuto può essere condiviso tra più atti."@it ,
+                            "Links information content to the speech act conveying it; the content may be shared by several acts."@en .
+
+
+###  https://ontology.isagog.com/agents#conveys
+:conveys rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf core:inherence ;
+         rdfs:domain :SpeechAct ;
+         rdfs:range core:Information ;
+         rdfs:comment "Collega un atto linguistico a un oggetto informativo distinto, quando il contenuto deve sopravvivere all'atto, essere condiviso tra più atti o essere interrogato indipendentemente. Il collegamento è opzionale: SpeechAct è già un oggetto informativo."@it ,
+                      "Links a speech act to a separate information object when content must outlive the act, be shared by several acts, or be queried independently. The link is optional: SpeechAct is already an information object."@en ;
+         rdfs:label "conveys"@en ,
+                    "trasmette"@it ;
+         core:definition "Collega un atto linguistico a un contenuto informativo rappresentato separatamente. Il collegamento è opzionale: l’atto è già Information."@it ,
+                        "Links a speech act to separately represented information content. The link is optional: the act is already Information."@en .
+
+
+###  https://ontology.isagog.com/agents#originates
+:originates rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf core:initiates ;
+            owl:inverseOf :originator ;
+            rdfs:domain core:Agent ;
+            rdfs:range :SpeechAct ;
+            rdfs:comment "Relation from an agent to the speech acts it performs"@en ,
+                         "Relazione da un agente agli atti linguistici che compie"@it ;
+            rdfs:label "origina"@it ,
+                       "originates"@en ;
+            core:definition "Collega un agente a un atto linguistico che compie."@it ,
+                           "Links an agent to a speech act that it performs."@en .
+
+
+###  https://ontology.isagog.com/agents#originator
+:originator rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf core:initiator ;
+            rdfs:domain :SpeechAct ;
+            rdfs:range core:Agent ;
+            rdfs:comment "L'agente che compie l'atto linguistico; esattamente un originatore per atto"@it ,
+                         "The agent who performs the speech act; exactly one originator per act"@en ;
+            rdfs:label "originator"@en ,
+                       "originatore"@it ;
+            core:definition "Collega un atto linguistico all’agente che lo compie; ogni atto ha esattamente un originatore."@it ,
+                           "Links a speech act to the agent performing it; each act has exactly one originator."@en .
+
+
+###  https://ontology.isagog.com/agents#responds_to
+:responds_to rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf core:follows ;
+             rdfs:domain :SpeechAct ;
+             rdfs:range :SpeechAct ;
+             rdfs:comment "Collega un atto linguistico all'atto precedente a cui risponde direttamente; cattura la struttura delle coppie adiacenti nel dialogo (domanda/risposta, richiesta/conferma, ecc.)"@it ,
+                          "Links a speech act to the prior act it directly responds to; captures the adjacency-pair structure of dialogue (question/answer, request/confirm, etc.)"@en ;
+             rdfs:label "responds to"@en ,
+                        "risponde a"@it ;
+             core:definition "Collega un atto linguistico a un atto precedente cui risponde direttamente."@it ,
+                            "Links a speech act to an earlier act to which it directly responds."@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://ontology.isagog.com/agents#aspect_kind
+:aspect_kind rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Aspect ;
+             rdfs:range rdf:PlainLiteral ;
+             rdfs:comment "Soft specification of the kind of an aspect, as a plain literal (for example an identifier from an application concept catalog). It lets an application type its aspects without introducing subclasses of Aspect; when such a subclass exists, the literal may still be kept as a stable key."@en ,
+                          "Specificazione soft del tipo di un aspetto, come literal semplice (ad esempio un identificativo di un catalogo di concetti applicativo). Permette a un'applicazione di tipizzare gli aspetti senza introdurre sottoclassi di Aspect; quando una tale sottoclasse esiste, il literal può restare come chiave stabile."@it ;
+             rdfs:label "aspect kind"@en ,
+                        "tipo di aspetto"@it ;
+             core:definition "Links an aspect to a literal specifying its kind, as an alternative to an application subclass of Aspect."@en ,
+                            "Collega un aspetto a un literal che ne specifica il tipo, in alternativa a una sottoclasse applicativa di Aspect."@it .
+
+
+###  https://ontology.isagog.com/agents#illocution
+:illocution rdf:type owl:DatatypeProperty ;
+            rdfs:domain :SpeechAct ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Illocutory type of the speech act — what the act is doing. Recommended values (FIPA/ISO-24617-2): inform, request, question, answer, confirm, disconfirm, propose, accept, reject, acknowledge, greet, farewell"@en ,
+                         "Tipo illocutorio dell'atto linguistico — cosa fa l'atto. Valori raccomandati (FIPA/ISO-24617-2): inform, request, question, answer, confirm, disconfirm, propose, accept, reject, acknowledge, greet, farewell"@it ;
+            rdfs:label "illocution"@en ,
+                       "illocuzione"@it ;
+            core:definition "The type of communicative action performed by the act, such as informing, asking, or confirming; each SpeechAct has exactly one value."@en ,
+                           "Tipo di azione comunicativa compiuta dall’atto, come informare, chiedere o confermare; ogni SpeechAct ha esattamente un valore."@it .
+
+
+###  https://ontology.isagog.com/agents#salience
+:salience rdf:type owl:DatatypeProperty ;
+          rdfs:domain :SpeechAct ;
+          rdfs:range xsd:decimal ;
+          rdfs:comment "Peso di rilevanza contestuale di un atto linguistico. L'intervallo raccomandato è [0, 1], con valori maggiori per maggiore rilevanza; gli assiomi impongono il tipo decimal ma non l'intervallo. Il dominio è SpeechAct: l'uso su un contenuto separato lo classifica anche come atto linguistico."@it ,
+                       "The contextual relevance weight of a speech act. The recommended interval is [0, 1], with higher values for greater relevance; the axioms impose the decimal datatype but not the interval. The domain is SpeechAct: use on separate content also classifies that content as a speech act."@en ;
+          rdfs:label "salience"@en ,
+                     "salienza"@it ;
+          core:definition "Rilevanza contestuale di un SpeechAct, espressa come numero decimale; l’intervallo raccomandato è [0, 1], crescente con la rilevanza."@it ,
+                         "The contextual relevance of a SpeechAct, expressed as a decimal; the recommended range is [0, 1], increasing with relevance."@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://ontology.isagog.com/agents#Aspect
+:Aspect rdf:type owl:Class ;
+        rdfs:subClassOf core:Quality ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :aspect_kind ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange rdf:PlainLiteral
+                        ] ;
+        rdfs:comment """A quality of a conversation participant, typically the user, that an agent remembers as relevant context: a need, an interest, a plan, a constraint. Like any quality it qualifies its bearer through qualifies and is distinct from its value, which it carries through value (for example the hearing impairment of a visitor, with value "deaf"); it may keep its identity when its value changes.
+Its kind may be given by an application subclass of Aspect or, more softly, by at most one aspect_kind literal. Speech acts that mention it link to it through about, so several acts may concern the same aspect. How long an aspect is remembered and how salient it is are runtime concerns of the agent memory, not properties of the aspect."""@en ,
+                     """Qualità di un partecipante alla conversazione, tipicamente l'utente, che un agente ricorda come contesto rilevante: un bisogno, un interesse, un programma, un vincolo. Come ogni qualità qualifica il proprio portatore mediante qualifies ed è distinta dal suo valore, espresso mediante value (ad esempio la disabilità uditiva di un visitatore, con valore "sordo"); può mantenere la propria identità quando il valore cambia.
+Il tipo può essere dato da una sottoclasse applicativa di Aspect oppure, in modo più soft, da al più un literal aspect_kind. Gli atti linguistici che lo menzionano vi si collegano mediante about, sicché più atti possono riguardare lo stesso aspetto. Quanto a lungo un aspetto è ricordato e quanto è saliente sono questioni del runtime della memoria dell'agente, non proprietà dell'aspetto."""@it ;
+        rdfs:label "Aspect"@en ,
+                   "Aspetto"@it ;
+        core:definition "A Quality of a conversation participant remembered by an agent as relevant context; its kind is given by a subclass or by an aspect_kind literal."@en ,
+                       "Qualità di un partecipante alla conversazione che un agente ricorda come contesto rilevante; il tipo è dato da una sottoclasse o da un literal aspect_kind."@it .
+
+
+###  https://ontology.isagog.com/agents#Conversation
+:Conversation rdf:type owl:Class ;
+              rdfs:subClassOf core:Event ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty core:has_phase ;
+                                owl:someValuesFrom :SpeechAct
+                              ] ;
+              rdfs:comment "A communicative event that includes speech acts as phases and provides a shared context for interpreting them."@en ,
+                           "Evento comunicativo che comprende atti linguistici come fasi e fornisce un contesto condiviso per interpretarli."@it ;
+              rdfs:label "Conversation"@en ,
+                         "Conversazione"@it ;
+              core:definition "A communicative event comprising at least one SpeechAct as a phase and providing a shared context for interpretation."@en ,
+                             "Evento comunicativo che comprende almeno un SpeechAct come fase e fornisce un contesto condiviso per l’interpretazione."@it .
+
+
+###  https://ontology.isagog.com/agents#SpeechAct
+:SpeechAct rdf:type owl:Class ;
+           rdfs:subClassOf core:Event ,
+                           core:Information ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty core:about ;
+                             owl:someValuesFrom owl:Thing
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :originator ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass core:Agent
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty core:recipient ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onClass core:Agent
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :illocution ;
+                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :salience ;
+                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                             owl:onDataRange xsd:decimal
+                           ] ;
+           rdfs:comment """A communicative act performed by an agent. It is both Event and Information: the same entity represents the occurrence of communication and its content, which may be expressed through text. The model requires it to concern at least one entity through about, without imposing a Sign. That entity may be a Situation or another subject of discourse; if it is a situation, persistence characterizes its expected persistence. Several acts may concern the same situation.
+Representing a Sign through yields is optional. When the sign has a referent, about can be inferred through the yields–referent chain; a direct about link does not require an intermediate sign. The optional conveys link allows shared or independent information content to be represented separately. An act may be a phase of Conversation through phase_of.
+The model requires exactly one originator and exactly one illocution value; it allows at most one recipient without requiring one, a restriction that the top level does not impose on other events. salience indicates the act's contextual weight and is optional, with at most one value; responds_to links the act to the one it answers."""@en ,
+                        """Atto comunicativo compiuto da un agente. È sia Event sia Information: rappresenta con la stessa entità l'accadere della comunicazione e il suo contenuto, che può essere espresso mediante text. Il modello richiede che riguardi almeno un'entità mediante about, senza imporre un Sign. L'entità può essere una Situation o un altro oggetto del discorso; se è una situazione, persistence ne caratterizza la persistenza attesa. Più atti possono riguardare la stessa situazione.
+La rappresentazione di un Sign mediante yields è opzionale. Quando il segno ha un referent, about è inferibile dalla catena yields–referent; un collegamento about diretto non richiede un segno intermedio. Il collegamento opzionale conveys permette di rappresentare separatamente un contenuto informativo condiviso o autonomo. Un atto può essere una fase di Conversation tramite phase_of.
+Il modello richiede un solo originator e un solo valore illocution; ammette al più un recipient, senza richiederlo, restrizione che il livello top non impone agli altri eventi. salience indica il peso contestuale dell'atto ed è opzionale, con al più un valore; responds_to collega l'atto a quello cui risponde."""@it ;
+           rdfs:label "Atto Linguistico"@it ,
+                      "Speech Act"@en ;
+           core:definition "A communicative act by an agent, represented as Event and Information in the same entity. It concerns at least one entity through about, without requiring an intermediate Sign."@en ,
+                          "Atto comunicativo di un agente, rappresentato come Event e Information nella stessa entità. Riguarda almeno un’entità tramite about, senza richiedere un Sign intermedio."@it .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

@@ -16,3 +16,7 @@ namespace from https://isagog.com/ontology/top# to
 https://isagog.com/ontology/core# and update ontology identities/imports.
 The original top 4.7, agents 1.0 and frame 1.1 Turtle files are retained
 unchanged in ontologies/legacy/. See catalog.json for provenance/checksums.
+
+Core 6.0, agents 3.0 and frames 3.0 use static document IRIs on
+https://ontology.isagog.com/ and term IRIs of the form <ontology>#Term, with separate .ttl document URLs.
+The prior six ontology releases are retained byte for byte.
