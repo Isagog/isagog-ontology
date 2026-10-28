@@ -25,7 +25,7 @@ import { useCurrentLocale, useScopedI18n } from "@/packages/locales/client";
 const LAYER_DOT: Record<Layer, string> = {
   core: "bg-forest",
   agents: "bg-terracotta",
-  frame: "bg-olive",
+  frames: "bg-olive",
 };
 
 const PROFILE_DIMS = ["dim1", "dim2", "dim3", "dim4", "dim5", "dim6", "dim7"] as const;
@@ -91,7 +91,7 @@ export const OntologyExplorer = () => {
     { id: "all", label: t("layerAll") },
     { id: "core", label: t("layerCore") },
     { id: "agents", label: t("layerAgents") },
-    { id: "frame", label: t("layerFrame") },
+    { id: "frames", label: t("layerFrame") },
   ];
 
   const results = searchTerms(query, lang);
@@ -302,7 +302,7 @@ const TermDetail = ({
   onSelect: (id: string) => void;
 }) => {
   const t = useScopedI18n("ontologies.esplora");
-  const layerName = { core: t("layerCore"), agents: t("layerAgents"), frame: t("layerFrame") }[term.layer];
+  const layerName = { core: t("layerCore"), agents: t("layerAgents"), frames: t("layerFrame") }[term.layer];
   const kind = { class: t("kindClass"), object: t("kindObject"), data: t("kindData") }[term.kind];
   const definition = term.definition[lang] ?? term.definition.en;
   const knownParents = term.parents.filter((p) => terms.has(p));

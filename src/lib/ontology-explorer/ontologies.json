@@ -2,36 +2,36 @@
  "ontologies": [
   {
    "id": "core",
-   "version": "5.0",
+   "version": "6.0",
    "label": {
     "en": "Isagog Core Ontology",
     "it": "Ontologia Core Isagog"
    },
-   "iri": "https://isagog.com/ontology/core",
-   "versionIRI": "https://isagog.com/ontology/core/5.0",
-   "download": "/ontology/core/5.0.ttl"
+   "iri": "https://ontology.isagog.com/core",
+   "versionIRI": "https://ontology.isagog.com/core/6.0.ttl",
+   "download": "/core.ttl"
   },
   {
    "id": "agents",
-   "version": "2.0",
+   "version": "3.0",
    "label": {
     "en": "Isagog Agents Ontology",
     "it": "Ontologia degli agenti Isagog"
    },
-   "iri": "https://isagog.com/ontology/agents",
-   "versionIRI": "https://isagog.com/ontology/agents/2.0",
-   "download": "/ontology/agents/2.0.ttl"
+   "iri": "https://ontology.isagog.com/agents",
+   "versionIRI": "https://ontology.isagog.com/agents/3.0.ttl",
+   "download": "/agents.ttl"
   },
   {
-   "id": "frame",
-   "version": "2.0",
+   "id": "frames",
+   "version": "3.0",
    "label": {
-    "en": "Isagog Frame Ontology",
+    "en": "Isagog Frames Ontology",
     "it": "Ontologia dei Frame Isagog"
    },
-   "iri": "https://isagog.com/ontology/frame",
-   "versionIRI": "https://isagog.com/ontology/frame/2.0",
-   "download": "/ontology/frame/2.0.ttl"
+   "iri": "https://ontology.isagog.com/frames",
+   "versionIRI": "https://ontology.isagog.com/frames/3.0.ttl",
+   "download": "/frames.ttl"
   }
  ],
  "classes": [
@@ -427,8 +427,8 @@
    ]
   },
   {
-   "id": "frame:Frame",
-   "layer": "frame",
+   "id": "frames:Frame",
+   "layer": "frames",
    "label": {
     "it": "Frame",
     "en": "Frame"
@@ -442,8 +442,8 @@
    ]
   },
   {
-   "id": "frame:LexicalUnit",
-   "layer": "frame",
+   "id": "frames:LexicalUnit",
+   "layer": "frames",
    "label": {
     "it": "Unità lessicale",
     "en": "Lexical unit"
@@ -456,8 +456,8 @@
    ]
   },
   {
-   "id": "frame:Reciprocal",
-   "layer": "frame",
+   "id": "frames:Reciprocal",
+   "layer": "frames",
    "label": {
     "it": "Reciproco",
     "en": "Reciprocal"
@@ -471,8 +471,8 @@
    ]
   },
   {
-   "id": "frame:Role",
-   "layer": "frame",
+   "id": "frames:Role",
+   "layer": "frames",
    "label": {
     "it": "Ruolo",
     "en": "Role"
@@ -1926,8 +1926,8 @@
    "range": []
   },
   {
-   "id": "frame:attested_by",
-   "layer": "frame",
+   "id": "frames:attested_by",
+   "layer": "frames",
    "label": {
     "it": "attestato da",
     "en": "attested by"
@@ -1944,8 +1944,8 @@
    ]
   },
   {
-   "id": "frame:beneficiary",
-   "layer": "frame",
+   "id": "frames:beneficiary",
+   "layer": "frames",
    "label": {
     "it": "beneficiario",
     "en": "beneficiary"
@@ -1955,7 +1955,7 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [
@@ -1964,8 +1964,8 @@
    "profile": "?,+,-,-,-,+,-"
   },
   {
-   "id": "frame:circumstance",
-   "layer": "frame",
+   "id": "frames:circumstance",
+   "layer": "frames",
    "label": {
     "it": "circostanza",
     "en": "circumstance"
@@ -1984,8 +1984,8 @@
    "range": []
   },
   {
-   "id": "frame:coparticipant",
-   "layer": "frame",
+   "id": "frames:coparticipant",
+   "layer": "frames",
    "label": {
     "it": "copartecipante",
     "en": "coparticipant"
@@ -1996,15 +1996,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [],
    "profile": "?,?,?,?,?,+,-"
   },
   {
-   "id": "frame:core_role",
-   "layer": "frame",
+   "id": "frames:core_role",
+   "layer": "frames",
    "label": {
     "it": "ruolo nucleare",
     "en": "core role"
@@ -2025,8 +2025,8 @@
    ]
   },
   {
-   "id": "frame:destination",
-   "layer": "frame",
+   "id": "frames:destination",
+   "layer": "frames",
    "label": {
     "it": "meta",
     "en": "destination"
@@ -2036,15 +2036,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [],
    "profile": "?,?,?,-,-,+,-"
   },
   {
-   "id": "frame:efficient",
-   "layer": "frame",
+   "id": "frames:efficient",
+   "layer": "frames",
    "label": {
     "it": "causa efficiente",
     "en": "efficient cause"
@@ -2054,14 +2054,14 @@
    },
    "kind": "object",
    "parents": [
-    "frame:circumstance"
+    "frames:circumstance"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "frame:evokes",
-   "layer": "frame",
+   "id": "frames:evokes",
+   "layer": "frames",
    "label": {
     "it": "evoca",
     "en": "evokes"
@@ -2072,15 +2072,15 @@
    "kind": "object",
    "parents": [],
    "domain": [
-    "frame:LexicalUnit"
+    "frames:LexicalUnit"
    ],
    "range": [
-    "frame:Frame"
+    "frames:Frame"
    ]
   },
   {
-   "id": "frame:experiencer",
-   "layer": "frame",
+   "id": "frames:experiencer",
+   "layer": "frames",
    "label": {
     "it": "esperiente",
     "en": "experiencer"
@@ -2090,7 +2090,7 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [
@@ -2099,8 +2099,8 @@
    "profile": "-,+,-,-,-,+,-"
   },
   {
-   "id": "frame:final",
-   "layer": "frame",
+   "id": "frames:final",
+   "layer": "frames",
    "label": {
     "it": "causa finale",
     "en": "final cause"
@@ -2110,14 +2110,14 @@
    },
    "kind": "object",
    "parents": [
-    "frame:circumstance"
+    "frames:circumstance"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "frame:has_role",
-   "layer": "frame",
+   "id": "frames:has_role",
+   "layer": "frames",
    "label": {
     "it": "ha ruolo",
     "en": "has role"
@@ -2128,15 +2128,15 @@
    "kind": "object",
    "parents": [],
    "domain": [
-    "frame:Frame"
+    "frames:Frame"
    ],
    "range": [
-    "frame:Role"
+    "frames:Role"
    ]
   },
   {
-   "id": "frame:instrument",
-   "layer": "frame",
+   "id": "frames:instrument",
+   "layer": "frames",
    "label": {
     "it": "strumento",
     "en": "instrument"
@@ -2146,7 +2146,7 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [
@@ -2155,8 +2155,8 @@
    "profile": "-,-,-,?,-,+,-"
   },
   {
-   "id": "frame:manner",
-   "layer": "frame",
+   "id": "frames:manner",
+   "layer": "frames",
    "label": {
     "it": "modo",
     "en": "manner"
@@ -2166,7 +2166,7 @@
    },
    "kind": "object",
    "parents": [
-    "frame:circumstance"
+    "frames:circumstance"
    ],
    "domain": [],
    "range": [
@@ -2174,8 +2174,8 @@
    ]
   },
   {
-   "id": "frame:material",
-   "layer": "frame",
+   "id": "frames:material",
+   "layer": "frames",
    "label": {
     "it": "causa materiale",
     "en": "material cause"
@@ -2185,14 +2185,14 @@
    },
    "kind": "object",
    "parents": [
-    "frame:circumstance"
+    "frames:circumstance"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "frame:means",
-   "layer": "frame",
+   "id": "frames:means",
+   "layer": "frames",
    "label": {
     "it": "mezzo",
     "en": "means"
@@ -2202,7 +2202,7 @@
    },
    "kind": "object",
    "parents": [
-    "frame:material"
+    "frames:material"
    ],
    "domain": [],
    "range": [
@@ -2210,8 +2210,8 @@
    ]
   },
   {
-   "id": "frame:motive",
-   "layer": "frame",
+   "id": "frames:motive",
+   "layer": "frames",
    "label": {
     "it": "motivo",
     "en": "motive"
@@ -2222,14 +2222,14 @@
    },
    "kind": "object",
    "parents": [
-    "frame:final"
+    "frames:final"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "frame:origin",
-   "layer": "frame",
+   "id": "frames:origin",
+   "layer": "frames",
    "label": {
     "it": "origine",
     "en": "origin"
@@ -2239,15 +2239,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [],
    "profile": "?,?,?,-,-,+,-"
   },
   {
-   "id": "frame:patient",
-   "layer": "frame",
+   "id": "frames:patient",
+   "layer": "frames",
    "label": {
     "it": "paziente",
     "en": "patient"
@@ -2257,15 +2257,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:undergoer"
+    "frames:undergoer"
    ],
    "domain": [],
    "range": [],
    "profile": "-,?,-,?,+,+,?"
   },
   {
-   "id": "frame:product",
-   "layer": "frame",
+   "id": "frames:product",
+   "layer": "frames",
    "label": {
     "it": "prodotto",
     "en": "product"
@@ -2275,15 +2275,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [],
    "profile": "-,?,-,-,+,-,?"
   },
   {
-   "id": "frame:profiles",
-   "layer": "frame",
+   "id": "frames:profiles",
+   "layer": "frames",
    "label": {
     "it": "profila",
     "en": "profiles"
@@ -2295,15 +2295,15 @@
    "kind": "object",
    "parents": [],
    "domain": [
-    "frame:LexicalUnit"
+    "frames:LexicalUnit"
    ],
    "range": [
-    "frame:Role"
+    "frames:Role"
    ]
   },
   {
-   "id": "frame:purpose",
-   "layer": "frame",
+   "id": "frames:purpose",
+   "layer": "frames",
    "label": {
     "it": "scopo",
     "en": "purpose"
@@ -2314,7 +2314,7 @@
    },
    "kind": "object",
    "parents": [
-    "frame:final"
+    "frames:final"
    ],
    "domain": [],
    "range": [
@@ -2322,8 +2322,8 @@
    ]
   },
   {
-   "id": "frame:route",
-   "layer": "frame",
+   "id": "frames:route",
+   "layer": "frames",
    "label": {
     "it": "percorso",
     "en": "route"
@@ -2333,15 +2333,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [],
    "profile": "-,-,-,-,-,+,+"
   },
   {
-   "id": "frame:specialises",
-   "layer": "frame",
+   "id": "frames:specialises",
+   "layer": "frames",
    "label": {
     "it": "specializza",
     "en": "specialises"
@@ -2354,15 +2354,15 @@
     "core:entails"
    ],
    "domain": [
-    "frame:Frame"
+    "frames:Frame"
    ],
    "range": [
-    "frame:Frame"
+    "frames:Frame"
    ]
   },
   {
-   "id": "frame:stimulus",
-   "layer": "frame",
+   "id": "frames:stimulus",
+   "layer": "frames",
    "label": {
     "it": "stimolo",
     "en": "stimulus"
@@ -2372,15 +2372,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [],
    "profile": "-,?,?,-,-,?,-"
   },
   {
-   "id": "frame:substrate",
-   "layer": "frame",
+   "id": "frames:substrate",
+   "layer": "frames",
    "label": {
     "it": "materia",
     "en": "substrate"
@@ -2390,7 +2390,7 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [
@@ -2399,8 +2399,8 @@
    "profile": "-,-,-,?,+,+,+"
   },
   {
-   "id": "frame:theme",
-   "layer": "frame",
+   "id": "frames:theme",
+   "layer": "frames",
    "label": {
     "it": "tema",
     "en": "theme"
@@ -2410,15 +2410,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:undergoer"
+    "frames:undergoer"
    ],
    "domain": [],
    "range": [],
    "profile": "-,?,-,+,-,+,?"
   },
   {
-   "id": "frame:undergoer",
-   "layer": "frame",
+   "id": "frames:undergoer",
+   "layer": "frames",
    "label": {
     "it": "subente",
     "en": "undergoer"
@@ -2428,15 +2428,15 @@
    },
    "kind": "object",
    "parents": [
-    "frame:core_role"
+    "frames:core_role"
    ],
    "domain": [],
    "range": [],
    "profile": "?,?,-,?,?,?,?"
   },
   {
-   "id": "frame:attestations",
-   "layer": "frame",
+   "id": "frames:attestations",
+   "layer": "frames",
    "label": {
     "it": "attestazioni",
     "en": "attestations"
@@ -2450,8 +2450,8 @@
    "range": []
   },
   {
-   "id": "frame:definition",
-   "layer": "frame",
+   "id": "frames:definition",
+   "layer": "frames",
    "label": {
     "it": "definizione",
     "en": "definition"

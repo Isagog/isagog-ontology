@@ -114,3 +114,10 @@ next-env.d.ts
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+
+# Canonical static RDF exports (generated from catalog.json).
+/public/*.ttl
+/public/catalog.json
+/public/core/
+/public/agents/
+/public/frames/

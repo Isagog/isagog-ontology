@@ -2,6 +2,8 @@
 
 from hashlib import sha256
 from pathlib import Path
+from runpy import run_path
+from urllib.parse import urlsplit
 
 import pytest
 from isagog_ontologies import current_ontology, load_catalog, ontology_resource
@@ -28,7 +30,7 @@ def test_catalog_matches_turtle_and_imports_resolve(entry):
 
 
 def test_unversioned_iris_select_current_release_and_archive_stays_explicit():
-    for module in ("core", "agents", "frame"):
+    for module in ("core", "agents", "frames"):
         entry = current_ontology(module)
         assert (
             ontology_resource(entry["ontology_iri"]).read_bytes()
@@ -85,6 +87,68 @@ def test_rename_preserves_all_axioms(old_module, old_version, new_module, new_ve
     assert isomorphic(transformed, cleaned)
     assert not any(
         isinstance(term, URIRef) and str(term).startswith("https://isagog.com/ontology/top")
+        for triple in new
+        for term in triple
+    )
+
+
+@pytest.mark.parametrize("module", ["core", "agents", "frames"])
+def test_static_alias_and_immutable_version_are_identical_complete_graphs(module):
+    entry = current_ontology(module)
+    assert entry["ontology_iri"] == f"https://ontology.isagog.com/{module}"
+    assert entry["document_url"] == entry["ontology_iri"] + ".ttl"
+    assert entry["namespace"] == entry["ontology_iri"] + "#"
+    exported = run_path(str(ROOT / "scripts/export-ontologies.py"))["outputs"]()
+    source = (ROOT / entry["file"]).read_bytes()
+    for iri in (entry["document_url"], entry["version_iri"]):
+        assert exported[ROOT / "public" / urlsplit(iri).path.lstrip("/")] == source
+    assert ontology_resource(entry["document_url"]).read_bytes() == source
+    page = exported[ROOT / "public" / module / "index.html"].decode()
+    assert entry["document_url"] in page
+    assert 'type="text/turtle"' in page
+
+
+@pytest.mark.parametrize("module", ["core", "agents", "frames"])
+def test_static_namespace_migration_preserves_axioms(module):
+    previous = {"core": ("core", "5.0"), "agents": ("agents", "2.0"), "frames": ("frame", "2.0")}
+    replacements = {}
+    for current, (old, version) in previous.items():
+        replacements[f"https://isagog.com/ontology/{old}"] = (
+            f"https://ontology.isagog.com/{current}"
+        )
+        replacements[f"https://isagog.com/ontology/{old}/{version}"] = current_ontology(current)[
+            "version_iri"
+        ]
+
+    def rename(term):
+        if isinstance(term, URIRef):
+            text = str(term)
+            for old, new in sorted(replacements.items(), key=lambda item: -len(item[0])):
+                if text == old or text.startswith(old + "#"):
+                    return URIRef(new + text[len(old) :])
+        if isinstance(term, Literal):
+            return Literal(
+                str(term).replace("frame:", "frames:"), lang=term.language, datatype=term.datatype
+            )
+        return term
+
+    old_module, version = previous[module]
+    old = Graph().parse(ROOT / f"ontologies/{old_module}/{version}.ttl")
+    entry = current_ontology(module)
+    new = Graph().parse(ROOT / entry["file"])
+    metadata = {OWL.versionIRI, OWL.versionInfo, RDFS.label, RDFS.comment}
+    transformed, actual = Graph(), Graph()
+    for s, p, o in old:
+        if str(s) == f"https://isagog.com/ontology/{old_module}" and p in metadata:
+            continue
+        transformed.add(tuple(rename(term) for term in (s, p, o)))
+    for s, p, o in new:
+        if str(s) == entry["ontology_iri"] and p in metadata:
+            continue
+        actual.add((s, p, o))
+    assert isomorphic(transformed, actual)
+    assert not any(
+        isinstance(term, URIRef) and str(term).startswith("https://isagog.com/ontology/")
         for triple in new
         for term in triple
     )

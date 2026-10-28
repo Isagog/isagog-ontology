@@ -9,12 +9,12 @@ from pathlib import Path
 
 from rdflib import OWL, RDF, RDFS, Graph, Literal, Namespace, URIRef
 
-CORE = Namespace("https://isagog.com/ontology/core#")
-FRAME = Namespace("https://isagog.com/ontology/frame#")
+CORE = Namespace("https://ontology.isagog.com/core#")
+FRAME = Namespace("https://ontology.isagog.com/frames#")
 PREFIXES = {
-    "https://isagog.com/ontology/core#": "core",
-    "https://isagog.com/ontology/agents#": "agents",
-    "https://isagog.com/ontology/frame#": "frame",
+    "https://ontology.isagog.com/core#": "core",
+    "https://ontology.isagog.com/agents#": "agents",
+    "https://ontology.isagog.com/frames#": "frames",
 }
 OUT = Path(__file__).resolve().parent.parent / "src/lib/ontology-explorer/ontologies.json"
 
@@ -72,14 +72,14 @@ def named(nodes) -> list[str]:
 
 def ontology_meta(g: Graph, layer: str) -> dict:
     onto = next(g.subjects(RDF.type, OWL.Ontology))
-    version = str(next(g.objects(onto, OWL.versionIRI))).rsplit("/", 1)[-1]
+    version = str(next(g.objects(onto, OWL.versionIRI))).rsplit("/", 1)[-1].removesuffix(".ttl")
     return {
         "id": layer,
         "version": version,
         "label": by_lang(g, onto, RDFS.label),
         "iri": str(onto),
         "versionIRI": str(next(g.objects(onto, OWL.versionIRI))),
-        "download": f"/ontology/{layer}/{version}.ttl",
+        "download": f"/{layer}.ttl",
     }
 
 
@@ -123,7 +123,7 @@ def main() -> None:
     catalog = json.loads((root / "catalog.json").read_text())
     entries = {entry["version_iri"]: entry for entry in catalog["ontologies"]}
     data = {"ontologies": [], "classes": [], "properties": []}
-    for layer in ("core", "agents", "frame"):
+    for layer in ("core", "agents", "frames"):
         entry = entries[catalog["current"][layer]]
         meta, classes, properties = extract(str(root / entry["file"]), layer)
         data["ontologies"].append(meta)

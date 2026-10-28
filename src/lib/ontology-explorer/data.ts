@@ -5,7 +5,7 @@
  */
 import raw from "./ontologies.json";
 
-export type Layer = "core" | "agents" | "frame";
+export type Layer = "core" | "agents" | "frames";
 export type Lang = "it" | "en";
 
 interface TermBase {

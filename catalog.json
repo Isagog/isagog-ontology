@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "bundle_version": "1.0.0",
+  "bundle_version": "2.0.0",
   "license": "CC-BY-4.0",
   "current": {
-    "core": "https://isagog.com/ontology/core/5.0",
-    "agents": "https://isagog.com/ontology/agents/2.0",
-    "frame": "https://isagog.com/ontology/frame/2.0",
+    "core": "https://ontology.isagog.com/core/6.0.ttl",
+    "agents": "https://ontology.isagog.com/agents/3.0.ttl",
+    "frames": "https://ontology.isagog.com/frames/3.0.ttl",
     "top": "https://isagog.com/ontology/top/4.7"
   },
   "ontologies": [
@@ -34,7 +34,7 @@
       "file": "ontologies/core/5.0.ttl",
       "imports": [],
       "sha256": "e55584bbe01049acbb5d87ce4698d5c566ae44a30a0074d6109883919c9d074b",
-      "status": "current",
+      "status": "legacy",
       "source": {
         "derived_from": "https://isagog.com/ontology/top/4.7"
       }
@@ -68,7 +68,7 @@
         "https://isagog.com/ontology/core/5.0"
       ],
       "sha256": "85fce0f821a090a64ece5c8fc3ab7fa4ca217b100ec06c2551ec172397aad642",
-      "status": "current",
+      "status": "legacy",
       "source": {
         "derived_from": "https://isagog.com/ontology/agents/1.0"
       }
@@ -102,10 +102,59 @@
         "https://isagog.com/ontology/core/5.0"
       ],
       "sha256": "f08d12f1b55b1d281e8b37127a4317f029a46177142d3ad5b554daff0b2d88e2",
-      "status": "current",
+      "status": "legacy",
       "source": {
         "derived_from": "https://isagog.com/ontology/frame/1.1"
       }
+    },
+    {
+      "id": "core",
+      "version": "6.0",
+      "ontology_iri": "https://ontology.isagog.com/core",
+      "version_iri": "https://ontology.isagog.com/core/6.0.ttl",
+      "namespace": "https://ontology.isagog.com/core#",
+      "file": "ontologies/core/6.0.ttl",
+      "imports": [],
+      "sha256": "911b9f27e0bba093d68c88b90e577306c23c46c50f5ebd25ea8d162151fbf86f",
+      "status": "current",
+      "source": {
+        "derived_from": "https://isagog.com/ontology/core/5.0"
+      },
+      "document_url": "https://ontology.isagog.com/core.ttl"
+    },
+    {
+      "id": "agents",
+      "version": "3.0",
+      "ontology_iri": "https://ontology.isagog.com/agents",
+      "version_iri": "https://ontology.isagog.com/agents/3.0.ttl",
+      "namespace": "https://ontology.isagog.com/agents#",
+      "file": "ontologies/agents/3.0.ttl",
+      "imports": [
+        "https://ontology.isagog.com/core/6.0.ttl"
+      ],
+      "sha256": "55de5a5dcaeb02116961ae547af169b112c55c38f1e76fd44a366601233b6571",
+      "status": "current",
+      "source": {
+        "derived_from": "https://isagog.com/ontology/agents/2.0"
+      },
+      "document_url": "https://ontology.isagog.com/agents.ttl"
+    },
+    {
+      "id": "frames",
+      "version": "3.0",
+      "ontology_iri": "https://ontology.isagog.com/frames",
+      "version_iri": "https://ontology.isagog.com/frames/3.0.ttl",
+      "namespace": "https://ontology.isagog.com/frames#",
+      "file": "ontologies/frames/3.0.ttl",
+      "imports": [
+        "https://ontology.isagog.com/core/6.0.ttl"
+      ],
+      "sha256": "5633884e5f5ee0817b9861d351901741cf61145b042531603d0f2d21e7103a29",
+      "status": "current",
+      "source": {
+        "derived_from": "https://isagog.com/ontology/frame/2.0"
+      },
+      "document_url": "https://ontology.isagog.com/frames.ttl"
     }
   ]
 }

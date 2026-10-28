@@ -10,7 +10,7 @@ export const Livelli = async ({ locale }: { locale: Locale }) => {
   const layers = [
     { id: "core", name: t("core.name"), tagline: t("core.tagline"), body: t("core.body") },
     { id: "agents", name: t("agents.name"), tagline: t("agents.tagline"), body: t("agents.body") },
-    { id: "frame", name: t("frames.name"), tagline: t("frames.tagline"), body: t("frames.body") },
+    { id: "frames", name: t("frames.name"), tagline: t("frames.tagline"), body: t("frames.body") },
   ] as const;
 
   return (

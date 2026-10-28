@@ -1,113 +1,111 @@
 # Isagog ontologies
 
-Public source of truth for the Isagog OWL ontologies, their offline Python
-resource package, and the browser at https://ontology.isagog.com.
+Public source of truth for the Isagog OWL ontologies, the offline Python data
+package, and the browser at https://ontology.isagog.com.
 
-| Module | Version | Term namespace | Imports |
-| --- | --- | --- | --- |
-| core | 5.0 | `https://isagog.com/ontology/core#` | — |
-| agents | 2.0 | `https://isagog.com/ontology/agents#` | core 5.0 |
-| frame | 2.0 | `https://isagog.com/ontology/frame#` | core 5.0 |
+| Ontology | Turtle download | Current version |
+| --- | --- | --- |
+| core | https://ontology.isagog.com/core.ttl | 6.0 |
+| agents | https://ontology.isagog.com/agents.ttl | 3.0 |
+| frames | https://ontology.isagog.com/frames.ttl | 3.0 |
 
-## Sources and versions
+Term IRIs use the extensionless namespace, for example
+`https://ontology.isagog.com/core#Person`, `agents#SpeechAct` and `frames#Frame`.
+Ontology IRIs are `https://ontology.isagog.com/core`, `/agents` and `/frames`;
+they open HTML documentation. The corresponding `.ttl` documents serve RDF.
+There is no automatic HTML/RDF negotiation: imports use exact `.ttl` version IRIs.
+Everything is served statically by GitHub Pages. No Worker, HTTP proxy or DNS
+change is required.
+
+## Sources, releases and imports
 
 `ontologies/` contains the authoritative Turtle files. `catalog.json` records
-ontology/version IRIs, exact imports, SHA-256 checksums and provenance. Published
-version files are immutable: make changes in a new version and update the
-catalog's `current` entries. Ontology versions are independent of the Python
-bundle version (`1.0.0` initially).
+ontology/version IRIs, Turtle document URLs, term namespaces, exact imports,
+checksums and provenance.
+The bundle version is **2.0.0**, independent of the ontology versions.
 
-`ontologies/legacy/` preserves top 4.7, agents 1.0 and frame 1.1 byte for byte
-from their former private repositories. Their exact source commits and paths
-are recorded in the catalog. The archived IsagogOntologies repository is
-historical and is not an upstream dependency.
+Version IRIs identify immutable, directly downloadable Turtle files:
 
-Core 5.0 renames `/ontology/top#` to `/ontology/core#`; agents 2.0 and frame 2.0
-import core 5.0. There is no equivalence/mapping ontology or dual-namespace
-runtime support. The old versions remain available as historical resources.
-MAXXI ontology alignment and KG migration are separate work; MeMa stays on its
-existing pinned software/ontology versions.
+- https://ontology.isagog.com/core/6.0.ttl
+- https://ontology.isagog.com/agents/3.0.ttl
+- https://ontology.isagog.com/frames/3.0.ttl
 
-## Offline Python resources
+Agents and frames import core 6.0 by that exact version IRI. A generic OWL
+loader can therefore follow imports over HTTP; Python consumers resolve the
+same IRIs offline through the bundled catalog. Unknown versions never select
+a different file.
 
-The `isagog-ontologies` distribution contains only Turtle, a catalog and a
-standard-library resource resolver. It has no dependency on private Isagog
-software or RDF libraries. It can be installed from a public Git commit or a
-wheel attached to an `ontologies-v<bundle-version>` GitHub release.
+Published version files are immutable: changes require new versions and an
+updated `current` catalog entry. All earlier Turtle releases remain unchanged,
+including top 4.7, agents 1.0, frame 1.1, core 5.0, agents 2.0 and frame 2.0.
+They remain downloadable under `/ontology/` at their previously published paths.
+The old `isagog.com/ontology/...` identifiers are historical; no runtime mapping
+ontology is introduced. The archived IsagogOntologies repository is not an
+upstream dependency.
+
+This release moves identifiers onto the static ontology host and standardizes
+the frames filename/namespace to the plural. MAXXI ontology alignment and KG
+migration remain separate; MeMa retains its existing pinned versions.
+
+## Python resources
+
+`isagog-ontologies` contains Turtle, a catalog and a standard-library resolver.
+It has no runtime dependency on private Isagog code or RDF frameworks. Install
+it from a public source commit or the wheel on an `ontologies-v<version>` release.
 
 ```python
 from isagog_ontologies import ontology_resource
 
-resource = ontology_resource("https://isagog.com/ontology/core/5.0")
+resource = ontology_resource("https://ontology.isagog.com/core/6.0.ttl")
 text = resource.read_text(encoding="utf-8")
 ```
 
-Bare ontology IRIs select the bundle's current release; version IRIs always
-select the named release. Unknown versions return `None`, never a newer file.
-Applications should pin the bundle and use exact version IRIs in `owl:imports`.
-The private core/agents/frames modules keep their Python integration and
-models; they consume these public sources and do not maintain Turtle copies.
+`current_ontology("core")`, `current_ontology("agents")` and
+`current_ontology("frames")` describe the active family. Private core/agents/
+frames packages own their integration code and generated models, not copies
+of the Turtle sources.
 
-## Development and validation
+## Development
 
 ```sh
 uv sync --locked
 uv run pytest
-uv run ruff check python scripts/ontologies-to-json.py scripts/export-ontologies.py tests
+uv run ruff check python scripts tests
 uv run python scripts/ontologies-to-json.py
 uv run python scripts/export-ontologies.py
 uv build
 pnpm install --frozen-lockfile
 pnpm test
-pnpm test:edge
 pnpm typecheck
 pnpm lint
 uv run -- pnpm build
 ```
 
-The explorer JSON is generated from the catalog, without private checkouts.
-CI checks it with `scripts/ontologies-to-json.py --check`. The export script
-produces `public/ontology/` downloads (not committed) and `edge/routes.mjs`
-(committed). The static build exports both the site and downloads into `out/`;
-`scripts/check-export.mjs` verifies routes, anchors and download checksums.
+The explorer JSON is generated from the public catalog. CI checks it with
+`scripts/ontologies-to-json.py --check`. The export script generates canonical
+root-level `.ttl` files, immutable version paths, archived downloads and a
+public `/catalog.json`; all are derived artifacts excluded from Git. The
+static export check verifies every exported Turtle file against its checksum.
 
-Next.js 16 uses `output: "export"`. Pages live under
-`src/app/[locale]/(pages)/`; Italian and English copy under
-`src/packages/locales/lang/`. The layers page links to the complete Turtle
-files; the explorer is a compact view, not a complete OWL serialization.
+Next.js uses `output: "export"`. Pages live in `src/app/[locale]/(pages)/`;
+Italian and English copy in `src/packages/locales/lang/` must have parity.
+The layers page links directly to `/core.ttl`, `/agents.ttl` and `/frames.ttl`.
+The explorer presents a compact view; those downloads contain the complete OWL.
 
-## Publication and canonical IRIs
+## Publication
 
-A main-branch push builds and deploys the browser/downloads to GitHub Pages.
-Pull requests validate the same build without deploying. To publish a bundle,
-create and push `ontologies-v1.0.0` (matching pyproject/catalog versions); the
-release workflow validates, builds and attaches the wheel and sdist. Private
-consumers may pin the public source commit before this release exists.
+A main-branch push validates and deploys the static site and Turtle files to
+GitHub Pages. After deployment, `scripts/check-published-ontologies.py` checks
+all active Turtle document/version URLs for HTTP 200, `text/turtle` and exact
+release checksums, plus the extensionless HTML documentation URLs. It can also be run manually with plain Python.
 
-GitHub Pages alone cannot negotiate RDF/HTML for IRIs hosted on isagog.com.
-`edge/worker.mjs` provides that routing, configured by `edge/wrangler.toml`.
-After the downloads are deployed, deploy the worker in the account managing
-isagog.com, with the route `isagog.com/ontology/*`. This requires that the
-route run through Cloudflare; otherwise use the same catalog-driven behavior
-in the actual HTTP host/proxy. Analytics configuration alone does not enable
-this routing. The worker is not deployed by the GitHub Pages workflow.
-
-Expected behavior:
-
-- `GET https://isagog.com/ontology/core` with `Accept: text/turtle`: core 5.0.
-- `GET https://isagog.com/ontology/core/5.0`: the immutable core 5.0 Turtle.
-- Likewise agents 2.0, frame 2.0 and each archived version, including top 4.7.
-- Browsers requesting HTML: documentation, preserving `#Term` fragments.
-- Unknown versions: 404. No supported representation: 406.
-- Version responses are immutable; bare aliases have short cache lifetimes.
-
-Deployment is complete only after checking those canonical URLs publicly with
-both RDF and HTML Accept headers. Deploy the downloads before the edge route;
-otherwise the worker reports an origin error rather than serving HTML as RDF.
+Tag `ontologies-v2.0.0` on the verified source commit to publish a GitHub release
+with the wheel and sdist. The tag must match pyproject/catalog bundle versions.
+Private consumers pin exact public Git commits for reproducibility.
 
 ## Licenses
 
 Ontology definitions and RDF exports: **CC BY 4.0**, credited to Guido Vetere /
-Isagog S.r.l.; see `LICENSES/CC-BY-4.0.txt` and the metadata in each Turtle.
-Code and site: **MIT**, see `LICENSE`. Private runtime code is not part of
-this repository or distribution.
+Isagog S.r.l.; see `LICENSES/CC-BY-4.0.txt` and each Turtle's metadata.
+Code and site: **MIT**, see `LICENSE`. Private runtime code is not distributed
+by this repository.
