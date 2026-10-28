@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "bundle_version": "1.0.0",
+  "license": "CC-BY-4.0",
+  "current": {
+    "core": "https://isagog.com/ontology/core/5.0",
+    "agents": "https://isagog.com/ontology/agents/2.0",
+    "frame": "https://isagog.com/ontology/frame/2.0",
+    "top": "https://isagog.com/ontology/top/4.7"
+  },
+  "ontologies": [
+    {
+      "id": "top",
+      "version": "4.7",
+      "ontology_iri": "https://isagog.com/ontology/top",
+      "version_iri": "https://isagog.com/ontology/top/4.7",
+      "namespace": "https://isagog.com/ontology/top#",
+      "file": "ontologies/legacy/top/4.7.ttl",
+      "imports": [],
+      "sha256": "2e7324d783e8ac4a766c527b45fbb5a1beabe0bf40cdedb55cbbeeed79170eb8",
+      "status": "legacy",
+      "source": {
+        "repository": "https://github.com/Isagog/isagog-core",
+        "commit": "0b4fb2879c4c1509b9f44f5f79c11f4e6b6b02d5",
+        "path": "src/isagog/models/knowledge/ontology/data/isagog-top-4.7.ttl"
+      }
+    },
+    {
+      "id": "core",
+      "version": "5.0",
+      "ontology_iri": "https://isagog.com/ontology/core",
+      "version_iri": "https://isagog.com/ontology/core/5.0",
+      "namespace": "https://isagog.com/ontology/core#",
+      "file": "ontologies/core/5.0.ttl",
+      "imports": [],
+      "sha256": "e55584bbe01049acbb5d87ce4698d5c566ae44a30a0074d6109883919c9d074b",
+      "status": "current",
+      "source": {
+        "derived_from": "https://isagog.com/ontology/top/4.7"
+      }
+    },
+    {
+      "id": "agents",
+      "version": "1.0",
+      "ontology_iri": "https://isagog.com/ontology/agents",
+      "version_iri": "https://isagog.com/ontology/agents/1.0",
+      "namespace": "https://isagog.com/ontology/agents#",
+      "file": "ontologies/legacy/agents/1.0.ttl",
+      "imports": [
+        "https://isagog.com/ontology/top/4.7"
+      ],
+      "sha256": "aa83c7d8f4cdcfd3f52307956cf8696c15e1822a6226b8602a1ab3a801575e2b",
+      "status": "legacy",
+      "source": {
+        "repository": "https://github.com/Isagog/isagog-agents",
+        "commit": "587b1924083adeaa0a4fd85f117510b2c138c7d7",
+        "path": "src/isagog/agents/ontology/data/isagog-agents-1.0.ttl"
+      }
+    },
+    {
+      "id": "agents",
+      "version": "2.0",
+      "ontology_iri": "https://isagog.com/ontology/agents",
+      "version_iri": "https://isagog.com/ontology/agents/2.0",
+      "namespace": "https://isagog.com/ontology/agents#",
+      "file": "ontologies/agents/2.0.ttl",
+      "imports": [
+        "https://isagog.com/ontology/core/5.0"
+      ],
+      "sha256": "85fce0f821a090a64ece5c8fc3ab7fa4ca217b100ec06c2551ec172397aad642",
+      "status": "current",
+      "source": {
+        "derived_from": "https://isagog.com/ontology/agents/1.0"
+      }
+    },
+    {
+      "id": "frame",
+      "version": "1.1",
+      "ontology_iri": "https://isagog.com/ontology/frame",
+      "version_iri": "https://isagog.com/ontology/frame/1.1",
+      "namespace": "https://isagog.com/ontology/frame#",
+      "file": "ontologies/legacy/frame/1.1.ttl",
+      "imports": [
+        "https://isagog.com/ontology/top/4.7"
+      ],
+      "sha256": "702768c2c83fb83e9363f8f994cebec2289930c043d00afb72de12ce6987b982",
+      "status": "legacy",
+      "source": {
+        "repository": "https://github.com/Isagog/isagog-frames",
+        "commit": "645ce5cab7e558e5cf30f22c2e38e2ed4a7b5f02",
+        "path": "src/isagog/frames/ontology/data/isagog-frame-1.1.ttl"
+      }
+    },
+    {
+      "id": "frame",
+      "version": "2.0",
+      "ontology_iri": "https://isagog.com/ontology/frame",
+      "version_iri": "https://isagog.com/ontology/frame/2.0",
+      "namespace": "https://isagog.com/ontology/frame#",
+      "file": "ontologies/frame/2.0.ttl",
+      "imports": [
+        "https://isagog.com/ontology/core/5.0"
+      ],
+      "sha256": "f08d12f1b55b1d281e8b37127a4317f029a46177142d3ad5b554daff0b2d88e2",
+      "status": "current",
+      "source": {
+        "derived_from": "https://isagog.com/ontology/frame/1.1"
+      }
+    }
+  ]
+}

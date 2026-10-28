@@ -1,0 +1,28 @@
+name: Release ontology bundle
+
+on:
+  push:
+    tags: ["ontologies-v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --locked
+      - name: Verify tag and bundle
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          uv run python -c 'import os, tomllib; from isagog_ontologies import load_catalog; v=tomllib.load(open("pyproject.toml", "rb"))["project"]["version"]; assert os.environ["RELEASE_TAG"] == "ontologies-v" + v; assert load_catalog()["bundle_version"] == v'
+          uv run pytest
+          uv run python scripts/ontologies-to-json.py --check
+          uv build
+      - name: Publish downloadable artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --verify-tag --generate-notes

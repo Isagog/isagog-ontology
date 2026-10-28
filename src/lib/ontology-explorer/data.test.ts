@@ -11,7 +11,7 @@ import {
 
 describe("ontology explorer data", () => {
   it("covers the three ontologies", () => {
-    expect(Object.keys(ontologyVersions).sort()).toEqual(["agents", "frame", "top"]);
+    expect(Object.keys(ontologyVersions).sort()).toEqual(["agents", "core", "frame"]);
   });
 
   it("labels every term in both languages", () => {
@@ -22,17 +22,17 @@ describe("ontology explorer data", () => {
   });
 
   it("lists a term with several parents under each of them", () => {
-    expect(childrenOf("top:Event", "en")).toContain("agents:SpeechAct");
-    expect(childrenOf("top:Information", "en")).toContain("agents:SpeechAct");
+    expect(childrenOf("core:Event", "en")).toContain("agents:SpeechAct");
+    expect(childrenOf("core:Information", "en")).toContain("agents:SpeechAct");
   });
 
   it("roots the class tree at the non-disjoint continuant and occurrent", () => {
-    expect(rootsOf("classes", "en")).toEqual(["top:Continuant", "top:Occurrent"]);
+    expect(rootsOf("classes", "en")).toEqual(["core:Continuant", "core:Occurrent"]);
   });
 
   it("hooks frame roles into the top-level participation relations", () => {
-    expect(childrenOf("top:has_participant", "en")).toContain("frame:core_role");
-    expect(subtreeHasLayer("top:relatedness", "frame")).toBe(true);
+    expect(childrenOf("core:has_participant", "en")).toContain("frame:core_role");
+    expect(subtreeHasLayer("core:relatedness", "frame")).toBe(true);
   });
 
   it("finds properties by domain and terms by label in either language", () => {

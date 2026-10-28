@@ -1,0 +1,90 @@
+"""Catalog, import closure and migration invariants for the public releases."""
+
+from hashlib import sha256
+from pathlib import Path
+
+import pytest
+from isagog_ontologies import current_ontology, load_catalog, ontology_resource
+from rdflib import Graph, Literal, URIRef
+from rdflib.compare import isomorphic
+from rdflib.namespace import OWL, RDF, RDFS
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+@pytest.mark.parametrize("entry", load_catalog()["ontologies"], ids=lambda e: e["version_iri"])
+def test_catalog_matches_turtle_and_imports_resolve(entry):
+    resource = ontology_resource(entry["version_iri"])
+    assert resource is not None and resource.is_file()
+    data = resource.read_bytes()
+    assert sha256(data).hexdigest() == entry["sha256"]
+    graph = Graph().parse(data=data, format="turtle")
+    ontology = URIRef(entry["ontology_iri"])
+    assert set(graph.subjects(RDF.type, OWL.Ontology)) == {ontology}
+    assert set(graph.objects(ontology, OWL.versionIRI)) == {URIRef(entry["version_iri"])}
+    assert sorted(map(str, graph.objects(ontology, OWL.imports))) == sorted(entry["imports"])
+    for iri in entry["imports"]:
+        assert ontology_resource(iri).is_file()
+
+
+def test_unversioned_iris_select_current_release_and_archive_stays_explicit():
+    for module in ("core", "agents", "frame"):
+        entry = current_ontology(module)
+        assert (
+            ontology_resource(entry["ontology_iri"]).read_bytes()
+            == ontology_resource(entry["version_iri"]).read_bytes()
+        )
+    assert (
+        ontology_resource("https://isagog.com/ontology/top").read_bytes()
+        == ontology_resource("https://isagog.com/ontology/top/4.7").read_bytes()
+    )
+    assert ontology_resource("https://isagog.com/ontology/core/4.7") is None
+    assert ontology_resource("https://example.org/missing") is None
+
+
+@pytest.mark.parametrize(
+    "old_module,old_version,new_module,new_version",
+    [
+        ("top", "4.7", "core", "5.0"),
+        ("agents", "1.0", "agents", "2.0"),
+        ("frame", "1.1", "frame", "2.0"),
+    ],
+)
+def test_rename_preserves_all_axioms(old_module, old_version, new_module, new_version):
+    old = Graph().parse(ROOT / f"ontologies/legacy/{old_module}/{old_version}.ttl")
+    new = Graph().parse(ROOT / f"ontologies/{new_module}/{new_version}.ttl")
+    transformed = Graph()
+    metadata = {OWL.versionIRI, OWL.versionInfo, RDFS.label, RDFS.comment}
+
+    def rename(term):
+        if isinstance(term, URIRef):
+            return URIRef(
+                str(term).replace(
+                    "https://isagog.com/ontology/top", "https://isagog.com/ontology/core"
+                )
+            )
+        if isinstance(term, Literal):
+            return Literal(
+                str(term).replace("top:", "core:"), lang=term.language, datatype=term.datatype
+            )
+        return term
+
+    # Only ontology-level release metadata and documentation may differ.
+    for s, p, o in old:
+        if str(s) == f"https://isagog.com/ontology/{old_module}" and p in metadata:
+            continue
+        # Operational definitions are documentation as well; their text stays identical.
+        transformed.add((rename(s), rename(p), rename(o)))
+    cleaned = Graph()
+    for s, p, o in new:
+        if str(s) == f"https://isagog.com/ontology/{new_module}" and p in metadata:
+            continue
+        if p == OWL.imports:
+            o = URIRef(str(o).replace("/core/5.0", "/core/4.7"))
+        cleaned.add((s, p, o))
+    assert isomorphic(transformed, cleaned)
+    assert not any(
+        isinstance(term, URIRef) and str(term).startswith("https://isagog.com/ontology/top")
+        for triple in new
+        for term in triple
+    )

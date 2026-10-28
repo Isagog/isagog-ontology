@@ -1,19 +1,4 @@
-"""
-Build src/lib/ontology-explorer/ontologies.json from the Isagog ontologies.
-
-The explorer page reads a compact view of the three ontologies:
-labels and operational definitions (top:definition) in both languages, the
-class and property hierarchies, and property domains and ranges. Extended
-rdfs:comment documentation is left out on purpose — the operational
-definitions are the same compact view the ontologies offer to language models.
-
-Usage (rdflib required, e.g. from the isagog-core virtualenv):
-
-    python scripts/ontologies-to-json.py \
-        --top    ../isagog-core/src/isagog/models/knowledge/ontology/data/isagog-top-4.7.ttl \
-        --agents ../isagog-agents/src/isagog/agents/ontology/data/isagog-agents-1.0.ttl \
-        --frames ../isagog-frames/src/isagog/frames/ontology/data/isagog-frame-1.1.ttl
-"""
+"""Generate the explorer view from the public catalog and authoritative Turtle files."""
 
 from __future__ import annotations
 
@@ -24,10 +9,10 @@ from pathlib import Path
 
 from rdflib import OWL, RDF, RDFS, Graph, Literal, Namespace, URIRef
 
-TOP = Namespace("https://isagog.com/ontology/top#")
+CORE = Namespace("https://isagog.com/ontology/core#")
 FRAME = Namespace("https://isagog.com/ontology/frame#")
 PREFIXES = {
-    "https://isagog.com/ontology/top#": "top",
+    "https://isagog.com/ontology/core#": "core",
     "https://isagog.com/ontology/agents#": "agents",
     "https://isagog.com/ontology/frame#": "frame",
 }
@@ -39,7 +24,7 @@ def curie(node) -> str | None:
         return None
     for ns, prefix in PREFIXES.items():
         if str(node).startswith(ns):
-            return f"{prefix}:{str(node)[len(ns):]}"
+            return f"{prefix}:{str(node)[len(ns) :]}"
     return None
 
 
@@ -67,7 +52,7 @@ def first_line(text: str) -> str:
 
 def describe(g: Graph, subject, layer: str) -> dict:
     label = by_lang(g, subject, RDFS.label)
-    definition = by_lang(g, subject, TOP.definition)
+    definition = by_lang(g, subject, CORE.definition)
     if not definition:
         # The frame ontology has no operational definitions: fall back to the
         # first paragraph of the comment.
@@ -88,7 +73,14 @@ def named(nodes) -> list[str]:
 def ontology_meta(g: Graph, layer: str) -> dict:
     onto = next(g.subjects(RDF.type, OWL.Ontology))
     version = str(next(g.objects(onto, OWL.versionIRI))).rsplit("/", 1)[-1]
-    return {"id": layer, "version": version, "label": by_lang(g, onto, RDFS.label)}
+    return {
+        "id": layer,
+        "version": version,
+        "label": by_lang(g, onto, RDFS.label),
+        "iri": str(onto),
+        "versionIRI": str(next(g.objects(onto, OWL.versionIRI))),
+        "download": f"/ontology/{layer}/{version}.ttl",
+    }
 
 
 def extract(path: str, layer: str) -> tuple[dict, list[dict], list[dict]]:
@@ -122,22 +114,29 @@ def extract(path: str, layer: str) -> tuple[dict, list[dict], list[dict]]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--top", required=True)
-    parser.add_argument("--agents", required=True)
-    parser.add_argument("--frames", required=True)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check", action="store_true", help="Fail if the committed explorer data is stale."
+    )
     args = parser.parse_args()
-
+    root = Path(__file__).resolve().parents[1]
+    catalog = json.loads((root / "catalog.json").read_text())
+    entries = {entry["version_iri"]: entry for entry in catalog["ontologies"]}
     data = {"ontologies": [], "classes": [], "properties": []}
-    for layer, path in (("top", args.top), ("agents", args.agents), ("frame", args.frames)):
-        meta, classes, properties = extract(path, layer)
+    for layer in ("core", "agents", "frame"):
+        entry = entries[catalog["current"][layer]]
+        meta, classes, properties = extract(str(root / entry["file"]), layer)
         data["ontologies"].append(meta)
         data["classes"].extend(classes)
         data["properties"].extend(properties)
-
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    print(f"{OUT}: {len(data['classes'])} classes, {len(data['properties'])} properties")
+    content = json.dumps(data, ensure_ascii=False, indent=1) + "\n"
+    if args.check:
+        if not OUT.is_file() or OUT.read_text(encoding="utf-8") != content:
+            raise SystemExit("Explorer data is stale: run python scripts/ontologies-to-json.py")
+    else:
+        OUT.parent.mkdir(parents=True, exist_ok=True)
+        OUT.write_text(content, encoding="utf-8")
+    print(f"{OUT.name}: {len(data['classes'])} classes, {len(data['properties'])} properties")
 
 
 if __name__ == "__main__":

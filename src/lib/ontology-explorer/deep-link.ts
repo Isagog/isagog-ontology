@@ -1,7 +1,7 @@
 import { terms } from "./data";
 
 /**
- * Explorer deep links: "#top:Agent" selects top:Agent. Returns the term id
+ * Explorer deep links: "#core:Agent" selects core:Agent. Returns the term id
  * when the fragment names a known term, null otherwise (empty, unknown or
  * malformed) — the explorer then keeps its default view.
  */
