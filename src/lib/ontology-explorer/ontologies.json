@@ -1,34 +1,43 @@
 {
  "ontologies": [
   {
-   "id": "top",
-   "version": "4.7",
+   "id": "core",
+   "version": "5.0",
    "label": {
-    "en": "Isagog Top Level Ontology",
-    "it": "Ontologia Isagog"
-   }
+    "en": "Isagog Core Ontology",
+    "it": "Ontologia Core Isagog"
+   },
+   "iri": "https://isagog.com/ontology/core",
+   "versionIRI": "https://isagog.com/ontology/core/5.0",
+   "download": "/ontology/core/5.0.ttl"
   },
   {
    "id": "agents",
-   "version": "1.0",
+   "version": "2.0",
    "label": {
     "en": "Isagog Agents Ontology",
     "it": "Ontologia degli agenti Isagog"
-   }
+   },
+   "iri": "https://isagog.com/ontology/agents",
+   "versionIRI": "https://isagog.com/ontology/agents/2.0",
+   "download": "/ontology/agents/2.0.ttl"
   },
   {
    "id": "frame",
-   "version": "1.1",
+   "version": "2.0",
    "label": {
     "en": "Isagog Frame Ontology",
     "it": "Ontologia dei Frame Isagog"
-   }
+   },
+   "iri": "https://isagog.com/ontology/frame",
+   "versionIRI": "https://isagog.com/ontology/frame/2.0",
+   "download": "/ontology/frame/2.0.ttl"
   }
  ],
  "classes": [
   {
-   "id": "top:Agent",
-   "layer": "top",
+   "id": "core:Agent",
+   "layer": "core",
    "label": {
     "it": "Agente",
     "en": "Agent"
@@ -38,12 +47,12 @@
     "it": "Continuante, tangibile o intangibile, che fa accadere eventi, come una persona, un automa o un’organizzazione; ciò che inizia un occorrente è un agente."
    },
    "parents": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:Animate",
-   "layer": "top",
+   "id": "core:Animate",
+   "layer": "core",
    "label": {
     "it": "Animato",
     "en": "Animate"
@@ -53,12 +62,12 @@
     "it": "Organismo vivente caratterizzato da movimento volontario e percezione sensoriale, tipicamente un animale."
    },
    "parents": [
-    "top:Sort"
+    "core:Sort"
    ]
   },
   {
-   "id": "top:Artifact",
-   "layer": "top",
+   "id": "core:Artifact",
+   "layer": "core",
    "label": {
     "it": "Artefatto",
     "en": "Artifact"
@@ -68,12 +77,12 @@
     "it": "Oggetto intenzionalmente creato o modificato dagli esseri umani per uno scopo o una funzione."
    },
    "parents": [
-    "top:Sort"
+    "core:Sort"
    ]
   },
   {
-   "id": "top:Automaton",
-   "layer": "top",
+   "id": "core:Automaton",
+   "layer": "core",
    "label": {
     "it": "Automa",
     "en": "Automaton"
@@ -83,13 +92,13 @@
     "it": "Artefatto agente che esegue operazioni logiche, ed eventualmente fisiche, mediante algoritmi e risorse computazionali."
    },
    "parents": [
-    "top:Agent",
-    "top:Artifact"
+    "core:Agent",
+    "core:Artifact"
    ]
   },
   {
-   "id": "top:Collection",
-   "layer": "top",
+   "id": "core:Collection",
+   "layer": "core",
    "label": {
     "it": "Collezione",
     "en": "Collection"
@@ -99,12 +108,12 @@
     "it": "Raggruppamento intangibile di almeno un continuante, senza richiedere un’organizzazione funzionale degli elementi."
    },
    "parents": [
-    "top:Intangible"
+    "core:Intangible"
    ]
   },
   {
-   "id": "top:Concept",
-   "layer": "top",
+   "id": "core:Concept",
+   "layer": "core",
    "label": {
     "it": "Concetto",
     "en": "Concept"
@@ -114,12 +123,12 @@
     "it": "Oggetto concettuale socialmente identificato, usato per interpretare o classificare; non dipende esistenzialmente dalle singole entità cui si applica."
    },
    "parents": [
-    "top:Intangible"
+    "core:Intangible"
    ]
   },
   {
-   "id": "top:Continuant",
-   "layer": "top",
+   "id": "core:Continuant",
+   "layer": "core",
    "label": {
     "it": "Continuante",
     "en": "Continuant"
@@ -131,8 +140,8 @@
    "parents": []
   },
   {
-   "id": "top:Event",
-   "layer": "top",
+   "id": "core:Event",
+   "layer": "core",
    "label": {
     "it": "Evento",
     "en": "Event"
@@ -142,12 +151,12 @@
     "it": "Occorrente descritto attraverso parti o fasi eterogenee; può essere esteso nel tempo o una transizione puntuale."
    },
    "parents": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:Information",
-   "layer": "top",
+   "id": "core:Information",
+   "layer": "core",
    "label": {
     "it": "Informazione",
     "en": "Information"
@@ -157,12 +166,12 @@
     "it": "Oggetto intangibile che porta informazione e può riguardare entità mediante about. Non richiede un Sign separato."
    },
    "parents": [
-    "top:Intangible"
+    "core:Intangible"
    ]
   },
   {
-   "id": "top:Intangible",
-   "layer": "top",
+   "id": "core:Intangible",
+   "layer": "core",
    "label": {
     "it": "Intangibile",
     "en": "Intangible"
@@ -172,12 +181,12 @@
     "it": "Continuante considerato sotto un aspetto non materiale, identificabile senza richiedere attributi spazio-temporali. Può comunque avere durata e cambiare."
    },
    "parents": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:Location",
-   "layer": "top",
+   "id": "core:Location",
+   "layer": "core",
    "label": {
     "it": "Luogo",
     "en": "Location"
@@ -187,12 +196,12 @@
     "it": "Regione di spazio identificata come luogo."
    },
    "parents": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:NaturalThing",
-   "layer": "top",
+   "id": "core:NaturalThing",
+   "layer": "core",
    "label": {
     "it": "Oggetto naturale",
     "en": "Natural object"
@@ -202,12 +211,12 @@
     "it": "Oggetto naturale vegetale o minerale, considerato come unità distinta."
    },
    "parents": [
-    "top:Sort"
+    "core:Sort"
    ]
   },
   {
-   "id": "top:Occurrent",
-   "layer": "top",
+   "id": "core:Occurrent",
+   "layer": "core",
    "label": {
     "it": "Occorrente",
     "en": "Occurrent"
@@ -219,8 +228,8 @@
    "parents": []
   },
   {
-   "id": "top:Organization",
-   "layer": "top",
+   "id": "core:Organization",
+   "layer": "core",
    "label": {
     "it": "Organizzazione",
     "en": "Organization"
@@ -230,14 +239,14 @@
     "it": "Gruppo sociale agente, con almeno una persona, che opera verso obiettivi comuni secondo regole e processi."
    },
    "parents": [
-    "top:Agent",
-    "top:Collection",
-    "top:Intangible"
+    "core:Agent",
+    "core:Collection",
+    "core:Intangible"
    ]
   },
   {
-   "id": "top:Person",
-   "layer": "top",
+   "id": "core:Person",
+   "layer": "core",
    "label": {
     "it": "Persona",
     "en": "Person"
@@ -247,13 +256,13 @@
     "it": "Essere umano considerato come organismo vivente e agente razionale intenzionale."
    },
    "parents": [
-    "top:Agent",
-    "top:Animate"
+    "core:Agent",
+    "core:Animate"
    ]
   },
   {
-   "id": "top:Process",
-   "layer": "top",
+   "id": "core:Process",
+   "layer": "core",
    "label": {
     "it": "Processo",
     "en": "Process"
@@ -263,12 +272,12 @@
     "it": "Occorrente dinamico omogeneo alla granularità scelta, senza un culmine intrinseco nella descrizione adottata, come correre o piovere."
    },
    "parents": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:Quality",
-   "layer": "top",
+   "id": "core:Quality",
+   "layer": "core",
    "label": {
     "it": "Qualità",
     "en": "Quality"
@@ -278,12 +287,12 @@
     "it": "Caratteristica individuale di uno specifico portatore che mantiene la propria identità quando il suo valore cambia."
    },
    "parents": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:Relationship",
-   "layer": "top",
+   "id": "core:Relationship",
+   "layer": "core",
    "label": {
     "it": "Relazione",
     "en": "Relationship"
@@ -293,12 +302,12 @@
     "it": "Relazione rappresentata come entità intangibile, collegata ai propri relati tramite argument; il modello richiede almeno un argomento."
    },
    "parents": [
-    "top:Intangible"
+    "core:Intangible"
    ]
   },
   {
-   "id": "top:Sign",
-   "layer": "top",
+   "id": "core:Sign",
+   "layer": "core",
    "label": {
     "it": "Segno",
     "en": "Sign"
@@ -308,12 +317,12 @@
     "it": "Entità intangibile con funzione rappresentativa in un’interpretazione. Richiede una sorgente e un significante; referente e interpretante sono opzionali."
    },
    "parents": [
-    "top:Intangible"
+    "core:Intangible"
    ]
   },
   {
-   "id": "top:Situation",
-   "layer": "top",
+   "id": "core:Situation",
+   "layer": "core",
    "label": {
     "it": "Situazione",
     "en": "Situation"
@@ -323,12 +332,12 @@
     "it": "Condizione temporalmente estesa, stabile rispetto agli aspetti rilevanti nel contesto, come un bisogno o uno stato personale. persistence ne può indicare la persistenza attesa."
    },
    "parents": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:Sort",
-   "layer": "top",
+   "id": "core:Sort",
+   "layer": "core",
    "label": {
     "it": "Sortale",
     "en": "Sortal"
@@ -338,12 +347,12 @@
     "it": "Continuante tangibile considerato come unità distinta, con confini determinati e un criterio di unità che ne sostiene l’identificazione nel tempo."
    },
    "parents": [
-    "top:Tangible"
+    "core:Tangible"
    ]
   },
   {
-   "id": "top:Substance",
-   "layer": "top",
+   "id": "core:Substance",
+   "layer": "core",
    "label": {
     "it": "Sostanza",
     "en": "Substance"
@@ -353,12 +362,12 @@
     "it": "Continuante tangibile considerato come massa o quantità, senza confini intrinseci o un criterio di unità sortale."
    },
    "parents": [
-    "top:Tangible"
+    "core:Tangible"
    ]
   },
   {
-   "id": "top:Tangible",
-   "layer": "top",
+   "id": "core:Tangible",
+   "layer": "core",
    "label": {
     "it": "Tangibile",
     "en": "Tangible"
@@ -368,7 +377,7 @@
     "it": "Continuante considerato sotto un aspetto materiale, con proprietà spaziali."
    },
    "parents": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
@@ -383,7 +392,7 @@
     "it": "Qualità di un partecipante alla conversazione che un agente ricorda come contesto rilevante; il tipo è dato da una sottoclasse o da un literal aspect_kind."
    },
    "parents": [
-    "top:Quality"
+    "core:Quality"
    ]
   },
   {
@@ -398,7 +407,7 @@
     "it": "Evento comunicativo che comprende almeno un SpeechAct come fase e fornisce un contesto condiviso per l’interpretazione."
    },
    "parents": [
-    "top:Event"
+    "core:Event"
    ]
   },
   {
@@ -413,8 +422,8 @@
     "it": "Atto comunicativo di un agente, rappresentato come Event e Information nella stessa entità. Riguarda almeno un’entità tramite about, senza richiedere un Sign intermedio."
    },
    "parents": [
-    "top:Event",
-    "top:Information"
+    "core:Event",
+    "core:Information"
    ]
   },
   {
@@ -425,11 +434,11 @@
     "en": "Frame"
    },
    "definition": {
-    "en": "A frame, considered as a catalogue object. By OWL 2 punning, every frame IRI denotes both an owl:Class subsumed by top:Occurrent (schema level, used for classifying instances) and an individual of :Frame (catalogue level, used for asserting definitions, lexical units, provenance and corpus attestations). The punning is what makes the resource auditable without metaclasses: evidence is asserted about the individual, inference runs over the class.",
+    "en": "A frame, considered as a catalogue object. By OWL 2 punning, every frame IRI denotes both an owl:Class subsumed by core:Occurrent (schema level, used for classifying instances) and an individual of :Frame (catalogue level, used for asserting definitions, lexical units, provenance and corpus attestations). The punning is what makes the resource auditable without metaclasses: evidence is asserted about the individual, inference runs over the class.",
     "it": "Un frame considerato come oggetto di catalogo. Per punning OWL 2, ogni IRI di frame denota sia una classe di occorrenti sia un individuo su cui asserire definizioni, unità lessicali e attestazioni."
    },
    "parents": [
-    "top:Concept"
+    "core:Concept"
    ]
   },
   {
@@ -440,10 +449,10 @@
     "en": "Lexical unit"
    },
    "definition": {
-    "en": "A lemma and part of speech pair that evokes a frame. Subclass of top:Information, which already covers word types and tokens."
+    "en": "A lemma and part of speech pair that evokes a frame. Subclass of core:Information, which already covers word types and tokens."
    },
    "parents": [
-    "top:Information"
+    "core:Information"
    ]
   },
   {
@@ -458,7 +467,7 @@
     "it": "Classe definita: qualsiasi occorrente con almeno due copartecipanti. L'appartenenza è inferita anziché asserita."
    },
    "parents": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
@@ -473,14 +482,14 @@
     "it": "Un ruolo specifico di frame. Diversamente dai frame element di FrameNet, ogni ruolo deve specializzare un ruolo globale, il che elimina il problema dell'omonimia."
    },
    "parents": [
-    "top:Concept"
+    "core:Concept"
    ]
   }
  ],
  "properties": [
   {
-   "id": "top:about",
-   "layer": "top",
+   "id": "core:about",
+   "layer": "core",
    "label": {
     "it": "riguarda",
     "en": "about"
@@ -491,16 +500,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
-    "top:Information"
+    "core:Information"
    ],
    "range": []
   },
   {
-   "id": "top:adjacent_to",
-   "layer": "top",
+   "id": "core:adjacent_to",
+   "layer": "core",
    "label": {
     "it": "adiacente a",
     "en": "adjacent to"
@@ -511,18 +520,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:connectedness"
+    "core:connectedness"
    ],
    "domain": [
-    "top:Location"
+    "core:Location"
    ],
    "range": [
-    "top:Location"
+    "core:Location"
    ]
   },
   {
-   "id": "top:argument",
-   "layer": "top",
+   "id": "core:argument",
+   "layer": "core",
    "label": {
     "it": "argomento",
     "en": "argument"
@@ -533,16 +542,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [
-    "top:Relationship"
+    "core:Relationship"
    ],
    "range": []
   },
   {
-   "id": "top:argument_of",
-   "layer": "top",
+   "id": "core:argument_of",
+   "layer": "core",
    "label": {
     "it": "argomento di",
     "en": "argument of"
@@ -553,14 +562,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:causation",
-   "layer": "top",
+   "id": "core:causation",
+   "layer": "core",
    "label": {
     "it": "causazione",
     "en": "causation"
@@ -571,14 +580,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:caused_by",
-   "layer": "top",
+   "id": "core:caused_by",
+   "layer": "core",
    "label": {
     "it": "causato da",
     "en": "caused by"
@@ -589,18 +598,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:causation"
+    "core:causation"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:causes",
-   "layer": "top",
+   "id": "core:causes",
+   "layer": "core",
    "label": {
     "it": "causa",
     "en": "causes"
@@ -611,18 +620,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:causation"
+    "core:causation"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:collocation",
-   "layer": "top",
+   "id": "core:collocation",
+   "layer": "core",
    "label": {
     "it": "collocazione",
     "en": "collocation"
@@ -633,14 +642,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:composition",
-   "layer": "top",
+   "id": "core:composition",
+   "layer": "core",
    "label": {
     "it": "composizione",
     "en": "composition"
@@ -651,14 +660,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:connectedness",
-   "layer": "top",
+   "id": "core:connectedness",
+   "layer": "core",
    "label": {
     "it": "connessione",
     "en": "connectedness"
@@ -669,14 +678,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:described_in",
-   "layer": "top",
+   "id": "core:described_in",
+   "layer": "core",
    "label": {
     "it": "descritto in",
     "en": "described in"
@@ -687,14 +696,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:element_of",
-   "layer": "top",
+   "id": "core:element_of",
+   "layer": "core",
    "label": {
     "it": "elemento di",
     "en": "element of"
@@ -705,18 +714,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [
-    "top:Continuant"
+    "core:Continuant"
    ],
    "range": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:entailed_by",
-   "layer": "top",
+   "id": "core:entailed_by",
+   "layer": "core",
    "label": {
     "it": "implicato da",
     "en": "entailed by"
@@ -727,18 +736,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:entailment"
+    "core:entailment"
    ],
    "domain": [
-    "top:Concept"
+    "core:Concept"
    ],
    "range": [
-    "top:Concept"
+    "core:Concept"
    ]
   },
   {
-   "id": "top:entailment",
-   "layer": "top",
+   "id": "core:entailment",
+   "layer": "core",
    "label": {
     "it": "implicazione",
     "en": "entailment"
@@ -749,14 +758,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:entails",
-   "layer": "top",
+   "id": "core:entails",
+   "layer": "core",
    "label": {
     "it": "implica",
     "en": "entails"
@@ -767,18 +776,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:entailment"
+    "core:entailment"
    ],
    "domain": [
-    "top:Concept"
+    "core:Concept"
    ],
    "range": [
-    "top:Concept"
+    "core:Concept"
    ]
   },
   {
-   "id": "top:follows",
-   "layer": "top",
+   "id": "core:follows",
+   "layer": "core",
    "label": {
     "it": "successivo a",
     "en": "follows"
@@ -789,18 +798,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:connectedness"
+    "core:connectedness"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:has_element",
-   "layer": "top",
+   "id": "core:has_element",
+   "layer": "core",
    "label": {
     "it": "ha elemento",
     "en": "has element"
@@ -811,18 +820,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [
-    "top:Collection"
+    "core:Collection"
    ],
    "range": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:has_inherent",
-   "layer": "top",
+   "id": "core:has_inherent",
+   "layer": "core",
    "label": {
     "it": "ha inerente",
     "en": "has inherent"
@@ -833,16 +842,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [],
    "range": [
-    "top:Intangible"
+    "core:Intangible"
    ]
   },
   {
-   "id": "top:has_member",
-   "layer": "top",
+   "id": "core:has_member",
+   "layer": "core",
    "label": {
     "it": "ha membro",
     "en": "has member"
@@ -853,18 +862,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:has_element"
+    "core:has_element"
    ],
    "domain": [
-    "top:Collection"
+    "core:Collection"
    ],
    "range": [
-    "top:Person"
+    "core:Person"
    ]
   },
   {
-   "id": "top:has_part",
-   "layer": "top",
+   "id": "core:has_part",
+   "layer": "core",
    "label": {
     "it": "ha parte",
     "en": "has part"
@@ -875,18 +884,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [
-    "top:Continuant"
+    "core:Continuant"
    ],
    "range": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:has_participant",
-   "layer": "top",
+   "id": "core:has_participant",
+   "layer": "core",
    "label": {
     "it": "ha partecipante",
     "en": "has participant"
@@ -897,18 +906,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:participation"
+    "core:participation"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
-   "id": "top:has_phase",
-   "layer": "top",
+   "id": "core:has_phase",
+   "layer": "core",
    "label": {
     "it": "ha fase",
     "en": "has phase"
@@ -919,18 +928,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:inherence",
-   "layer": "top",
+   "id": "core:inherence",
+   "layer": "core",
    "label": {
     "it": "inerenza",
     "en": "inherence"
@@ -941,14 +950,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:inheres_in",
-   "layer": "top",
+   "id": "core:inheres_in",
+   "layer": "core",
    "label": {
     "it": "inerisce in",
     "en": "inheres in"
@@ -959,16 +968,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
-    "top:Intangible"
+    "core:Intangible"
    ],
    "range": []
   },
   {
-   "id": "top:initiates",
-   "layer": "top",
+   "id": "core:initiates",
+   "layer": "core",
    "label": {
     "it": "inizia",
     "en": "initiates"
@@ -979,18 +988,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:participate_in"
+    "core:participate_in"
    ],
    "domain": [
-    "top:Agent"
+    "core:Agent"
    ],
    "range": [
-    "top:Event"
+    "core:Event"
    ]
   },
   {
-   "id": "top:initiator",
-   "layer": "top",
+   "id": "core:initiator",
+   "layer": "core",
    "label": {
     "it": "iniziatore",
     "en": "initiator"
@@ -1001,18 +1010,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:has_participant"
+    "core:has_participant"
    ],
    "domain": [
-    "top:Event"
+    "core:Event"
    ],
    "range": [
-    "top:Agent"
+    "core:Agent"
    ]
   },
   {
-   "id": "top:interpretant",
-   "layer": "top",
+   "id": "core:interpretant",
+   "layer": "core",
    "label": {
     "it": "interpretante",
     "en": "interpretant"
@@ -1023,18 +1032,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [
-    "top:Sign"
+    "core:Sign"
    ],
    "range": [
-    "top:Concept"
+    "core:Concept"
    ]
   },
   {
-   "id": "top:interpreter",
-   "layer": "top",
+   "id": "core:interpreter",
+   "layer": "core",
    "label": {
     "it": "interprete",
     "en": "interpreter"
@@ -1045,18 +1054,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
-    "top:Sign"
+    "core:Sign"
    ],
    "range": [
-    "top:Agent"
+    "core:Agent"
    ]
   },
   {
-   "id": "top:is_location_of",
-   "layer": "top",
+   "id": "core:is_location_of",
+   "layer": "core",
    "label": {
     "it": "è ubicazione di",
     "en": "is location of"
@@ -1067,16 +1076,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:collocation"
+    "core:collocation"
    ],
    "domain": [
-    "top:Location"
+    "core:Location"
    ],
    "range": []
   },
   {
-   "id": "top:located_in",
-   "layer": "top",
+   "id": "core:located_in",
+   "layer": "core",
    "label": {
     "it": "ubicato in",
     "en": "located in"
@@ -1087,16 +1096,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:collocation"
+    "core:collocation"
    ],
    "domain": [],
    "range": [
-    "top:Location"
+    "core:Location"
    ]
   },
   {
-   "id": "top:member_of",
-   "layer": "top",
+   "id": "core:member_of",
+   "layer": "core",
    "label": {
     "it": "membro",
     "en": "member"
@@ -1107,18 +1116,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:element_of"
+    "core:element_of"
    ],
    "domain": [
-    "top:Person"
+    "core:Person"
    ],
    "range": [
-    "top:Organization"
+    "core:Organization"
    ]
   },
   {
-   "id": "top:part_of",
-   "layer": "top",
+   "id": "core:part_of",
+   "layer": "core",
    "label": {
     "it": "parte di",
     "en": "part of"
@@ -1129,14 +1138,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:participate_in",
-   "layer": "top",
+   "id": "core:participate_in",
+   "layer": "core",
    "label": {
     "it": "partecipa in",
     "en": "participates in"
@@ -1147,18 +1156,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:participation"
+    "core:participation"
    ],
    "domain": [
-    "top:Continuant"
+    "core:Continuant"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:participation",
-   "layer": "top",
+   "id": "core:participation",
+   "layer": "core",
    "label": {
     "it": "partecipazione",
     "en": "participation"
@@ -1169,14 +1178,14 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:phase_of",
-   "layer": "top",
+   "id": "core:phase_of",
+   "layer": "core",
    "label": {
     "it": "fase di",
     "en": "phase of"
@@ -1187,18 +1196,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:composition"
+    "core:composition"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:precedes",
-   "layer": "top",
+   "id": "core:precedes",
+   "layer": "core",
    "label": {
     "it": "precede",
     "en": "precedes"
@@ -1209,18 +1218,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:connectedness"
+    "core:connectedness"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:presupposes",
-   "layer": "top",
+   "id": "core:presupposes",
+   "layer": "core",
    "label": {
     "it": "presuppone",
     "en": "presupposes"
@@ -1231,18 +1240,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Situation"
+    "core:Situation"
    ]
   },
   {
-   "id": "top:qualified_by",
-   "layer": "top",
+   "id": "core:qualified_by",
+   "layer": "core",
    "label": {
     "it": "qualificato da",
     "en": "qualified by"
@@ -1253,16 +1262,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:has_inherent"
+    "core:has_inherent"
    ],
    "domain": [],
    "range": [
-    "top:Quality"
+    "core:Quality"
    ]
   },
   {
-   "id": "top:qualifies",
-   "layer": "top",
+   "id": "core:qualifies",
+   "layer": "core",
    "label": {
     "it": "qualifica",
     "en": "qualifies"
@@ -1273,16 +1282,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:inheres_in"
+    "core:inheres_in"
    ],
    "domain": [
-    "top:Quality"
+    "core:Quality"
    ],
    "range": []
   },
   {
-   "id": "top:receives",
-   "layer": "top",
+   "id": "core:receives",
+   "layer": "core",
    "label": {
     "it": "riceve",
     "en": "receives"
@@ -1293,18 +1302,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:participate_in"
+    "core:participate_in"
    ],
    "domain": [
-    "top:Agent"
+    "core:Agent"
    ],
    "range": [
-    "top:Event"
+    "core:Event"
    ]
   },
   {
-   "id": "top:recipient",
-   "layer": "top",
+   "id": "core:recipient",
+   "layer": "core",
    "label": {
     "it": "destinatario",
     "en": "recipient"
@@ -1315,18 +1324,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:has_participant"
+    "core:has_participant"
    ],
    "domain": [
-    "top:Event"
+    "core:Event"
    ],
    "range": [
-    "top:Agent"
+    "core:Agent"
    ]
   },
   {
-   "id": "top:referent",
-   "layer": "top",
+   "id": "core:referent",
+   "layer": "core",
    "label": {
     "it": "referente",
     "en": "referent"
@@ -1337,16 +1346,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
-    "top:Sign"
+    "core:Sign"
    ],
    "range": []
   },
   {
-   "id": "top:referred_by",
-   "layer": "top",
+   "id": "core:referred_by",
+   "layer": "core",
    "label": {
     "it": "riferito da",
     "en": "referred by"
@@ -1357,16 +1366,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [],
    "range": [
-    "top:Sign"
+    "core:Sign"
    ]
   },
   {
-   "id": "top:relatedness",
-   "layer": "top",
+   "id": "core:relatedness",
+   "layer": "core",
    "label": {
     "it": "relazione",
     "en": "relatedness"
@@ -1381,8 +1390,8 @@
    "range": []
   },
   {
-   "id": "top:result_of",
-   "layer": "top",
+   "id": "core:result_of",
+   "layer": "core",
    "label": {
     "it": "risultato di",
     "en": "result of"
@@ -1394,15 +1403,15 @@
    "kind": "object",
    "parents": [],
    "domain": [
-    "top:Situation"
+    "core:Situation"
    ],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
-   "id": "top:results_in",
-   "layer": "top",
+   "id": "core:results_in",
+   "layer": "core",
    "label": {
     "it": "risulta in",
     "en": "results in"
@@ -1413,18 +1422,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:precedes"
+    "core:precedes"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Situation"
+    "core:Situation"
    ]
   },
   {
-   "id": "top:source",
-   "layer": "top",
+   "id": "core:source",
+   "layer": "core",
    "label": {
     "it": "sorgente",
     "en": "source"
@@ -1435,16 +1444,16 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
-    "top:Sign"
+    "core:Sign"
    ],
    "range": []
   },
   {
-   "id": "top:yields",
-   "layer": "top",
+   "id": "core:yields",
+   "layer": "core",
    "label": {
     "it": "produce",
     "en": "yields"
@@ -1455,18 +1464,18 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
-    "top:Information"
+    "core:Information"
    ],
    "range": [
-    "top:Sign"
+    "core:Sign"
    ]
   },
   {
-   "id": "top:anthroponym",
-   "layer": "top",
+   "id": "core:anthroponym",
+   "layer": "core",
    "label": {
     "it": "antroponimo",
     "en": "anthroponym"
@@ -1477,14 +1486,14 @@
    },
    "kind": "data",
    "parents": [
-    "top:name"
+    "core:name"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:begin",
-   "layer": "top",
+   "id": "core:begin",
+   "layer": "core",
    "label": {
     "it": "inizio",
     "en": "begin"
@@ -1495,16 +1504,16 @@
    },
    "kind": "data",
    "parents": [
-    "top:coordinate"
+    "core:coordinate"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": []
   },
   {
-   "id": "top:concept",
-   "layer": "top",
+   "id": "core:concept",
+   "layer": "core",
    "label": {
     "it": "concetto",
     "en": "concept"
@@ -1515,16 +1524,16 @@
    },
    "kind": "data",
    "parents": [
-    "top:identifier"
+    "core:identifier"
    ],
    "domain": [
-    "top:Sign"
+    "core:Sign"
    ],
    "range": []
   },
   {
-   "id": "top:confidence",
-   "layer": "top",
+   "id": "core:confidence",
+   "layer": "core",
    "label": {
     "it": "Confidenza",
     "en": "Confidence"
@@ -1539,8 +1548,8 @@
    "range": []
   },
   {
-   "id": "top:coordinate",
-   "layer": "top",
+   "id": "core:coordinate",
+   "layer": "core",
    "label": {
     "it": "coordinata",
     "en": "coordinate"
@@ -1555,8 +1564,8 @@
    "range": []
   },
   {
-   "id": "top:dimension",
-   "layer": "top",
+   "id": "core:dimension",
+   "layer": "core",
    "label": {
     "it": "dimensione",
     "en": "dimension"
@@ -1568,13 +1577,13 @@
    "kind": "data",
    "parents": [],
    "domain": [
-    "top:Sort"
+    "core:Sort"
    ],
    "range": []
   },
   {
-   "id": "top:end",
-   "layer": "top",
+   "id": "core:end",
+   "layer": "core",
    "label": {
     "it": "fine",
     "en": "end"
@@ -1585,16 +1594,16 @@
    },
    "kind": "data",
    "parents": [
-    "top:coordinate"
+    "core:coordinate"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": []
   },
   {
-   "id": "top:geo_coordinate",
-   "layer": "top",
+   "id": "core:geo_coordinate",
+   "layer": "core",
    "label": {
     "it": "coordinata geografica",
     "en": "geo coordinate"
@@ -1605,14 +1614,14 @@
    },
    "kind": "data",
    "parents": [
-    "top:coordinate"
+    "core:coordinate"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:identifier",
-   "layer": "top",
+   "id": "core:identifier",
+   "layer": "core",
    "label": {
     "it": "identificatore",
     "en": "identifier"
@@ -1627,8 +1636,8 @@
    "range": []
   },
   {
-   "id": "top:name",
-   "layer": "top",
+   "id": "core:name",
+   "layer": "core",
    "label": {
     "it": "nome",
     "en": "name"
@@ -1639,14 +1648,14 @@
    },
    "kind": "data",
    "parents": [
-    "top:identifier"
+    "core:identifier"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:persistence",
-   "layer": "top",
+   "id": "core:persistence",
+   "layer": "core",
    "label": {
     "it": "persistenza",
     "en": "persistence"
@@ -1658,13 +1667,13 @@
    "kind": "data",
    "parents": [],
    "domain": [
-    "top:Situation"
+    "core:Situation"
    ],
    "range": []
   },
   {
-   "id": "top:signifier",
-   "layer": "top",
+   "id": "core:signifier",
+   "layer": "core",
    "label": {
     "it": "significante",
     "en": "signifier"
@@ -1676,13 +1685,13 @@
    "kind": "data",
    "parents": [],
    "domain": [
-    "top:Sign"
+    "core:Sign"
    ],
    "range": []
   },
   {
-   "id": "top:text",
-   "layer": "top",
+   "id": "core:text",
+   "layer": "core",
    "label": {
     "it": "contenuto",
     "en": "content"
@@ -1697,8 +1706,8 @@
    "range": []
   },
   {
-   "id": "top:time_coordinate",
-   "layer": "top",
+   "id": "core:time_coordinate",
+   "layer": "core",
    "label": {
     "it": "coordinata temporale",
     "en": "time coordinate"
@@ -1709,14 +1718,14 @@
    },
    "kind": "data",
    "parents": [
-    "top:coordinate"
+    "core:coordinate"
    ],
    "domain": [],
    "range": []
   },
   {
-   "id": "top:time_span",
-   "layer": "top",
+   "id": "core:time_span",
+   "layer": "core",
    "label": {
     "it": "durata",
     "en": "time span"
@@ -1727,16 +1736,16 @@
    },
    "kind": "data",
    "parents": [
-    "top:coordinate"
+    "core:coordinate"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": []
   },
   {
-   "id": "top:value",
-   "layer": "top",
+   "id": "core:value",
+   "layer": "core",
    "label": {
     "it": "value",
     "en": "value"
@@ -1748,7 +1757,7 @@
    "kind": "data",
    "parents": [],
    "domain": [
-    "top:Quality"
+    "core:Quality"
    ],
    "range": []
   },
@@ -1765,10 +1774,10 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
-    "top:Information"
+    "core:Information"
    ],
    "range": [
     "agents:SpeechAct"
@@ -1787,13 +1796,13 @@
    },
    "kind": "object",
    "parents": [
-    "top:inherence"
+    "core:inherence"
    ],
    "domain": [
     "agents:SpeechAct"
    ],
    "range": [
-    "top:Information"
+    "core:Information"
    ]
   },
   {
@@ -1809,10 +1818,10 @@
    },
    "kind": "object",
    "parents": [
-    "top:initiates"
+    "core:initiates"
    ],
    "domain": [
-    "top:Agent"
+    "core:Agent"
    ],
    "range": [
     "agents:SpeechAct"
@@ -1831,13 +1840,13 @@
    },
    "kind": "object",
    "parents": [
-    "top:initiator"
+    "core:initiator"
    ],
    "domain": [
     "agents:SpeechAct"
    ],
    "range": [
-    "top:Agent"
+    "core:Agent"
    ]
   },
   {
@@ -1853,7 +1862,7 @@
    },
    "kind": "object",
    "parents": [
-    "top:follows"
+    "core:follows"
    ],
    "domain": [
     "agents:SpeechAct"
@@ -1931,7 +1940,7 @@
    "parents": [],
    "domain": [],
    "range": [
-    "top:Information"
+    "core:Information"
    ]
   },
   {
@@ -1942,7 +1951,7 @@
     "en": "beneficiary"
    },
    "definition": {
-    "en": "Agent on whose behalf or to whose advantage the occurrent takes place, without necessarily receiving anything. Distinct from top:recipient, which has domain top:Event and therefore usable directly for non-communicative transfers: whoever the transfer reaches is the recipient, whoever profits from it is the beneficiary, and the two frequently diverge."
+    "en": "Agent on whose behalf or to whose advantage the occurrent takes place, without necessarily receiving anything. Distinct from core:recipient, which has domain core:Event and therefore usable directly for non-communicative transfers: whoever the transfer reaches is the recipient, whoever profits from it is the beneficiary, and the two frequently diverge."
    },
    "kind": "object",
    "parents": [
@@ -1950,7 +1959,7 @@
    ],
    "domain": [],
    "range": [
-    "top:Agent"
+    "core:Agent"
    ],
    "profile": "?,+,-,-,-,+,-"
   },
@@ -1967,10 +1976,10 @@
    },
    "kind": "object",
    "parents": [
-    "top:relatedness"
+    "core:relatedness"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": []
   },
@@ -2006,13 +2015,13 @@
    },
    "kind": "object",
    "parents": [
-    "top:has_participant"
+    "core:has_participant"
    ],
    "domain": [
-    "top:Occurrent"
+    "core:Occurrent"
    ],
    "range": [
-    "top:Continuant"
+    "core:Continuant"
    ]
   },
   {
@@ -2041,7 +2050,7 @@
     "en": "efficient cause"
    },
    "definition": {
-    "en": "Efficient cause: what brings the occurrent about. Realised by top:causes for occurrent-to-occurrent causation and by top:initiator for agentive participation. Deliberately not extended to motives, which are intentional and not causal."
+    "en": "Efficient cause: what brings the occurrent about. Realised by core:causes for occurrent-to-occurrent causation and by core:initiator for agentive participation. Deliberately not extended to motives, which are intentional and not causal."
    },
    "kind": "object",
    "parents": [
@@ -2077,7 +2086,7 @@
     "en": "experiencer"
    },
    "definition": {
-    "en": "Sentient participant undergoing a mental or perceptual state. Entailments: sentience yes, volition no, causation no. The volition entailment is what separates it from top:initiator."
+    "en": "Sentient participant undergoing a mental or perceptual state. Entailments: sentience yes, volition no, causation no. The volition entailment is what separates it from core:initiator."
    },
    "kind": "object",
    "parents": [
@@ -2085,7 +2094,7 @@
    ],
    "domain": [],
    "range": [
-    "top:Agent"
+    "core:Agent"
    ],
    "profile": "-,+,-,-,-,+,-"
   },
@@ -2141,7 +2150,7 @@
    ],
    "domain": [],
    "range": [
-    "top:Tangible"
+    "core:Tangible"
    ],
    "profile": "-,-,-,?,-,+,-"
   },
@@ -2161,7 +2170,7 @@
    ],
    "domain": [],
    "range": [
-    "top:Quality"
+    "core:Quality"
    ]
   },
   {
@@ -2197,7 +2206,7 @@
    ],
    "domain": [],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
@@ -2208,7 +2217,7 @@
     "en": "motive"
    },
    "definition": {
-    "en": "The state of affairs or belief in the light of which an agent acts. Crucially NOT a subproperty of :efficient or of top:causation: a motive justifies, it does not physically produce. Collapsing the two is the error behind FrameNet's EXPLANATION versus CAUSE confusion, which surfaces as one of the top ten annotation errors in EventNet-ITA. Keeping them apart prevents inferring physical causal chains from reasons.",
+    "en": "The state of affairs or belief in the light of which an agent acts. Crucially NOT a subproperty of :efficient or of core:causation: a motive justifies, it does not physically produce. Collapsing the two is the error behind FrameNet's EXPLANATION versus CAUSE confusion, which surfaces as one of the top ten annotation errors in EventNet-ITA. Keeping them apart prevents inferring physical causal chains from reasons.",
     "it": "Lo stato di cose o la credenza alla luce dei quali un agente agisce. Non è sottoproprietà di :efficient: un motivo giustifica, non produce fisicamente."
    },
    "kind": "object",
@@ -2226,7 +2235,7 @@
     "en": "origin"
    },
    "definition": {
-    "en": "Starting point of a transfer or motion, whether spatial, possessional or abstract. The localist triad origin/destination/route is kept abstract rather than restricted to top:Location, so that possession and communication transfers reuse it."
+    "en": "Starting point of a transfer or motion, whether spatial, possessional or abstract. The localist triad origin/destination/route is kept abstract rather than restricted to core:Location, so that possession and communication transfers reuse it."
    },
    "kind": "object",
    "parents": [
@@ -2309,7 +2318,7 @@
    ],
    "domain": [],
    "range": [
-    "top:Occurrent"
+    "core:Occurrent"
    ]
   },
   {
@@ -2338,11 +2347,11 @@
     "en": "specialises"
    },
    "definition": {
-    "en": "Catalogue-level counterpart of subsumption between frames, reusing top:entails between concepts. Must be kept aligned with rdfs:subClassOf at schema level; divergence between the two is a consistency check."
+    "en": "Catalogue-level counterpart of subsumption between frames, reusing core:entails between concepts. Must be kept aligned with rdfs:subClassOf at schema level; divergence between the two is a consistency check."
    },
    "kind": "object",
    "parents": [
-    "top:entails"
+    "core:entails"
    ],
    "domain": [
     "frame:Frame"
@@ -2385,7 +2394,7 @@
    ],
    "domain": [],
    "range": [
-    "top:Substance"
+    "core:Substance"
    ],
    "profile": "-,-,-,?,+,+,+"
   },

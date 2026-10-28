@@ -4,7 +4,7 @@ import { hashForTerm, termIdFromHash } from "./deep-link";
 
 describe("explorer deep links", () => {
   it("reads a term id from the fragment", () => {
-    expect(termIdFromHash("#top:Agent")).toBe("top:Agent");
+    expect(termIdFromHash("#core:Agent")).toBe("core:Agent");
   });
 
   it("accepts a fragment without the leading #", () => {
@@ -12,7 +12,7 @@ describe("explorer deep links", () => {
   });
 
   it("decodes a percent-encoded fragment", () => {
-    expect(termIdFromHash("#top%3AAgent")).toBe("top:Agent");
+    expect(termIdFromHash("#core%3AAgent")).toBe("core:Agent");
   });
 
   it.each(["", "#"])("returns null for an empty fragment (%j)", (hash) => {
@@ -20,7 +20,7 @@ describe("explorer deep links", () => {
   });
 
   it("returns null for an unknown term", () => {
-    expect(termIdFromHash("#top:NoSuchClass")).toBeNull();
+    expect(termIdFromHash("#core:NoSuchClass")).toBeNull();
   });
 
   it("returns null for a malformed escape instead of throwing", () => {

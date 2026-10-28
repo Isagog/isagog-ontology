@@ -1,6 +1,6 @@
 import { SectionHeading } from "@/app/_components/custom/section-heading";
 import type { Locale } from "@/lib/locale-href";
-import { ontologyVersions } from "@/lib/ontology-explorer/data";
+import { ontologyDownloads, ontologyVersions } from "@/lib/ontology-explorer/data";
 import { mainSiteUrl } from "@/lib/site";
 import { getScopedI18n } from "@/packages/locales/server";
 
@@ -8,7 +8,7 @@ export const Livelli = async ({ locale }: { locale: Locale }) => {
   const t = await getScopedI18n("ontologies.livelli");
 
   const layers = [
-    { id: "top", name: t("top.name"), tagline: t("top.tagline"), body: t("top.body") },
+    { id: "core", name: t("core.name"), tagline: t("core.tagline"), body: t("core.body") },
     { id: "agents", name: t("agents.name"), tagline: t("agents.tagline"), body: t("agents.body") },
     { id: "frame", name: t("frames.name"), tagline: t("frames.tagline"), body: t("frames.body") },
   ] as const;
@@ -43,6 +43,13 @@ export const Livelli = async ({ locale }: { locale: Locale }) => {
                 {layer.tagline}
               </p>
               <p className="text-[15.5px] leading-[1.6] text-prose-muted">{layer.body}</p>
+              <a
+                href={ontologyDownloads[layer.id]}
+                download
+                className="mt-4 inline-block text-[14px] font-semibold text-forest underline underline-offset-4"
+              >
+                {t("downloadTurtle")}
+              </a>
             </article>
           ))}
         </div>

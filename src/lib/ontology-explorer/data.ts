@@ -5,7 +5,7 @@
  */
 import raw from "./ontologies.json";
 
-export type Layer = "top" | "agents" | "frame";
+export type Layer = "core" | "agents" | "frame";
 export type Lang = "it" | "en";
 
 interface TermBase {
@@ -38,6 +38,10 @@ interface RawData {
 }
 
 const data = raw as RawData;
+
+export const ontologyDownloads = Object.fromEntries(
+  raw.ontologies.map((o) => [o.id, o.download])
+) as Record<Layer, string>;
 
 export const ontologyVersions = Object.fromEntries(
   data.ontologies.map((o) => [o.id, o.version])

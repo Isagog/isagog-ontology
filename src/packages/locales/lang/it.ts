@@ -25,7 +25,7 @@ export default {
       },
       layers: {
         title: "Tre livelli, più il vostro",
-        body: "Top level, agenti e frame: che cosa descrive ciascuno, e come vi si costruisce sopra l'ontologia di un'organizzazione.",
+        body: "Core, agenti e frame: che cosa descrive ciascuno, e come vi si costruisce sopra l'ontologia di un'organizzazione.",
       },
       reasoning: {
         title: "Un vocabolario, due lettori",
@@ -79,8 +79,9 @@ export default {
       intro:
         "Le ontologie Isagog sono costruite a strati. Il livello superiore fissa le distinzioni più generali; gli altri due lo importano e lo estendono, per gli agenti conversazionali e per l'analisi dei testi.",
       versionLabel: "versione",
-      top: {
-        name: "Ontologia top level",
+      downloadTurtle: "Scarica Turtle (.ttl)",
+      core: {
+        name: "Ontologia core",
         tagline: "Le categorie più generali, con impegni modesti.",
         body: "Poche categorie fondamentali (continuanti e occorrenti, tangibili e intangibili, agenti, informazioni, segni, situazioni, qualità) e le relazioni che le legano: partecipazione, composizione, causalità, collocazione, inerenza. Ogni termine ha una definizione operativa breve, in italiano e in inglese, scritta per essere letta anche da un modello linguistico, e corrispondenze con DOLCE e schema.org.",
       },
@@ -134,7 +135,7 @@ export default {
       propertiesTab: "Relazioni e attributi",
       layerLabel: "Ontologia",
       layerAll: "Tutte",
-      layerTop: "Top level",
+      layerCore: "Core",
       layerAgents: "Agenti",
       layerFrame: "Frame",
       searchLabel: "Cerca",
@@ -179,7 +180,7 @@ export default {
     layers: {
       title: "Livelli — Ontologie Isagog",
       description:
-        "Top level, agenti e frame: i tre livelli delle ontologie Isagog e l'ontologia dell'organizzazione costruita sopra di essi.",
+        "Core, agenti e frame: i tre livelli delle ontologie Isagog e l'ontologia dell'organizzazione costruita sopra di essi.",
     },
     reasoning: {
       title: "Ragionamento — Ontologie Isagog",

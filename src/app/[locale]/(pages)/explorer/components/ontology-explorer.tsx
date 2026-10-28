@@ -23,7 +23,7 @@ import {
 import { useCurrentLocale, useScopedI18n } from "@/packages/locales/client";
 
 const LAYER_DOT: Record<Layer, string> = {
-  top: "bg-forest",
+  core: "bg-forest",
   agents: "bg-terracotta",
   frame: "bg-olive",
 };
@@ -39,7 +39,7 @@ const INITIAL_TERM = "agents:SpeechAct";
  * listed under each of them — the multiple classification the page talks
  * about, made visible. Static export prerenders the initial state, so the
  * tree and the speech act definition are readable without JS. A `#<term id>`
- * fragment (e.g. `#top:Agent`) selects that term; selecting a term writes it
+ * fragment (e.g. `#core:Agent`) selects that term; selecting a term writes it
  * back to the URL.
  */
 export const OntologyExplorer = () => {
@@ -53,7 +53,7 @@ export const OntologyExplorer = () => {
 
   const selected = terms.get(selectedId);
 
-  // Deep links: "#top:Agent" selects that term, clearing any filter or
+  // Deep links: "#core:Agent" selects that term, clearing any filter or
   // search that would hide it. Adjusting state during render (not in an
   // effect) is React's pattern for reacting to a changed input; appliedHash
   // records the last fragment handled so each one applies once.
@@ -89,7 +89,7 @@ export const OntologyExplorer = () => {
 
   const layers: { id: Layer | "all"; label: string }[] = [
     { id: "all", label: t("layerAll") },
-    { id: "top", label: t("layerTop") },
+    { id: "core", label: t("layerCore") },
     { id: "agents", label: t("layerAgents") },
     { id: "frame", label: t("layerFrame") },
   ];
@@ -302,7 +302,7 @@ const TermDetail = ({
   onSelect: (id: string) => void;
 }) => {
   const t = useScopedI18n("ontologies.esplora");
-  const layerName = { top: t("layerTop"), agents: t("layerAgents"), frame: t("layerFrame") }[term.layer];
+  const layerName = { core: t("layerCore"), agents: t("layerAgents"), frame: t("layerFrame") }[term.layer];
   const kind = { class: t("kindClass"), object: t("kindObject"), data: t("kindData") }[term.kind];
   const definition = term.definition[lang] ?? term.definition.en;
   const knownParents = term.parents.filter((p) => terms.has(p));

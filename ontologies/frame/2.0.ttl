@@ -1,0 +1,346 @@
+@prefix :     <https://isagog.com/ontology/frame#> .
+@prefix core:  <https://isagog.com/ontology/core#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc:   <http://purl.org/dc/elements/1.1/> .
+@base <https://isagog.com/ontology/frame#> .
+
+<https://isagog.com/ontology/frame> rdf:type owl:Ontology ;
+    owl:versionIRI <https://isagog.com/ontology/frame/2.0> ;
+    owl:imports <https://isagog.com/ontology/core/5.0> ;
+    dc:license <http://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:label "Isagog Frame Ontology"@en , "Ontologia dei Frame Isagog"@it ;
+    rdfs:comment """A frame layer built on Isagog core 5.0. It contributes two things:
+
+(1) a global role inventory, split into participant roles (subproperties of core:has_participant) and circumstantial roles organised on the four Aristotelian causes;
+(2) a catalogue layer in which each frame is, by OWL 2 punning, both a class of occurrents and an individual about which definitions, lexical units and corpus attestations can be asserted.
+
+The aspectual axis (Process), the temporal boundaries (begin, end) and the nucleus relations (results_in, result_of, presupposes) were migrated into top level 4.4, where they belong: they say what an occurrent is, not what a frame is, and anyone extending the top level would otherwise have to reinvent them. The top level has since dropped Telic (4.5), Accomplishment and Achievement (4.7).
+
+The role inventory stays here on purpose. Choosing thirteen roles with those entailment profiles is a position in lexical semantics, not a neutral ontological categorisation, and the top level is deliberately non-committal on such matters.
+
+Design commitment: perspectivisation is a lexical fact, not an ontological one. A single transfer occurrent has all its participants; 'sell' and 'buy' are lexical units that profile different subsets of the same roles. The ontology stays univocal; the subject survives in lexical choice.
+
+Profile: OWL 2 DL. The asserted runtime fragment is intended to stay within OWL 2 RL. No temporal reasoner is assumed; boundary coincidence constraints are documented, not axiomatised."""@en ,
+    """Un livello di frame costruito sul top level Isagog. Contribuisce due cose che il top level lascia fuori deliberatamente: un inventario globale di ruoli diviso tra partecipanti e circostanziali (questi ultimi organizzati sulle quattro cause aristoteliche), e un livello di catalogo in cui ogni frame e', per punning OWL 2, sia una classe di occorrenti sia un individuo su cui asserire definizioni, unita' lessicali e attestazioni di corpus.
+
+Impegno di design: la prospettivizzazione e' un fatto lessicale, non ontologico."""@it ;
+    owl:versionInfo "2.0 28/10/2026 – Imports core 5.0 and uses the core namespace; axioms unchanged. Previous releases: 1.1 06/10/2026 – imports top 4.7. 1.0 15/08/2026 – role inventory and lexicographic layer, aspectual axis migrated to top 4.4" .
+
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+:framenet rdf:type owl:AnnotationProperty ;
+    rdfs:comment "IRI or name of the corresponding Berkeley FrameNet frame or frame element, when one exists"@en ;
+    rdfs:label "framenet"@en .
+
+:eventnet rdf:type owl:AnnotationProperty ;
+    rdfs:comment "Name of the corresponding EventNet-ITA frame, when one exists"@en ;
+    rdfs:label "eventnet"@en .
+
+:binds rdf:type owl:AnnotationProperty ;
+    rdfs:comment "Links a :Role individual to the object property that realises it at schema level. Annotation rather than object property, to keep the punning legal in OWL 2 DL"@en ;
+    rdfs:label "binds"@en .
+
+:individuation rdf:type owl:AnnotationProperty ;
+    rdfs:comment "States the individuation criterion governing a category of catalogue objects"@en ;
+    rdfs:label "individuation"@en , "individuazione"@it .
+
+:status rdf:type owl:AnnotationProperty ;
+    rdfs:comment "Editorial status of a frame or role: proposed, attested, deprecated"@en ;
+    rdfs:label "status"@en .
+
+
+#################################################################
+#    Defined classes over roles
+#################################################################
+
+:Reciprocal rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+                          owl:onProperty :coparticipant ;
+                          owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                          owl:onClass core:Continuant ] ;
+    rdfs:subClassOf core:Occurrent ;
+    rdfs:comment "Defined class: any occurrent with at least two coparticipants. Membership is inferred rather than asserted, so reciprocity becomes a testable consequence of the frame axioms instead of a label an editor remembers to apply."@en ,
+    "Classe definita: qualsiasi occorrente con almeno due copartecipanti. L'appartenenza e' inferita anziche' asserita."@it ;
+    rdfs:label "Reciprocal"@en , "Reciproco"@it .
+
+
+#################################################################
+#    Axis 2 - participant roles
+#################################################################
+
+:core_role rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf core:has_participant ;
+    rdfs:domain core:Occurrent ;
+    rdfs:range core:Continuant ;
+    rdfs:comment """Grouping property for participant roles. Every role below is defined by a bundle of entailments (volition, sentience, causation, movement, change of state, independent existence, incrementality), not by a prose gloss. This is what makes role assignment auditable: an annotator answers seven yes-no questions about an occurrence and the label falls out by rule, so errors localise to a single dimension and borderline vectors are data rather than mistakes."""@en ,
+    "Proprieta' di raggruppamento per i ruoli partecipanti. Ogni ruolo e' definito da un fascio di entailment binari, non da una glossa in prosa."@it ;
+    rdfs:label "core role"@en , "ruolo nucleare"@it .
+
+core:initiator rdfs:subPropertyOf :core_role .
+core:recipient rdfs:subPropertyOf :core_role .
+
+:undergoer rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:comment "Macro-role for the participant affected or displaced by the occurrent. Left as a genuine macro-role: the patient/theme split is often undecidable in text and forcing it produces exactly the kind of arbitrary annotation the entailment approach is meant to avoid."@en ;
+    :entailment_profile "?,?,-,?,?,?,?" ;
+    rdfs:label "undergoer"@en , "subente"@it .
+
+:patient rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :undergoer ;
+    rdfs:comment "Undergoer that changes state. Entailments: change of state yes, independent existence yes, volition no."@en ;
+    :entailment_profile "-,?,-,?,+,+,?" ;
+    rdfs:label "patient"@en , "paziente"@it ;
+    :framenet "Patient" .
+
+:theme rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :undergoer ;
+    rdfs:comment "Undergoer that is displaced or located without changing state. Entailments: movement or location yes, change of state no."@en ;
+    :entailment_profile "-,?,-,+,-,+,?" ;
+    rdfs:label "theme"@en , "tema"@it ;
+    :framenet "Theme" .
+
+:product rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:comment "Participant that comes into existence through the occurrent. Distinguished from :patient by failing the independent existence entailment."@en ;
+    :entailment_profile "-,?,-,-,+,-,?" ;
+    rdfs:label "product"@en , "prodotto"@it ;
+    :framenet "Created_entity" .
+
+:instrument rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:range core:Tangible ;
+    rdfs:comment "Entity used by an agent to bring the occurrent about. Strictly an entity: the eventive counterpart is :means. Operational test: if it admits an agent of its own, it is a means, not an instrument."@en ;
+    :entailment_profile "-,-,-,?,-,+,-" ;
+    rdfs:label "instrument"@en , "strumento"@it ;
+    :framenet "Instrument" .
+
+:beneficiary rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:range core:Agent ;
+    rdfs:comment "Agent on whose behalf or to whose advantage the occurrent takes place, without necessarily receiving anything. Distinct from core:recipient, which has domain core:Event and therefore usable directly for non-communicative transfers: whoever the transfer reaches is the recipient, whoever profits from it is the beneficiary, and the two frequently diverge."@en ;
+    :entailment_profile "?,+,-,-,-,+,-" ;
+    rdfs:label "beneficiary"@en , "beneficiario"@it ;
+    :framenet "Beneficiary" .
+
+:experiencer rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:range core:Agent ;
+    rdfs:comment "Sentient participant undergoing a mental or perceptual state. Entailments: sentience yes, volition no, causation no. The volition entailment is what separates it from core:initiator."@en ;
+    :entailment_profile "-,+,-,-,-,+,-" ;
+    rdfs:label "experiencer"@en , "esperiente"@it ;
+    :framenet "Experiencer" .
+
+:stimulus rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:comment "Participant that occasions the experiencer's state, without the causal entailments of an initiator."@en ;
+    :entailment_profile "-,?,?,-,-,?,-" ;
+    rdfs:label "stimulus"@en , "stimolo"@it ;
+    :framenet "Stimulus" .
+
+:substrate rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:range core:Substance ;
+    rdfs:comment "Matter out of which the product is made. The participant-side counterpart of the material cause."@en ;
+    :entailment_profile "-,-,-,?,+,+,+" ;
+    rdfs:label "substrate"@en , "materia"@it ;
+    :framenet "Material" .
+
+:coparticipant rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    :entailment_profile "?,?,?,?,?,+,-" ;
+    rdfs:comment """Single role covering the mutually indistinguishable participants of a reciprocal occurrent: the parties to a conversation, a negotiation, a marriage, a collision.
+
+Deliberately not split into indexed roles. Under the parsimony rule two such participants never conflict on any determinate dimension, so no frame-specific role is licensed. Where entailments genuinely cannot tell two participants apart, the symmetry is a fact about the world, not a gap in the model, and an index would be a positional device masquerading as a role. This is what dissolves the FrameNet interlocutor_1 / interlocutor_2 and party_1 / party_2 families, whose mutual confusion sits near the top of every published frame parsing error table.
+
+The profile is almost entirely undetermined by design: reciprocity is structural, not entailment-borne. Two colliding cars are coparticipants exactly as two negotiating parties are. Reciprocity is expressed at frame level by a minimum qualified cardinality of two on this role, never by the role itself.
+
+Caveat for data: since no unique name assumption holds, asserting two coparticipants does not satisfy a cardinality of two unless they are declared owl:differentFrom, typically via owl:AllDifferent."""@en ,
+    """Ruolo unico per i partecipanti mutuamente indistinguibili di un occorrente reciproco: le parti di una conversazione, di una negoziazione, di un matrimonio, di uno scontro.
+
+Deliberatamente non scisso in ruoli indicizzati. Sotto la regola di parsimonia due partecipanti simili non conflittano su alcuna dimensione determinata, quindi nessun ruolo specifico e' licenziato. Dove gli entailment non riescono davvero a distinguere due partecipanti, la simmetria e' un fatto sul mondo, non una lacuna del modello.
+
+Il profilo e' quasi tutto indeterminato per progetto: la reciprocita' e' strutturale, non veicolata dagli entailment. La si esprime a livello di frame con una cardinalita' qualificata minima di due su questo ruolo."""@it ;
+    rdfs:label "coparticipant"@en , "copartecipante"@it ;
+    :framenet "Party_1 / Party_2 / Interlocutor_1 / Interlocutor_2" .
+
+
+:origin rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:comment "Starting point of a transfer or motion, whether spatial, possessional or abstract. The localist triad origin/destination/route is kept abstract rather than restricted to core:Location, so that possession and communication transfers reuse it."@en ;
+    :entailment_profile "?,?,?,-,-,+,-" ;
+    rdfs:label "origin"@en , "origine"@it ;
+    :framenet "Source" .
+
+:destination rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:comment "End point of a transfer or motion. See :origin for the localist rationale."@en ;
+    :entailment_profile "?,?,?,-,-,+,-" ;
+    rdfs:label "destination"@en , "meta"@it ;
+    :framenet "Goal" .
+
+:route rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :core_role ;
+    rdfs:comment "Intermediate trajectory of a transfer or motion."@en ;
+    :entailment_profile "-,-,-,-,-,+,+" ;
+    rdfs:label "route"@en , "percorso"@it ;
+    :framenet "Path" .
+
+
+#################################################################
+#    Axis 3 - circumstantial roles, on the four causes
+#################################################################
+
+:circumstance rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf core:relatedness ;
+    rdfs:domain core:Occurrent ;
+    rdfs:comment """Grouping property for circumstantial roles, organised on the four Aristotelian causes. The four causes are used because they close exactly over the circumstantial space (efficient, material, formal, final) without the open-ended accumulation of FrameNet peripheral frame elements or PropBank ArgM modifiers. Note that with resulting states placed on axis 1, the formal cause reduces to manner alone: the result is no longer a circumstantial but a pointer to an occurrent."""@en ,
+    "Proprieta' di raggruppamento per i ruoli circostanziali, organizzati sulle quattro cause aristoteliche. Con i risultanti sull'asse 1, la causa formale si riduce al solo modo."@it ;
+    rdfs:label "circumstance"@en , "circostanza"@it .
+
+:efficient rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :circumstance ;
+    rdfs:comment "Efficient cause: what brings the occurrent about. Realised by core:causes for occurrent-to-occurrent causation and by core:initiator for agentive participation. Deliberately not extended to motives, which are intentional and not causal."@en ;
+    rdfs:label "efficient cause"@en , "causa efficiente"@it .
+
+core:causes rdfs:subPropertyOf :efficient .
+core:initiator rdfs:subPropertyOf :efficient .
+
+:material rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :circumstance ;
+    rdfs:comment "Material cause: that out of which, or by means of which, the occurrent comes about."@en ;
+    rdfs:label "material cause"@en , "causa materiale"@it .
+
+:means rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :material ;
+    rdfs:range core:Occurrent ;
+    rdfs:comment "Subordinate occurrent by which the main occurrent is achieved: entering by breaking the window. Eventive, therefore carrying its own participants and roles, which is precisely why it must not be conflated with :instrument."@en ;
+    rdfs:label "means"@en , "mezzo"@it ;
+    :framenet "Means" .
+
+:manner rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :circumstance ;
+    rdfs:range core:Quality ;
+    rdfs:comment "Formal cause, reduced to manner: how the occurrent unfolds, qualifying it without adding eventive structure. Operational test against :means: a manner admits no agent of its own."@en ;
+    rdfs:label "manner"@en , "modo"@it ;
+    :framenet "Manner" .
+
+:final rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :circumstance ;
+    rdfs:comment "Final cause: that for the sake of which the occurrent takes place. Requires an agent with intentional structure, so it is inapplicable to non-agentive occurrents, and this inapplicability is informative rather than a gap."@en ;
+    rdfs:label "final cause"@en , "causa finale"@it .
+
+:purpose rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :final ;
+    rdfs:range core:Occurrent ;
+    rdfs:comment """The intended outcome of an agentive occurrent. Deliberately distinct from :results_in: the divergence between intended purpose and achieved result is information, not noise, and the model must be able to represent that the occurrent took place while the purpose failed. This is why purpose ranges over occurrents but is not a subproperty of any temporal relation: the purpose may never occur."""@en ,
+    "L'esito inteso di un occorrente agentivo. Deliberatamente distinto da :results_in: la divergenza tra scopo e risultato e' informazione, non rumore."@it ;
+    rdfs:label "purpose"@en , "scopo"@it ;
+    :framenet "Purpose" .
+
+:motive rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :final ;
+    rdfs:comment """The state of affairs or belief in the light of which an agent acts. Crucially NOT a subproperty of :efficient or of core:causation: a motive justifies, it does not physically produce. Collapsing the two is the error behind FrameNet's EXPLANATION versus CAUSE confusion, which surfaces as one of the top ten annotation errors in EventNet-ITA. Keeping them apart prevents inferring physical causal chains from reasons."""@en ,
+    "Lo stato di cose o la credenza alla luce dei quali un agente agisce. Non e' sottoproprieta' di :efficient: un motivo giustifica, non produce fisicamente."@it ;
+    rdfs:label "motive"@en , "motivo"@it ;
+    :framenet "Explanation" .
+
+
+#################################################################
+#    Catalogue layer - frames as first class objects
+#################################################################
+
+:Frame rdf:type owl:Class ;
+    rdfs:subClassOf core:Concept ,
+        [ rdf:type owl:Restriction ; owl:onProperty :has_role ; owl:someValuesFrom :Role ] ,
+        [ rdf:type owl:Restriction ; owl:onProperty :definition ; owl:someValuesFrom xsd:string ] ;
+    rdfs:comment """A frame, considered as a catalogue object. By OWL 2 punning, every frame IRI denotes both an owl:Class subsumed by core:Occurrent (schema level, used for classifying instances) and an individual of :Frame (catalogue level, used for asserting definitions, lexical units, provenance and corpus attestations). The punning is what makes the resource auditable without metaclasses: evidence is asserted about the individual, inference runs over the class."""@en ,
+    "Un frame considerato come oggetto di catalogo. Per punning OWL 2, ogni IRI di frame denota sia una classe di occorrenti sia un individuo su cui asserire definizioni, unita' lessicali e attestazioni."@it ;
+    :individuation """Parsimony rule for instituting a frame. A new frame is instituted if and only if its inventory of REQUIRED roles differs from that of every existing frame. Required means placed under an existential or minimum cardinality restriction; permitted roles do not count, because under the open world assumption the absence of a role is ignorance rather than a fact, so an inventory of permitted roles is not falsifiable and would make the criterion vacuous.
+
+A difference in participant TYPE never institutes a frame. It goes into a range restriction on a subclass. A difference in manner never institutes a frame. It goes into a value of :manner. A difference in lexical perspective never institutes a frame. It goes into :profiles on the lexical unit.
+
+Nothing is lost by this rule, it is relocated. What used to distinguish two FrameNet frames is still recoverable, but from the axioms of a subclass, from a role value, or from the lexicon, rather than from a proliferation of sibling frames that annotators cannot reliably tell apart."""@en ,
+    """Regola di parsimonia per istituire un frame. Si istituisce un frame nuovo se e solo se il suo inventario di ruoli OBBLIGATORI differisce da quello di ogni frame esistente. Obbligatorio significa sotto restrizione esistenziale o di cardinalita' minima: i ruoli semplicemente permessi non contano, perche' in mondo aperto l'assenza di un ruolo e' ignoranza e non un fatto, quindi un inventario di ruoli permessi non sarebbe falsificabile.
+
+Una differenza di TIPO dei partecipanti non istituisce mai un frame: va in una restrizione di range su una sottoclasse. Una differenza di modo non istituisce mai un frame: va in un valore di :manner. Una differenza di prospettiva lessicale non istituisce mai un frame: va in :profiles sull'unita' lessicale.
+
+Nulla si perde con questa regola, si ricolloca."""@it ;
+    rdfs:label "Frame"@en , "Frame"@it .
+
+:Role rdf:type owl:Class ;
+    rdfs:subClassOf core:Concept ,
+        [ rdf:type owl:Restriction ; owl:onProperty :definition ; owl:someValuesFrom xsd:string ] ;
+    rdfs:comment "A frame-specific role, considered as a catalogue object, linked by :binds to the object property that realises it. Unlike FrameNet frame elements, every role must specialise one of the global roles on axis 2 or axis 3, which is what removes the homonymy problem: MOVER of fleeing and MOVER of descending both specialise :theme and are therefore comparable."@en ,
+    "Un ruolo specifico di frame. Diversamente dai frame element di FrameNet, ogni ruolo deve specializzare un ruolo globale, il che elimina il problema dell'omonimia."@it ;
+    rdfs:label "Role"@en , "Ruolo"@it .
+
+:LexicalUnit rdf:type owl:Class ;
+    rdfs:subClassOf core:Information ,
+        [ rdf:type owl:Restriction ; owl:onProperty :evokes ; owl:someValuesFrom :Frame ] ;
+    rdfs:comment "A lemma and part of speech pair that evokes a frame. Subclass of core:Information, which already covers word types and tokens."@en ;
+    rdfs:label "Lexical unit"@en , "Unita' lessicale"@it .
+
+:evokes rdf:type owl:ObjectProperty ;
+    rdfs:domain :LexicalUnit ;
+    rdfs:range :Frame ;
+    rdfs:comment "Relates a lexical unit to the frame it evokes. Polysemy is expected: one lexical unit may evoke several frames."@en ;
+    rdfs:label "evokes"@en , "evoca"@it .
+
+:has_role rdf:type owl:ObjectProperty ;
+    rdfs:domain :Frame ;
+    rdfs:range :Role ;
+    rdfs:comment "Relates a frame to one of its roles at catalogue level."@en ;
+    rdfs:label "has role"@en , "ha ruolo"@it .
+
+:profiles rdf:type owl:ObjectProperty ;
+    rdfs:domain :LexicalUnit ;
+    rdfs:range :Role ;
+    rdfs:comment """Relates a lexical unit to the subset of the frame's roles it foregrounds. This is where perspectivisation lives: sell and buy evoke the same frame and profile different roles. Keeping profiling on the lexical unit rather than on the frame is what lets the ontology stay univocal while still accounting for the perspective phenomena that FrameNet handles with Perspective_on."""@en ,
+    "Collega un'unita' lessicale al sottoinsieme di ruoli che mette in primo piano. E' qui che vive la prospettivizzazione: l'ontologia resta univoca."@it ;
+    rdfs:label "profiles"@en , "profila"@it .
+
+:specialises rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf core:entails ;
+    rdfs:domain :Frame ;
+    rdfs:range :Frame ;
+    rdfs:comment "Catalogue-level counterpart of subsumption between frames, reusing core:entails between concepts. Must be kept aligned with rdfs:subClassOf at schema level; divergence between the two is a consistency check."@en ;
+    rdfs:label "specialises"@en , "specializza"@it .
+
+:definition rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A natural-language definition of a catalogue individual (frame or role). Multi-valued, the same pattern rdfs:label already uses, to allow parallel definitions in different languages."@en ,
+    "Una definizione in linguaggio naturale di un individuo di catalogo (frame o ruolo). A valore multiplo, lo stesso schema gia' usato da rdfs:label, per ammettere definizioni parallele in lingue diverse."@it ;
+    rdfs:label "definition"@en , "definizione"@it .
+
+
+#################################################################
+#    Evidence layer - what makes the resource falsifiable
+#################################################################
+
+:attested_by rdf:type owl:ObjectProperty ;
+    rdfs:range core:Information ;
+    rdfs:comment """Links a frame, role or lexical unit to a corpus occurrence supporting it. This is the load bearing property of the whole design: without it the resource is a taxonomy of plausible labels, with it every element is falsifiable. A frame with no attestations is a hypothesis, not an entry, and should carry :status "proposed"."""@en ,
+    "Collega un frame, un ruolo o un'unita' lessicale a un'occorrenza di corpus che lo sostiene. Senza questa proprieta' la risorsa e' una tassonomia di etichette plausibili."@it ;
+    rdfs:label "attested by"@en , "attestato da"@it .
+
+:attestations rdf:type owl:DatatypeProperty ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:comment "Count of corpus occurrences supporting the element. Suggested promotion threshold from proposed to attested: at least twenty occurrences over at least three distinct syntactic realisations."@en ;
+    rdfs:label "attestations"@en , "attestazioni"@it .
+
+:entailment_profile rdf:type owl:AnnotationProperty ;
+    rdfs:comment """Compact encoding of the entailment bundle, over seven ordered dimensions: volition, sentience, causation, movement, change of state, independent existence, incrementality. Each position takes +, - or ?, where ? means undetermined rather than false.
+
+Carried both by global roles, where it states the canonical profile, and by frame-specific roles, where it states the observed one. Declared as an annotation property so that it can be attached to object properties without property/individual punning, and because it is editorial metadata rather than something to reason over.
+
+Parsimony rule for instituting a frame-specific role: institute if and only if there is at least one dimension on which the candidate profile and the global one are BOTH determinate and discordant. A ? sharpened to + or - is not a difference, it is the same role better known, and belongs in a range restriction on the frame class, not in a new role. Conflict institutes, richness does not."""@en ,
+    """Codifica compatta del fascio di entailment su sette dimensioni ordinate: volizione, senzienza, causazione, movimento, mutamento di stato, esistenza indipendente, incrementalita'. Ogni posizione vale +, - o ?, dove ? significa indeterminato, non falso.
+
+Regola di parsimonia per istituire un ruolo specifico di frame: si istituisce se e solo se esiste almeno una dimensione su cui il profilo candidato e quello globale sono entrambi determinati e discordi. Un ? precisato in + o - non e' una differenza: e' lo stesso ruolo meglio conosciuto, e va in una restrizione di range sulla classe del frame, non in un ruolo nuovo."""@it ;
+    rdfs:label "entailment profile"@en , "profilo di entailment"@it .

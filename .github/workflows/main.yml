@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: read
@@ -44,6 +45,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Validate public ontology bundle
+        run: |
+          uv sync --locked
+          uv run pytest
+          uv run ruff check python scripts/ontologies-to-json.py scripts/export-ontologies.py tests
+          uv run python scripts/ontologies-to-json.py --check
+          uv run python scripts/export-ontologies.py
+          uv run python scripts/export-ontologies.py --check
+          pnpm test:edge
+          uv build
+
       - name: Test
         run: pnpm test
 
@@ -51,7 +67,7 @@ jobs:
         run: pnpm lint
 
       - name: Build static export
-        run: pnpm build
+        run: uv run -- pnpm build
 
       - name: Generate timestamp
         id: ts
@@ -70,6 +86,7 @@ jobs:
           path: out
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:

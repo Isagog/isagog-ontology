@@ -25,7 +25,7 @@ export default {
       },
       layers: {
         title: "Three layers, plus yours",
-        body: "Top level, agents and frames: what each one describes, and how an organization's own ontology is built on them.",
+        body: "Core, agents and frames: what each one describes, and how an organization's own ontology is built on them.",
       },
       reasoning: {
         title: "One vocabulary, two readers",
@@ -79,8 +79,9 @@ export default {
       intro:
         "Isagog ontologies are built in layers. The top level sets the most general distinctions; the other two import and extend it, for conversational agents and for text analysis.",
       versionLabel: "version",
-      top: {
-        name: "Top level ontology",
+      downloadTurtle: "Download Turtle (.ttl)",
+      core: {
+        name: "Core ontology",
         tagline: "The most general categories, with modest commitments.",
         body: "A few fundamental categories (continuants and occurrents, tangibles and intangibles, agents, information, signs, situations, qualities) and the relations that connect them: participation, composition, causation, location, inherence. Every term has a short operational definition, in Italian and English, written to be read by a language model too, and mappings to DOLCE and schema.org.",
       },
@@ -134,7 +135,7 @@ export default {
       propertiesTab: "Relations and attributes",
       layerLabel: "Ontology",
       layerAll: "All",
-      layerTop: "Top level",
+      layerCore: "Core",
       layerAgents: "Agents",
       layerFrame: "Frames",
       searchLabel: "Search",
@@ -179,7 +180,7 @@ export default {
     layers: {
       title: "Layers — Isagog ontologies",
       description:
-        "Top level, agents and frames: the three layers of the Isagog ontologies and the organization's own ontology built on them.",
+        "Core, agents and frames: the three layers of the Isagog ontologies and the organization's own ontology built on them.",
     },
     reasoning: {
       title: "Reasoning — Isagog ontologies",

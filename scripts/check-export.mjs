@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 
 // Next (output: "export") writes the static site to ./out. Every route must
@@ -8,6 +9,15 @@ const LOCALES = ["it", "en"];
 const ROUTES = ["", "perspectives", "layers", "reasoning", "explorer"];
 
 const problems = [];
+const catalog = JSON.parse(readFileSync("catalog.json", "utf-8"));
+for (const entry of catalog.ontologies) {
+  const file = join(OUT, "ontology", entry.file.replace(/^ontologies\//, ""));
+  if (!existsSync(file)) {
+    problems.push(`missing ontology download ${file}`);
+  } else if (createHash("sha256").update(readFileSync(file)).digest("hex") !== entry.sha256) {
+    problems.push(`${file}: checksum differs from the authoritative catalog`);
+  }
+}
 for (const locale of LOCALES) {
   for (const route of ROUTES) {
     const file = join(OUT, locale, route, "index.html");
@@ -26,12 +36,12 @@ for (const locale of LOCALES) {
 }
 
 // Layer anchors: the IRI stubs on isagog.com and the main site's links
-// land on /layers/#top, #agents and #frame.
+// land on /layers/#core, #agents and #frame.
 for (const locale of LOCALES) {
   const file = join(OUT, locale, "layers", "index.html");
   if (!existsSync(file)) continue;
   const html = readFileSync(file, "utf-8");
-  for (const anchor of ["top", "agents", "frame"]) {
+  for (const anchor of ["core", "agents", "frame"]) {
     if (!html.includes(`id="${anchor}"`)) problems.push(`${file}: no id="${anchor}"`);
   }
 }
