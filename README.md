@@ -22,11 +22,13 @@ Published distributions are listed in [Releases](https://github.com/Isagog/isago
 
 ## License and attribution
 
-The ontology releases currently available here are licensed under
-[Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).
-Credit **Guido Vetere / Isagog S.r.l.**, link to the license and indicate changes
-when reusing the licensed material, as required by its terms.
-See the [ontology license notice](LICENSES/CC-BY-4.0.txt).
+The current ontology releases are licensed under
+[Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/).
+Noncommercial reuse is permitted under its attribution and other terms.
+For commercial permissions, contact [info@isagog.com](mailto:info@isagog.com).
+See [Licensing](LICENSING.md) for the applicable terms and attribution.
+
+Earlier releases retain the licenses supplied with them.
 
 Software code is available under the [MIT License](LICENSE).
 

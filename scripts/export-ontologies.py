@@ -19,8 +19,11 @@ def documentation(entry: dict) -> bytes:
     return f'''<!doctype html><html lang="en"><meta charset="utf-8">
 <title>Isagog {escape(module)} ontology</title>
 <link rel="alternate" type="text/turtle" href="{escape(entry["document_url"])}">
+<link rel="license" href="{escape(entry["license_url"])}">
 <p><a href="{escape(layers)}">Ontology documentation</a> ·
 <a href="{escape(entry["document_url"])}">Download Turtle</a></p>
+<p>License: <a href="{escape(entry["license_url"])}">{escape(entry["license"])}</a> ·
+<a href="mailto:info@isagog.com">Commercial licensing</a></p>
 <script>
 let term = location.hash.slice(1);
 try {{ term = decodeURIComponent(term); }} catch {{ term = ""; }}

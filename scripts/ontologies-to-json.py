@@ -80,6 +80,7 @@ def ontology_meta(g: Graph, layer: str) -> dict:
         "iri": str(onto),
         "versionIRI": str(next(g.objects(onto, OWL.versionIRI))),
         "download": f"/{layer}.ttl",
+        "license": str(g.value(onto, URIRef("http://purl.org/dc/elements/1.1/license"))),
     }
 
 

@@ -1,9 +1,11 @@
 Isagog ontology definitions
 Copyright (c) 2026 Isagog S.r.l. Original author: Guido Vetere.
 
-The Turtle ontology definitions under ontologies/ and their published RDF
-representations are licensed under Creative Commons Attribution 4.0
-International (CC BY 4.0).
+Historical ontology releases that declare CC BY 4.0, and copies previously
+released under those terms, retain the Creative Commons Attribution 4.0
+International license. Consult the license declaration supplied with each
+release. The current releases are covered separately by CC BY-NC 4.0; see
+../LICENSING.md and CC-BY-NC-4.0.txt.
 
 License:
 https://creativecommons.org/licenses/by/4.0/

@@ -1,5 +1,6 @@
 """Catalog, import closure and migration invariants for the public releases."""
 
+import json
 from hashlib import sha256
 from pathlib import Path
 from runpy import run_path
@@ -12,6 +13,8 @@ from rdflib.compare import isomorphic
 from rdflib.namespace import OWL, RDF, RDFS
 
 ROOT = Path(__file__).resolve().parents[1]
+DC_LICENSE = URIRef("http://purl.org/dc/elements/1.1/license")
+NC_LICENSE = "https://creativecommons.org/licenses/by-nc/4.0/"
 
 
 @pytest.mark.parametrize("entry", load_catalog()["ontologies"], ids=lambda e: e["version_iri"])
@@ -25,6 +28,7 @@ def test_catalog_matches_turtle_and_imports_resolve(entry):
     assert set(graph.subjects(RDF.type, OWL.Ontology)) == {ontology}
     assert set(graph.objects(ontology, OWL.versionIRI)) == {URIRef(entry["version_iri"])}
     assert sorted(map(str, graph.objects(ontology, OWL.imports))) == sorted(entry["imports"])
+    assert set(graph.objects(ontology, DC_LICENSE)) == {URIRef(entry["license_url"])}
     for iri in entry["imports"]:
         assert ontology_resource(iri).is_file()
 
@@ -42,6 +46,40 @@ def test_unversioned_iris_select_current_release_and_archive_stays_explicit():
     )
     assert ontology_resource("https://isagog.com/ontology/core/4.7") is None
     assert ontology_resource("https://example.org/missing") is None
+
+
+def test_current_publications_and_explorer_declare_noncommercial_license():
+    catalog = load_catalog()
+    assert catalog["current_license"] == "CC-BY-NC-4.0"
+    for module in ("core", "agents", "frames"):
+        entry = current_ontology(module)
+        assert entry["license"] == catalog["current_license"]
+        assert entry["license_url"] == NC_LICENSE
+        if module != "core":
+            assert entry["imports"] == [current_ontology("core")["version_iri"]]
+    explorer = json.loads((ROOT / "src/lib/ontology-explorer/ontologies.json").read_text())
+    assert len(explorer["ontologies"]) == 3
+    assert all(entry["license"] == NC_LICENSE for entry in explorer["ontologies"])
+
+
+@pytest.mark.parametrize(
+    "module,version,checksum",
+    [
+        ("core", "6.0", "911b9f27e0bba093d68c88b90e577306c23c46c50f5ebd25ea8d162151fbf86f"),
+        ("agents", "3.0", "55de5a5dcaeb02116961ae547af169b112c55c38f1e76fd44a366601233b6571"),
+        ("frames", "3.0", "5633884e5f5ee0817b9861d351901741cf61145b042531603d0f2d21e7103a29"),
+    ],
+)
+def test_previous_cc_by_releases_keep_bytes_license_and_public_url(module, version, checksum):
+    iri = f"https://ontology.isagog.com/{module}/{version}.ttl"
+    data = ontology_resource(iri).read_bytes()
+    assert sha256(data).hexdigest() == checksum
+    graph = Graph().parse(data=data, format="turtle")
+    assert graph.value(URIRef(f"https://ontology.isagog.com/{module}"), DC_LICENSE) == URIRef(
+        "http://creativecommons.org/licenses/by/4.0/"
+    )
+    exported = run_path(str(ROOT / "scripts/export-ontologies.py"))["outputs"]()
+    assert exported[ROOT / f"public/{module}/{version}.ttl"] == data
 
 
 @pytest.mark.parametrize(
@@ -107,6 +145,8 @@ def test_static_alias_and_immutable_version_are_identical_complete_graphs(module
     page = exported[ROOT / "public" / module / "index.html"].decode()
     assert entry["document_url"] in page
     assert 'type="text/turtle"' in page
+    assert entry["license_url"] in page
+    assert entry["license"] in page
 
 
 @pytest.mark.parametrize("module", ["core", "agents", "frames"])
@@ -138,7 +178,7 @@ def test_static_namespace_migration_preserves_axioms(module):
     old = Graph().parse(data=resource.read_bytes(), format="turtle")
     entry = current_ontology(module)
     new = Graph().parse(ROOT / entry["file"])
-    metadata = {OWL.versionIRI, OWL.versionInfo, RDFS.label, RDFS.comment}
+    metadata = {OWL.versionIRI, OWL.versionInfo, RDFS.label, RDFS.comment, DC_LICENSE}
     transformed, actual = Graph(), Graph()
     for s, p, o in old:
         if str(s) == f"https://isagog.com/ontology/{old_module}" and p in metadata:

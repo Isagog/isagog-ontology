@@ -78,7 +78,16 @@ export const Livelli = async ({ locale }: { locale: Locale }) => {
           </div>
         </div>
 
-        <p className="mt-12 border-t border-divider pt-6 text-[14px] text-forest">{t("license")}</p>
+        <p className="mt-12 border-t border-divider pt-6 text-[14px] text-forest">
+          {t("license")}{" "}
+          <a href="https://creativecommons.org/licenses/by-nc/4.0/" rel="license" className="underline underline-offset-4">
+            {t("licenseTerms")}
+          </a>
+          {" · "}
+          <a href="mailto:info@isagog.com" className="underline underline-offset-4">
+            {t("commercialLicense")}
+          </a>
+        </p>
       </div>
     </section>
   );

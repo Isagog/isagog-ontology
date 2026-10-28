@@ -20,5 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-The ontology definitions under ontologies/ and their generated RDF exports
-are licensed separately under CC BY 4.0; see LICENSES/CC-BY-4.0.txt.
+Ontology definitions, their generated representations and their public
+explanatory content are licensed separately. Current ontology releases use
+CC BY-NC 4.0; historical releases retain their original CC BY 4.0 terms.
+See LICENSING.md and LICENSES/ for the applicable notices and license texts.
