@@ -26,13 +26,13 @@
   },
   {
    "id": "frames",
-   "version": "4.0",
+   "version": "5.0",
    "label": {
     "en": "Isagog Frames Ontology",
     "it": "Ontologia dei Frame Isagog"
    },
    "iri": "https://ontology.isagog.com/frames",
-   "versionIRI": "https://ontology.isagog.com/frames/4.0.ttl",
+   "versionIRI": "https://ontology.isagog.com/frames/5.0.ttl",
    "download": "/frames.ttl",
    "license": "https://creativecommons.org/licenses/by-nc/4.0/"
   }
@@ -437,11 +437,12 @@
     "en": "Frame"
    },
    "definition": {
-    "en": "A frame, considered as a catalogue object. By OWL 2 punning, every frame IRI denotes both an owl:Class subsumed by core:Occurrent (schema level, used for classifying instances) and an individual of :Frame (catalogue level, used for asserting definitions, lexical units, provenance and corpus attestations). The punning is what makes the resource auditable without metaclasses: evidence is asserted about the individual, inference runs over the class.",
-    "it": "Un frame considerato come oggetto di catalogo. Per punning OWL 2, ogni IRI di frame denota sia una classe di occorrenti sia un individuo su cui asserire definizioni, unità lessicali e attestazioni."
+    "en": "A frame, as a class. Every frame is a subclass of :Frame, which sits under core:Concept, and specialisation between frames is rdfs:subClassOf between their classes: logical subsumption, checked by a reasoner, not a relation asserted alongside it. An instance of a frame is an occurrent as the frame categorises it: a core:Concept and a core:Occurrent at once, which the core's deflationist stance allows. A frame's roles are subclasses of :Role, listed on the frame class by the annotation :has_role and linked by :binds to the object properties that carry them in data, with the frame class as their domain; a required role is an existential restriction on that property. Definitions, labels, editorial status and attestation counts are annotations on the class: they describe the frame as a catalogue entry, which is not something its instances inherit.",
+    "it": "Un frame, come classe. Ogni frame è sottoclasse di :Frame, che sta sotto core:Concept, e la specializzazione tra frame è rdfs:subClassOf tra le loro classi: una sussunzione logica, verificata dal reasoner. Un'istanza di un frame è un occorrente categorizzato dal frame: insieme core:Concept e core:Occurrent, come la posizione deflazionista della core consente. I ruoli del frame sono sottoclassi di :Role, elencate sulla classe di frame dall'annotazione :has_role e legate da :binds alle object property che li realizzano nei dati; un ruolo obbligatorio è una restrizione esistenziale su quella proprietà. Definizioni, etichette, stato editoriale e conteggi di attestazioni sono annotazioni sulla classe: descrivono il frame come voce di catalogo, e le sue istanze non le ereditano."
    },
    "parents": [
-    "core:Concept"
+    "core:Concept",
+    "core:Occurrent"
    ]
   },
   {
@@ -452,7 +453,8 @@
     "en": "Lexical unit"
    },
    "definition": {
-    "en": "A lemma and part of speech pair that evokes a frame. Subclass of core:Information, which already covers word types and tokens."
+    "en": "A lemma and part of speech pair that evokes a frame. Subclass of core:Information, which already covers word types and tokens. A lexical unit is an individual; the frames it evokes and the roles it profiles are classes, related to it by the annotations :evokes and :profiles.",
+    "it": "Una coppia di lemma e parte del discorso che evoca un frame. Sottoclasse di core:Information. Un'unità lessicale è un individuo; i frame che evoca e i ruoli che profila sono classi, collegate dalle annotazioni :evokes e :profiles."
    },
    "parents": [
     "core:Information"
@@ -481,8 +483,8 @@
     "en": "Role"
    },
    "definition": {
-    "en": "A frame-specific role, considered as a catalogue object, linked by :binds to the object property that realises it. Unlike FrameNet frame elements, every role must specialise one of the global roles on axis 2 or axis 3, which is what removes the homonymy problem: MOVER of fleeing and MOVER of descending both specialise :theme and are therefore comparable.",
-    "it": "Un ruolo specifico di frame. Diversamente dai frame element di FrameNet, ogni ruolo deve specializzare un ruolo globale, il che elimina il problema dell'omonimia."
+    "en": "A frame-specific role, as a class: every role of a frame is a subclass of :Role, linked by :binds to the object property that realises it, which is a subproperty of the global role it specialises. Unlike FrameNet frame elements, every role must specialise one of the global roles on axis 2 or axis 3, or :involved_occurrent, which is what removes the homonymy problem: MOVER of fleeing and MOVER of descending both specialise :theme and are therefore comparable.",
+    "it": "Un ruolo specifico di frame, come classe: ogni ruolo di un frame è sottoclasse di :Role, legata da :binds alla object property che lo realizza, sottoproprietà del ruolo globale che specializza. Diversamente dai frame element di FrameNet, ogni ruolo deve specializzare un ruolo globale, il che elimina il problema dell'omonimia."
    },
    "parents": [
     "core:Concept"
@@ -1936,8 +1938,8 @@
     "en": "attested by"
    },
    "definition": {
-    "en": "Links a frame, role or lexical unit to a corpus occurrence supporting it. This is the load bearing property of the whole design: without it the resource is a taxonomy of plausible labels, with it every element is falsifiable. A frame with no attestations is a hypothesis, not an entry, and should carry :status \"proposed\".",
-    "it": "Collega un frame, un ruolo o un'unità lessicale a un'occorrenza di corpus che lo sostiene. Senza questa proprietà la risorsa è una tassonomia di etichette plausibili."
+    "en": "Links an attested instance (an occurrence of a frame found in a text) to the information it was found in. This is the load bearing property of the whole design: without it the resource is a taxonomy of plausible labels, with it every element is falsifiable. A frame with no attested instances is a hypothesis, not an entry, and should carry :status \"proposed\"; its class records the count in :attestations.",
+    "it": "Collega un'istanza attestata (un'occorrenza di un frame trovata in un testo) all'informazione in cui è stata trovata. Senza questa proprietà la risorsa è una tassonomia di etichette plausibili. Un frame senza istanze attestate è un'ipotesi; la sua classe ne registra il numero in :attestations."
    },
    "kind": "object",
    "parents": [],
@@ -2053,7 +2055,7 @@
     "en": "efficient cause"
    },
    "definition": {
-    "en": "Efficient cause: what brings the occurrent about. Realised by core:causes for occurrent-to-occurrent causation and by core:initiator for agentive participation. Deliberately not extended to motives, which are intentional and not causal."
+    "en": "Efficient cause: what brings the occurrent about, as the value of the relation (the occurrent is the subject, its cause the object). Realised by core:caused_by for occurrent-to-occurrent causation and by core:initiator for agentive participation. Not by core:causes, whose value is the effect. Deliberately not extended to motives, which are intentional and not causal."
    },
    "kind": "object",
    "parents": [
@@ -2061,25 +2063,6 @@
    ],
    "domain": [],
    "range": []
-  },
-  {
-   "id": "frames:evokes",
-   "layer": "frames",
-   "label": {
-    "it": "evoca",
-    "en": "evokes"
-   },
-   "definition": {
-    "en": "Relates a lexical unit to the frame it evokes. Polysemy is expected: one lexical unit may evoke several frames."
-   },
-   "kind": "object",
-   "parents": [],
-   "domain": [
-    "frames:LexicalUnit"
-   ],
-   "range": [
-    "frames:Frame"
-   ]
   },
   {
    "id": "frames:experiencer",
@@ -2119,25 +2102,6 @@
    "range": []
   },
   {
-   "id": "frames:has_role",
-   "layer": "frames",
-   "label": {
-    "it": "ha ruolo",
-    "en": "has role"
-   },
-   "definition": {
-    "en": "Relates a frame to one of its roles at catalogue level."
-   },
-   "kind": "object",
-   "parents": [],
-   "domain": [
-    "frames:Frame"
-   ],
-   "range": [
-    "frames:Role"
-   ]
-  },
-  {
    "id": "frames:instrument",
    "layer": "frames",
    "label": {
@@ -2156,6 +2120,28 @@
     "core:Tangible"
    ],
    "profile": "-,-,-,?,-,+,-"
+  },
+  {
+   "id": "frames:involved_occurrent",
+   "layer": "frames",
+   "label": {
+    "it": "occorrente coinvolto",
+    "en": "involved occurrent"
+   },
+   "definition": {
+    "en": "An occurrent that the occurrent acts upon or bears on as a whole: the strike that is called off, the meeting that is scheduled, the process that is expedited, the war that is condemned. The occurrent counterpart of :undergoer and :theme: core:has_participant and the participant roles range over continuants, so an occurrent in that position is related here instead, without classifying it as a continuant. Distinct from core:has_phase (the value is a part of the occurrent), core:causes and core:caused_by (causation), :means (a subordinate occurrent by which this one is achieved) and :purpose (its intended outcome). Like a participant role it may be required: under the parsimony rule a frame requiring :involved_occurrent where another requires an :undergoer is a different frame.",
+    "it": "Un occorrente su cui l'occorrente agisce o verte nel suo insieme: lo sciopero revocato, la riunione fissata, il processo accelerato, la guerra condannata. Controparte occorrente di :undergoer e :theme: core:has_participant e i ruoli partecipanti hanno per range i continuanti, quindi un occorrente in quella posizione è collegato qui, senza classificarlo come continuante. Come un ruolo partecipante può essere obbligatorio."
+   },
+   "kind": "object",
+   "parents": [
+    "core:relatedness"
+   ],
+   "domain": [
+    "core:Occurrent"
+   ],
+   "range": [
+    "core:Occurrent"
+   ]
   },
   {
    "id": "frames:manner",
@@ -2285,26 +2271,6 @@
    "profile": "-,?,-,-,+,-,?"
   },
   {
-   "id": "frames:profiles",
-   "layer": "frames",
-   "label": {
-    "it": "profila",
-    "en": "profiles"
-   },
-   "definition": {
-    "en": "Relates a lexical unit to the subset of the frame's roles it foregrounds. This is where perspectivisation lives: sell and buy evoke the same frame and profile different roles. Keeping profiling on the lexical unit rather than on the frame is what lets the ontology stay univocal while still accounting for the perspective phenomena that FrameNet handles with Perspective_on.",
-    "it": "Collega un'unità lessicale al sottoinsieme di ruoli che mette in primo piano. E' qui che vive la prospettivizzazione: l'ontologia resta univoca."
-   },
-   "kind": "object",
-   "parents": [],
-   "domain": [
-    "frames:LexicalUnit"
-   ],
-   "range": [
-    "frames:Role"
-   ]
-  },
-  {
    "id": "frames:purpose",
    "layer": "frames",
    "label": {
@@ -2350,7 +2316,8 @@
     "en": "specialises"
    },
    "definition": {
-    "en": "Catalogue-level counterpart of subsumption between frames, reusing core:entails between concepts. Must be kept aligned with rdfs:subClassOf at schema level; divergence between the two is a consistency check."
+    "en": "Deprecated since 5.0: specialisation between frames is rdfs:subClassOf between frame classes, logical subsumption. Kept for catalogues that still assert frames as individuals, where it must mirror rdfs:subClassOf.",
+    "it": "Deprecata dalla 5.0: la specializzazione tra frame è rdfs:subClassOf tra classi di frame, sussunzione logica. Mantenuta per i cataloghi che asseriscono ancora i frame come individui, dove deve rispecchiare rdfs:subClassOf."
    },
    "kind": "object",
    "parents": [
@@ -2438,21 +2405,6 @@
    "profile": "?,?,-,?,?,?,?"
   },
   {
-   "id": "frames:attestations",
-   "layer": "frames",
-   "label": {
-    "it": "attestazioni",
-    "en": "attestations"
-   },
-   "definition": {
-    "en": "Count of corpus occurrences supporting the element. Suggested promotion threshold from proposed to attested: at least twenty occurrences over at least three distinct syntactic realisations."
-   },
-   "kind": "data",
-   "parents": [],
-   "domain": [],
-   "range": []
-  },
-  {
    "id": "frames:definition",
    "layer": "frames",
    "label": {
@@ -2460,8 +2412,8 @@
     "en": "definition"
    },
    "definition": {
-    "en": "A natural-language definition of a catalogue individual (frame or role). Multi-valued, the same pattern rdfs:label already uses, to allow parallel definitions in different languages.",
-    "it": "Una definizione in linguaggio naturale di un individuo di catalogo (frame o ruolo). A valore multiplo, lo stesso schema già usato da rdfs:label, per ammettere definizioni parallele in lingue diverse."
+    "en": "Deprecated since 5.0: frame and role classes carry their definitions as the annotation core:definition, multi-valued with one value per language, since a datatype property cannot be asserted on a class. Kept for catalogues that still assert frames and roles as individuals.",
+    "it": "Deprecata dalla 5.0: le classi di frame e di ruolo portano le loro definizioni con l'annotazione core:definition, a valore multiplo con un valore per lingua, perché una datatype property non si può asserire su una classe. Mantenuta per i cataloghi che asseriscono ancora frame e ruoli come individui."
    },
    "kind": "data",
    "parents": [],

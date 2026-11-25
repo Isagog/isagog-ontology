@@ -4,7 +4,7 @@
   "current": {
     "core": "https://ontology.isagog.com/core/7.0.ttl",
     "agents": "https://ontology.isagog.com/agents/4.0.ttl",
-    "frames": "https://ontology.isagog.com/frames/4.0.ttl",
+    "frames": "https://ontology.isagog.com/frames/5.0.ttl",
     "top": "https://isagog.com/ontology/top/4.7"
   },
   "ontologies": [
@@ -221,9 +221,28 @@
         "https://ontology.isagog.com/core/7.0.ttl"
       ],
       "sha256": "53d62379cf8a16f37c8c61fea8d8445e193111599246bef5ea94025023cdad6a",
-      "status": "current",
+      "status": "legacy",
       "source": {
         "derived_from": "https://ontology.isagog.com/frames/3.0.ttl"
+      },
+      "document_url": "https://ontology.isagog.com/frames.ttl",
+      "license": "CC-BY-NC-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/"
+    },
+    {
+      "id": "frames",
+      "version": "5.0",
+      "ontology_iri": "https://ontology.isagog.com/frames",
+      "version_iri": "https://ontology.isagog.com/frames/5.0.ttl",
+      "namespace": "https://ontology.isagog.com/frames#",
+      "file": "ontologies/frames/5.0.ttl",
+      "imports": [
+        "https://ontology.isagog.com/core/7.0.ttl"
+      ],
+      "sha256": "5bc5c02c75ea7a5a9f827479dc83eb810502420216c8a26e846cdbe62aa325ab",
+      "status": "current",
+      "source": {
+        "derived_from": "https://ontology.isagog.com/frames/4.0.ttl"
       },
       "document_url": "https://ontology.isagog.com/frames.ttl",
       "license": "CC-BY-NC-4.0",
