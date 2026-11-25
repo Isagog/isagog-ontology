@@ -149,6 +149,17 @@ def test_static_alias_and_immutable_version_are_identical_complete_graphs(module
     assert entry["license"] in page
 
 
+# The releases that moved each module to the static namespaces; later
+# releases may change axioms (frames 5.0 does).
+MIGRATED = {"core": "7.0", "agents": "4.0", "frames": "4.0"}
+
+
+def _release(module, version):
+    return next(
+        e for e in load_catalog()["ontologies"] if e["id"] == module and e["version"] == version
+    )
+
+
 @pytest.mark.parametrize("module", ["core", "agents", "frames"])
 def test_static_namespace_migration_preserves_axioms(module):
     previous = {"core": ("core", "5.0"), "agents": ("agents", "2.0"), "frames": ("frame", "2.0")}
@@ -157,9 +168,9 @@ def test_static_namespace_migration_preserves_axioms(module):
         replacements[f"https://isagog.com/ontology/{old}"] = (
             f"https://ontology.isagog.com/{current}"
         )
-        replacements[f"https://isagog.com/ontology/{old}/{version}"] = current_ontology(current)[
-            "version_iri"
-        ]
+        replacements[f"https://isagog.com/ontology/{old}/{version}"] = _release(
+            current, MIGRATED[current]
+        )["version_iri"]
 
     def rename(term):
         if isinstance(term, URIRef):
@@ -176,7 +187,7 @@ def test_static_namespace_migration_preserves_axioms(module):
     old_module, version = previous[module]
     resource = ontology_resource(f"https://isagog.com/ontology/{old_module}/{version}")
     old = Graph().parse(data=resource.read_bytes(), format="turtle")
-    entry = current_ontology(module)
+    entry = _release(module, MIGRATED[module])
     new = Graph().parse(ROOT / entry["file"])
     metadata = {OWL.versionIRI, OWL.versionInfo, RDFS.label, RDFS.comment, DC_LICENSE}
     transformed, actual = Graph(), Graph()
@@ -204,3 +215,31 @@ def test_archiving_frame_keeps_its_published_download_and_packaged_content():
     )
     resource = ontology_resource("https://isagog.com/ontology/frame/2.0")
     assert sha256(resource.read_bytes()).hexdigest() == published_checksum
+
+
+def test_frames_5_realises_efficient_cause_by_caused_by_and_adds_involved_occurrent():
+    graph = Graph().parse(ROOT / _release("frames", "5.0")["file"])
+    core, frames = "https://ontology.isagog.com/core#", "https://ontology.isagog.com/frames#"
+    efficient = URIRef(frames + "efficient")
+    assert (URIRef(core + "caused_by"), RDFS.subPropertyOf, efficient) in graph
+    assert (URIRef(core + "causes"), RDFS.subPropertyOf, efficient) not in graph
+    involved = URIRef(frames + "involved_occurrent")
+    assert (involved, RDFS.domain, URIRef(core + "Occurrent")) in graph
+    assert (involved, RDFS.range, URIRef(core + "Occurrent")) in graph
+    assert (involved, RDFS.subPropertyOf, URIRef(core + "relatedness")) in graph
+
+
+def test_frames_5_keeps_catalogue_statements_out_of_instance_axioms():
+    graph = Graph().parse(ROOT / _release("frames", "5.0")["file"])
+    core, frames = "https://ontology.isagog.com/core#", "https://ontology.isagog.com/frames#"
+
+    def parents(name):
+        return set(graph.objects(URIRef(frames + name), RDFS.subClassOf))
+
+    assert parents("Frame") == {URIRef(core + "Concept"), URIRef(core + "Occurrent")}
+    assert parents("Role") == {URIRef(core + "Concept")}
+    assert parents("LexicalUnit") == {URIRef(core + "Information")}
+    for name in ("has_role", "evokes", "profiles", "attestations"):
+        assert set(graph.objects(URIRef(frames + name), RDF.type)) == {OWL.AnnotationProperty}
+    for name in ("definition", "specialises"):
+        assert graph.value(URIRef(frames + name), OWL.deprecated).toPython() is True
